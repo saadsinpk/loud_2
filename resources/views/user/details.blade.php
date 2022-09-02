@@ -6,6 +6,7 @@
 
 @section("content")
     <!--begin::Content-->
+
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Post-->
         <div class="post d-flex flex-column-fluid" id="kt_post">
@@ -154,11 +155,7 @@
                                                     <tr>
                                                         <td>Role</td>
                                                         <td>
-                                                            @if(!empty($user->getRoleNames()))
-                                                                @foreach($user->getRoleNames() as $v)
-                                                               {{ $v }}
-                                                                @endforeach
-                                                            @endif
+                                                            {{ ucfirst($role) }}
                                                         </td>
                                                         <td class="text-end">
                                                             {{-- <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">
@@ -300,6 +297,21 @@
                                                 <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
                                                 <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
                                             </div>
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-bold mb-2">
+                                                    Role
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <select name="role_id" class="form-control form-control-solid" required>
+                                                    <option value="">Select Role</option>
+                                                    @foreach($roles  as $role)
+                                                      <option @if($user->role_id  == $role->id) selected="selected" @endif value="{{$role->id}}">{{ucfirst($role->name)}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <!--end::Input-->
+                                            </div>
                                             <!--end::Input group-->
 
                                             <!--begin::Input group-->
@@ -327,10 +339,10 @@
                                             <!--end::Input group-->
 
                                             <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
+                                            <!-- <div class="fv-row mb-7">
                                                 <label class="form-label fw-bolder text-dark fs-6">Profile Picture</label>
                                                 <input class="form-control form-control-lg form-control-solid" type="text" placeholder="/home/master/old/Pictures/nyumba.jpg" name="profile_picture" autocomplete="off" value="{{ $user->profile_picture }}" />
-                                            </div>
+                                            </div> -->
                                             <!--end::Input group-->
 
                                             <!--end::Input group-->

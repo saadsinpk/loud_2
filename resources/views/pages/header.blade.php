@@ -15,6 +15,8 @@ if($uri_segments[1]=="user"){
     $uri="meeting";
 }else if($uri_segments[1]=="post"){
     $uri="discussions";
+}else if($uri_segments[1]=="mypermissions"){
+    $uri="permissions";
 }else{
     $uri=request()->segment(1);
 }

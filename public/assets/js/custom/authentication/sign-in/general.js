@@ -44,6 +44,7 @@ var KTSigninGeneral = function() {
         submitButton.addEventListener('click', function(e) {
             var url = $("#kt_sign_in_form").attr("action");
             var formdata = $('#kt_sign_in_form').serialize();
+            // console.log(formdata);
             // Prevent button default action
             e.preventDefault();
             // Validate form

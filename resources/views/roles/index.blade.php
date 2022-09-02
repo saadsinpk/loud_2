@@ -20,7 +20,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
+                        <input type="text" data-kt-role-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -45,17 +45,17 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                    <div class="d-flex justify-content-end" data-kt-role-table-toolbar="base">
                         <!--begin::Add user-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">Add user</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">Add New</button>
                         <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Group actions-->
-                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
+                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-role-table-toolbar="selected">
                         <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
+                        <span class="me-2" data-kt-role-table-select="selected_count"></span>Selected</div>
+                        <button type="button" class="btn btn-danger" data-kt-role-table-select="delete_selected">Delete Selected</button>
                     </div>
                     <!--end::Group actions-->
                 </div>
@@ -65,7 +65,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_user_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_role_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -75,10 +75,9 @@
                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_user_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="min-w-125px">User Name</th>
                             <th class="min-w-125px">Role</th>
-                            <th class="min-w-125px">Email</th>
-                            <th class="min-w-125px">Created Date</th>
+                            <th class="min-w-125px">Permissions</th>
+                            <th class="min-w-125px">Updated</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -96,21 +95,21 @@
         <!--end::Card-->
         <!--begin::Modals-->
         <!--begin::Modal - user - Add-->
-        <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="kt_modal_add_role" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/user') }}" id="kt_modal_add_user_form" data-kt-redirect="{{ url('/user') }}" method="POST">
+                    <form class="form" action="{{ url('/roles') }}" id="kt_modal_add_role_form" data-kt-redirect="{{ url('/roles') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_user_header">
+                        <div class="modal-header" id="kt_modal_add_role_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Add a User</h2>
+                            <h2 class="fw-bolder">Create New Role</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_modal_add_user_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_modal_add_role_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -126,7 +125,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_role_header" data-kt-scroll-wrappers="#kt_modal_add_role_scroll" data-kt-scroll-offset="300px">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
@@ -138,102 +137,28 @@
                                 </div>
                                 <!--end::Input group-->
                                 <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="fs-6 fw-bold mb-2">
-                                        <span class="required">Email</span>
-                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
-                                    </label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="email" class="form-control form-control-solid" placeholder="" name="email" value="" />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7" data-kt-password-meter="true">
-                                    <!--begin::Wrapper-->
-                                    <div class="mb-1">
-                                        <!--begin::Label-->
-                                        <label class="form-label fw-bolder text-dark fs-6">Password</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input wrapper-->
-                                        <div class="position-relative mb-3">
-                                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
-                                            <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                                <i class="bi bi-eye-slash fs-2"></i>
-                                                <i class="bi bi-eye fs-2 d-none"></i>
-                                            </span>
-                                        </div>
-                                        <!--end::Input wrapper-->
-                                        <!--begin::Meter-->
-                                        <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                        </div>
-                                        <!--end::Meter-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Hint-->
-                                    <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
-                                    <!--end::Hint-->
-                                </div>
-                                <!--end::Input group=-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
-                                </div>
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="fs-6 fw-bold mb-2">
-                                        Role
-                                    </label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <select name="role_id" class="form-control form-control-solid" required>
-                                        <option value="">Select Role</option>
-                                        @foreach($roles  as $role)
-                                          <option value="{{$role->id}}">{{ucfirst($role->name)}}</option>
-                                        @endforeach
-                                    </select>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
+                                 <label for="permissions" class="form-label">Assign Permissions</label>
 
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Gender</label>
-                                    <select name="gender" class="form-control form-control-lg form-control-solid">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                                <!--end::Input group-->
+                <table class="table table-striped">
+                    <thead>
+                        <th scope="col" width="1%"><input type="checkbox" name="all_permission"></th>
+                        <th scope="col" width="20%">Name</th>
+                        <th scope="col" width="1%">Guard</th> 
+                    </thead>
 
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Platform</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="platform" autocomplete="off" />
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Age</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="number" placeholder="" name="age" autocomplete="off" />
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <!-- <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Profile Picture</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="/home/master/old/Pictures/nyumba.jpg" name="profile_picture" autocomplete="off" />
-                                </div> -->
-                                <!--end::Input group-->
+                    @foreach($permissions as $permission)
+                        <tr>
+                            <td>
+                                <input type="checkbox" 
+                                name="permission[{{ $permission->name }}]"
+                                value="{{ $permission->name }}"
+                                class='permission'>
+                            </td>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->guard_name }}</td>
+                        </tr>
+                    @endforeach
+                </table>
 
                                 <!--end::Billing form-->
                             </div>
@@ -243,7 +168,7 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_user_cancel" class="btn btn-light me-3">Discard</button>
+                            <button type="reset" id="kt_modal_add_role_cancel" class="btn btn-light me-3">Discard</button>
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" class="btn btn-primary">
@@ -378,8 +303,8 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/user/add.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/user/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/roles/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/roles/list.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css" integrity="sha512-TQQ3J4WkE/rwojNFo6OJdyu6G8Xe9z8rMrlF9y7xpFbQfW5g8aSWcygCQ4vqRiJqFsDsE1T6MoAOMJkFXlrI9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -392,6 +317,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.bg.min.js" integrity="sha512-+6qbrK0dvRsp0pwlBVm1qZqPPjArBJ5YYYnXz5O00hzUwlLL5D2UzQWgVRA4CH8XQVXkMnaPV/LwwQBbcK8h2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.bm.min.js" integrity="sha512-uILi1zdO9mBVW/9zRXmfR2OvRvwu6TZwKHDOJodNEO2EA+BEeOtmXadJI5pFaTOFdgspovPvXV6iCVD89NqL6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>$(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});</script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('[name="all_permission"]').on('click', function() {
+
+                    if($(this).is(':checked')) {
+                        $.each($('.permission'), function() {
+                            $(this).prop('checked',true);
+                        });
+                    } else {
+                        $.each($('.permission'), function() {
+                            $(this).prop('checked',false);
+                        });
+                    }
+                    
+                });
+            });
+        </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

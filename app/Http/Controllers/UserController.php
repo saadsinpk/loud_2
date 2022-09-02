@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Roles;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
@@ -22,7 +23,7 @@ class UserController extends Controller
 
     public function index(Request $request) {
         $users = User::role('user')->orderBy("created_at", "DESC")->get();
-
+        $roles=Roles::orderBy("created_at", "DESC")->get();
         $fromDate=date("Y-m-d ",strtotime($request->from_date));
         $toDate=date("Y-m-d",strtotime($request->to_date));
 
@@ -41,6 +42,15 @@ class UserController extends Controller
                                 <input type="hidden" value="'.$data->id.'">
                             </div>';
                 return $checkbox;
+            })
+            ->addColumn('role_id', function ($data) {
+                $checkbox2='';
+                $found=Roles::where("id","=",$data->role_id)->first();
+                if($found){
+
+                    $checkbox2 = Roles::where("id","=",$data->role_id)->first()->name;
+                }
+                return ucfirst($checkbox2);
             })
             ->addColumn('created_at', function ($row) { 
                 $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
@@ -76,12 +86,12 @@ class UserController extends Controller
                 return $action;
             })
 
-            ->rawColumns(['checkbox', 'group', 'action', 'created_at'])
+            ->rawColumns(['checkbox','checkbox2', 'group', 'action', 'created_at'])
             ->addIndexColumn()
             ->make(true);
         }
         
-        return view("user.index", compact("users"));
+        return view("user.index", compact("users","roles"));
     }
 
 
@@ -105,14 +115,15 @@ class UserController extends Controller
         $user->gender =  $request->gender;
         $user->platform =  $request->platform;
         $user->age =  $request->age;
-        $user->profile_picture =  $request->profile_picture;
+        // $user->profile_picture =  $request->profile_picture;
         $user->assignRole('user');
+        $user->role_id=$request->role_id;
         if (!$user->save()) {
             return  response()->json(['msg'=>"Something went wrong, please try again later."], 422);
         }
 
 
-        return response()->json(['msg'=>"Admin created successfully"], 200);
+        return response()->json(['msg'=>"User created successfully"], 200);
     }
 
     public function destroy ($id) {
@@ -134,11 +145,13 @@ class UserController extends Controller
 
     public function details($id) {
         $user = User::find($id);
+        $roles=Roles::orderBy("created_at", "DESC")->get();
+        $role = Roles::where("id","=",$user->role_id)->first()->name;
         if (!$user) {
             return abort(404);
         }
 
-        return view("user.details", compact("user"));
+        return view("user.details", compact("user","roles","role"));
     }
 
     public function update(Request $request) {
@@ -168,7 +181,8 @@ class UserController extends Controller
         $user->gender =  $request->gender;
         $user->platform =  $request->platform;
         $user->age =  $request->age;
-        $user->profile_picture =  $request->profile_picture;
+        $user->role_id=$request->role_id;
+        // $user->profile_picture =  $request->profile_picture;
         if (!$user->save()) {
             // return back()->withInput();
         }

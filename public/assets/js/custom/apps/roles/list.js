@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUser = function() {
+var KTModalRole = function() {
     var cancelButton;
     var closeButton;
     var validator;
@@ -82,7 +82,9 @@ var KTModalUser = function() {
             })
         }
         // Private functions
-    var inituserList = function(from_date='',to_date='') {
+        // alert(":asasda");
+    var initroleList = function(from_date='',to_date='') {
+
         // Set date data order
         datatable = $(table).DataTable({
             processing: true,
@@ -106,16 +108,12 @@ var KTModalUser = function() {
                     name: 'name',
                 },
                 {
-                    data: 'role_id',
-                    name: 'role_id',
+                    data: 'permissions.name',
+                    name: 'permissions.name',
                 },
                 {
-                    data: 'email',
-                    name: 'email',
-                },
-                {
-                    data: 'created_at',
-                    name: 'created_at',
+                    data: 'updated_at',
+                    name: 'updated_at',
                 },
                 {
                     data: 'action',
@@ -154,13 +152,13 @@ var KTModalUser = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-role-table-filter="search"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
     }
 
-    // Delete user
+    // Delete role
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
@@ -173,13 +171,13 @@ var KTModalUser = function() {
                 // Select parent row
                 const parent = e.target.closest('tr');
 
-                // Get user name
-                const userName = parent.querySelectorAll('td')[1].innerText;
+                // Get role name
+                const roleName = parent.querySelectorAll('td')[1].innerText;
                 const id = parent.querySelectorAll('td')[0].children[0].children[1].value;
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Are you sure you want to delete " + userName + "?",
+                    text: "Are you sure you want to delete " + roleName + "?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -199,13 +197,13 @@ var KTModalUser = function() {
                         });
 
                         $.ajax({
-                            url: `/user/delete/${id}`,
+                            url: `/roles/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {
                                 jQuery("#loading").remove();
                                 Swal.fire({
-                                    text: "You have deleted " + userName + "!.",
+                                    text: "You have deleted " + roleName + "!.",
                                     icon: "success",
                                     buttonsStyling: false,
                                     confirmButtonText: "Ok, got it!",
@@ -231,7 +229,7 @@ var KTModalUser = function() {
                         });
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
-                            text: userName + " was not deleted.",
+                            text: roleName + " was not deleted.",
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
@@ -249,8 +247,8 @@ var KTModalUser = function() {
         var to_date=$('#to_date').val();
 
         if(from_date!='' && to_date!=""){
-            $('#kt_user_table').DataTable().destroy();
-            inituserList(from_date,to_date);
+            $('#kt_role_table').DataTable().destroy();
+            initroleList(from_date,to_date);
         }else{
             alert("Both date required!");
         }
@@ -261,7 +259,7 @@ var KTModalUser = function() {
         // Select all checkboxes
         const checkboxes = table.querySelectorAll('[type="checkbox"]');
         // Select elements
-        const deleteSelected = document.querySelector('[data-kt-user-table-select="delete_selected"]');
+        const deleteSelected = document.querySelector('[data-kt-role-table-select="delete_selected"]');
 
         // Toggle delete selected toolbar
         checkboxes.forEach(c => {
@@ -279,7 +277,7 @@ var KTModalUser = function() {
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             console.log(ids);
             Swal.fire({
-                text: "Are you sure you want to delete selected user?",
+                text: "Are you sure you want to delete selected role?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -299,14 +297,14 @@ var KTModalUser = function() {
                     });
 
                     $.ajax({
-                        url: `/user/delete-rows`,
+                        url: `/role/delete-rows`,
                         data: { ids: ids.substr(1) },
                         method: "post",
                         dataType: "JSON",
                         success: function() {
                             jQuery("#loading").remove();
                             Swal.fire({
-                                text: "You have deleted all selected user!.",
+                                text: "You have deleted all selected role!.",
                                 icon: "success",
                                 buttonsStyling: false,
                                 confirmButtonText: "Ok, got it!",
@@ -314,7 +312,7 @@ var KTModalUser = function() {
                                     confirmButton: "btn fw-bold btn-primary",
                                 }
                             }).then(function() {
-                                // Remove all selected user
+                                // Remove all selected role
                                 checkboxes.forEach(c => {
                                     if (c.checked) {
                                         datatable.row($(c.closest('tbody tr'))).remove().draw();
@@ -340,7 +338,7 @@ var KTModalUser = function() {
                     });
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
-                        text: "Selected user was not deleted.",
+                        text: "Selected role was not deleted.",
                         icon: "error",
                         buttonsStyling: false,
                         confirmButtonText: "Ok, got it!",
@@ -356,9 +354,9 @@ var KTModalUser = function() {
     // Toggle toolbars
     const toggleToolbars = () => {
         // Define variables
-        const toolbarBase = document.querySelector('[data-kt-user-table-toolbar="base"]');
-        const toolbarSelected = document.querySelector('[data-kt-user-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-user-table-select="selected_count"]');
+        const toolbarBase = document.querySelector('[data-kt-role-table-toolbar="base"]');
+        const toolbarSelected = document.querySelector('[data-kt-role-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-role-table-select="selected_count"]');
 
         // Select refreshed checkbox DOM elements 
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
@@ -389,19 +387,19 @@ var KTModalUser = function() {
     return {
         // Public functions
         init: function() {
-            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_user'));
+            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_role'));
 
-            table = document.querySelector('#kt_user_table');
+            table = document.querySelector('#kt_role_table');
 
             if (!table) {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_user_form');
-            cancelButton = form.querySelector('#kt_modal_add_user_cancel');
-            closeButton = form.querySelector('#kt_modal_add_user_close');
-            url = $("#kt_modal_add_user_form").attr("action");
-            inituserList();
+            form = document.querySelector('#kt_modal_add_role_form');
+            cancelButton = form.querySelector('#kt_modal_add_role_cancel');
+            closeButton = form.querySelector('#kt_modal_add_role_close');
+            url = $("#kt_modal_add_role_form").attr("action");
+            initroleList();
             initToggleToolbar();
             handleSearchDatatable();
             closeForm();
@@ -411,5 +409,5 @@ var KTModalUser = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTModalUser.init();
+    KTModalRole.init();
 });
