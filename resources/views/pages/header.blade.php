@@ -26,7 +26,7 @@ if($uri_segments[1]=="user"){
     <div class="header-brand">
         <!--begin::Logo-->
         <a href="{{ route("dashboard") }}">
-            <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-50px h-lg-75px" />
+            <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="h-30px h-lg-45px" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside minimize-->
@@ -96,7 +96,6 @@ if($uri_segments[1]=="user"){
             <!--begin::Action group-->
             <div class="d-flex align-items-center overflow-auto pt-3 pt-lg-0">
                 <div class="d-flex align-items-center">
-                    <b>Server Time: </b><div class="show_clock" style="color: red; font-size: bold;">Loading</div>
                     <a href="{{ route("logout") }}" class="menu-link px-5"  onclick="event.preventDefault();
                         document.getElementById('action-logout-form').submit();">
                         <span class="svg-icon svg-icon-1 me-n1 minimize-default">

@@ -15,11 +15,6 @@
                 <td style="padding: 10px 0px 30px 0px;">
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
                         <tr>
-                            <td align="center" bgcolor="transparent" style="padding: 40px 0px 40px 0px; color: #153643; font-size: 28px; font-weight: bold; ">
-                                <img src="{{url('/images/logo.png')}}" alt={{env('APP_NAME')}} width="200" />
-                            </td>
-                        </tr>
-                        <tr>
                             <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px; box-shadow: 0px 2px 10px 0px #eaeaea;">
                                 @yield('content')
                                 <p style="color: #153643;  font-size: 16px; line-height: 20px;">Thank you for using our application!</p>

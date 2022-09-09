@@ -9,15 +9,3 @@
     </div>
     <!--end::Container-->
 @php $currentTime = getdate(); @endphp
-<script>
-    var date = new Date(Date.UTC(@php echo $currentTime['year'] .",".
-                                        $currentTime['mon'] .",".
-                                        $currentTime['mday'] .",".
-                                        $currentTime['hours'] .",".
-                                        $currentTime['minutes'] .",".
-                                        $currentTime['seconds']; @endphp));
-    setInterval(function() {
-        date.setSeconds(date.getSeconds() + 1);
-        jQuery(".show_clock").text((date.getHours() +':' + date.getMinutes() + ':' + date.getSeconds() ));
-    }, 1000);
-</script>

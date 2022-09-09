@@ -22,14 +22,14 @@ class UserController extends Controller
     }
 
     public function index(Request $request) {
-        $users = User::role('user')->orderBy("created_at", "DESC")->get();
+        $users = User::orderBy("created_at", "DESC")->get();
         $roles=Roles::orderBy("created_at", "DESC")->get();
         $fromDate=date("Y-m-d ",strtotime($request->from_date));
         $toDate=date("Y-m-d",strtotime($request->to_date));
 
         if (request()->ajax()) {
             if(!empty($request->from_date)){
-                $users = User::role('user')->whereDate('created_at','>=', $fromDate)->whereDate('created_at','<=', $toDate)->get();
+                $users = User::whereDate('created_at','>=', $fromDate)->whereDate('created_at','<=', $toDate)->get();
             }
             return DataTables::of($users)
             ->addColumn('group', function ($data) {
@@ -44,13 +44,14 @@ class UserController extends Controller
                 return $checkbox;
             })
             ->addColumn('role_id', function ($data) {
-                $checkbox2='';
-                $found=Roles::where("id","=",$data->role_id)->first();
-                if($found){
+                $role=$data->roles;
 
-                    $checkbox2 = Roles::where("id","=",$data->role_id)->first()->name;
+                if(isset($role->toArray()[0])) {
+                    $role_name=$role->toArray()[0]['name'];
+                } else {
+                    $role_name = 'No Roles Selected';
                 }
-                return ucfirst($checkbox2);
+                return $role_name;
             })
             ->addColumn('created_at', function ($row) { 
                 $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
@@ -112,12 +113,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
-        $user->gender =  $request->gender;
-        $user->platform =  $request->platform;
-        $user->age =  $request->age;
         // $user->profile_picture =  $request->profile_picture;
-        $user->assignRole('user');
-        $user->role_id=$request->role_id;
+        $role_name = Roles::where("id","=",$request->role_id)->first();
+        if(!empty($role_name)) {
+            $role_name = $role_name->name;
+        } else {
+            $role_name = '';
+        }
+        $user->assignRole($role_name);
+
         if (!$user->save()) {
             return  response()->json(['msg'=>"Something went wrong, please try again later."], 422);
         }
@@ -145,10 +149,18 @@ class UserController extends Controller
 
     public function details($id) {
         $user = User::find($id);
-        $roles=Roles::orderBy("created_at", "DESC")->get();
-        $role = Roles::where("id","=",$user->role_id)->first()->name;
         if (!$user) {
             return abort(404);
+        }
+        $roles=Roles::orderBy("created_at", "DESC")->get();
+        $role=$user->roles;
+        if(isset($role->toArray()[0])) {
+            $role_name=$role->toArray()[0]['name'];
+            $user->roleid = $role->toArray()[0]['id'];
+            $role = $role_name;
+        } else {
+            $role = 'No Roles Selected';
+            $user->roleid = 0;
         }
 
         return view("user.details", compact("user","roles","role"));
@@ -156,6 +168,7 @@ class UserController extends Controller
 
     public function update(Request $request) {
         $user = User::find($request->id);
+        $user->syncRoles([]);
         $users = User::where("id", "!=", $request->id)->get();
 
         foreach ($request->all() as $key => $value) {
@@ -178,13 +191,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
-        $user->gender =  $request->gender;
-        $user->platform =  $request->platform;
-        $user->age =  $request->age;
-        $user->role_id=$request->role_id;
-        // $user->profile_picture =  $request->profile_picture;
+        $role_name = Roles::where("id","=",$request->role_id)->first();
+        if(!empty($role_name)) {
+            $role_name = $role_name->name;
+        } else {
+            $role_name = '';
+        }
+        $user->assignRole($role_name);
+
         if (!$user->save()) {
-            // return back()->withInput();
         }
         return back()->withInput();
 

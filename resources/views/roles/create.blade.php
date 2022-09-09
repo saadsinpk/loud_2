@@ -49,7 +49,7 @@
                                 class='permission'>
                             </td>
                             <td>{{ $permission->name }}</td>
-                            <td>{{ $permission->guard_name }}</td>
+                            <td>Manage {{ $permission->guard_name }}</td>
                         </tr>
                     @endforeach
                 </table>

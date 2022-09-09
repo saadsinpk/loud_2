@@ -46,11 +46,9 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span></div>
-                                    @can('edit')
-                                        <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit role details">
-                                            <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit</a>
-                                        </span>
-                                    @endcan
+                                    <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit role details">
+                                        <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_role">Edit</a>
+                                    </span>
                                 </div>
                                 <!--end::Details toggle-->
                                 <div class="separator separator-dashed my-3"></div>

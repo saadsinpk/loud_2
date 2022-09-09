@@ -146,7 +146,7 @@
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="email" class="form-control form-control-solid" placeholder="" name="email" value="" />
+                                    <input type="email" class="form-control form-control-solid" placeholder="" name="email" value="" required />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -201,30 +201,6 @@
                                         @endforeach
                                     </select>
                                     <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Gender</label>
-                                    <select name="gender" class="form-control form-control-lg form-control-solid">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Platform</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="platform" autocomplete="off" />
-                                </div>
-                                <!--end::Input group-->
-
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Age</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="number" placeholder="" name="age" autocomplete="off" />
                                 </div>
                                 <!--end::Input group-->
 

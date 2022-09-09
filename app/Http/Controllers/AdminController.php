@@ -5,15 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Poll;
-use App\Models\Post;
-use App\Models\Report;
-use App\Models\Group;
-use App\Models\Live;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use DataTables;
-use Willywes\AgoraSDK\RtcTokenBuilder;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -24,42 +19,17 @@ class AdminController extends Controller
                 // $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
                 // $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
-    //
-
-
-    public static function Agora_GetToken($user_id){
-    
-        $appID = "c5f22fb73e6240d380f29ac9af1d8c31";
-        $appCertificate = "2fa50dacd540405980314c8c6a1bbfcf";
-        $channelName = "LoudLive";
-        $uid = $user_id;
-        $uidStr = ($user_id) . '';
-        $role = RtcTokenBuilder::RolePublisher;
-        $expireTimeInSeconds = 3600;
-        $currentTimestamp = (new \DateTime("now", new \DateTimeZone('UTC')))->getTimestamp();
-        $privilegeExpiredTs = $currentTimestamp + $expireTimeInSeconds;
-    
-        return RtcTokenBuilder::buildTokenWithUid($appID, $appCertificate, $channelName, $uid, $role, $privilegeExpiredTs);
-    
-    }
 
     public function dashboard() {
         $total_user = User::count();
-        $total_poll = Poll::count();
-        $total_post = Post::count();
-        $total_report = Report::count();
-        $total_group = Group::count();
-        $total_live = Live::count();
-        
-        // $token = '006c5f22fb73e6240d380f29ac9af1d8c31IAB3TOMZTReXusweoYRqfrjliQAGAPcMikZ6+qAg7P4L4rUlyoMAAAAAEACGukDPVxTsYgEAAQBXFOxi';
-        // $appCertificate = '2fa50dacd540405980314c8c6a1bbfcf';
-        // $channel = 'LoudLive';
-        // $uid = '123456';
-        // print_r(AccessToken::initWithToken($token, $appCertificate, $channel, $uid));
-        // print_r($this->Agora_GetToken("123456"));
-        // exit();
-
-        return view("dashboard", compact("total_user","total_poll","total_post","total_report","total_group","total_live"));
+        $totalRoles = Role::get()->count();
+        $totalUsers = array();
+        if($totalRoles >= 1) {
+            foreach (Role::get() as $role_key => $role_value) {
+                $totalUsers[$role_value['name']] = User::role($role_value['name'])->count();
+            }
+        }
+        return view("dashboard", compact("total_user", "totalUsers", "totalRoles"));
     }
 
     public function index() {

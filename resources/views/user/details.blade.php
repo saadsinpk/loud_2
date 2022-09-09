@@ -47,11 +47,9 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span></div>
-                                    @can('edit')
-                                        <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit user details">
-                                            <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_user">Edit</a>
-                                        </span>
-                                    @endcan
+                                    <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit user details">
+                                        <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_user">Edit</a>
+                                    </span>
                                 </div>
                                 <!--end::Details toggle-->
                                 <div class="separator separator-dashed my-3"></div>
@@ -117,24 +115,6 @@
                                                     <tr>
                                                         <td>Email</td>
                                                         <td>{{ $user->email }}</td>
-                                                        <td class="text-end">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Gender</td>
-                                                        <td>{{ $user->gender }}</td>
-                                                        <td class="text-end">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Platform</td>
-                                                        <td>{{ $user->platform }}</td>
-                                                        <td class="text-end">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Age</td>
-                                                        <td>{{ $user->age }}</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
@@ -204,18 +184,6 @@
                                     <!--begin::Modal title-->
                                     <h2 class="fw-bolder">Update user</h2>
                                     <!--end::Modal title-->
-                                    <!--begin::Close-->
-                                    <div id="kt_modal_update_user_close" class="btn btn-icon btn-sm btn-active-icon-primary">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                        <span class="svg-icon svg-icon-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <!--end::Close-->
                                 </div>
                                 <!--end::Modal header-->
                                 <!--begin::Modal body-->
@@ -307,34 +275,10 @@
                                                 <select name="role_id" class="form-control form-control-solid" required>
                                                     <option value="">Select Role</option>
                                                     @foreach($roles  as $role)
-                                                      <option @if($user->role_id  == $role->id) selected="selected" @endif value="{{$role->id}}">{{ucfirst($role->name)}}</option>
+                                                      <option @if($user->roleid  == $role->id) selected="selected" @endif value="{{$role->id}}">{{ucfirst($role->name)}}</option>
                                                     @endforeach
                                                 </select>
                                                 <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <label class="form-label fw-bolder text-dark fs-6">Gender</label>
-                                                <select name="gender" class="form-control form-control-lg form-control-solid">
-                                                    <option value="male" @if($user->gender == 'male') selected @endif>Male</option>
-                                                    <option value="female" @if($user->gender == 'female') selected @endif>Female</option>
-                                                </select>
-                                            </div>
-                                            <!--end::Input group-->
-
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <label class="form-label fw-bolder text-dark fs-6">Platform</label>
-                                                <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="platform" autocomplete="off" value="{{ $user->name }}" />
-                                            </div>
-                                            <!--end::Input group-->
-
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <label class="form-label fw-bolder text-dark fs-6">Age</label>
-                                                <input class="form-control form-control-lg form-control-solid" type="number" placeholder="" name="age" autocomplete="off" value="{{ $user->name }}" />
                                             </div>
                                             <!--end::Input group-->
 
@@ -355,7 +299,6 @@
                                 <!--begin::Modal footer-->
                                 <div class="modal-footer flex-center">
                                     <!--begin::Button-->
-                                    <button type="reset" id="kt_modal_update_user_cancel" class="btn btn-light me-3">Discard</button>
                                     <!--end::Button-->
                                     <!--begin::Button-->
                                     <button type="submit" id="" class="btn btn-primary">

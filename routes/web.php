@@ -45,7 +45,7 @@ Route::post('reset-passoword/send-link', [ForgotPassword::class, 'send_link'])->
 Route::post('reset-passoword', [ForgotPassword::class, 'reset_password'])->name('password.reset.post');
 
 
-// Route::group(['middleware' => ['auth', 'adminRole']], function () {
+Route::group(['middleware' => ['auth', 'adminRole']], function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name("dashboard");
     Route::prefix("admins")->group(function(){
     // Route::group(['middleware' => ['auth', 'permission']], function() {
@@ -87,9 +87,5 @@ Route::post('reset-passoword', [ForgotPassword::class, 'reset_password'])->name(
         Route::post('/update', [PermissionsController::class, 'update'])->name("permisssions.update");
     });
 
-     
-    
-
-
-// });
+});
 require __DIR__.'/auth.php';

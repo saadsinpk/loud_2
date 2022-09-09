@@ -38,7 +38,10 @@ class RolesController extends Controller
         
         $fromDate=date("Y-m-d ",strtotime($request->from_date));
         $toDate=date("Y-m-d",strtotime($request->to_date));
-
+        // echo "<pre>";
+        // print_r($permissions->toArray());
+        // echo "</pre>";
+        // exit();
         if (request()->ajax()) {
             if(!empty($request->from_date)){
                 $roles = Role::whereDate('created_at','>=', $fromDate)->whereDate('created_at','<=', $toDate)->get();

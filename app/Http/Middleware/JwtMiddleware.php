@@ -24,21 +24,14 @@
             
             try {
                 $user = JWTAuth::parseToken()->authenticate();
-               
             } catch (Exception $e) {
                 if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                    return response()->json(['status' => 'Token is Invalid']);
+                    return response()->json(['status' => 'false',"message" => 'Token is Invalid']);
                 }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                    return response()->json(['status' => 'Token is Expired']);
+                    return response()->json(['status' => 'false',"message" => 'Token is Expired']);
                 }else{
-                    return response()->json(['status' => 'Authorization Token not found']);
+                    return response()->json(['status' => 'false',"message" => 'Authorization Token not found']);
                 }
-            }
-            
-            if(!isset($request->gateway_transaction) && $user->user_membership === 1){
-                if($user->where('created_at', '>', Carbon::now()->subDays(7))->first() === null){
-                return response()->json(['status' => 'Please upgrade to premium']);
-            }
             }
             
             return $next($request);
