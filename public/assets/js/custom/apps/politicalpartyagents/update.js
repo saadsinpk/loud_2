@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateLga = function() {
+var KTModalUpdatepoliticalpartyagent = function() {
     var element;
     var submitButton;
     var cancelButton;
@@ -19,14 +19,14 @@ var KTModalUpdateLga = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'LGA name is required'
+                                message: 'political party agent name is required'
                             }
                         }
                     },
                     // 'email': {
                     //     validators: {
                     //         notEmpty: {
-                    //             message: 'lga email is required'
+                    //             message: 'politicalpartyagent email is required'
                     //         },
                     //         emailAddress: {
                     //             message: 'The value is not a valid email address'
@@ -55,29 +55,54 @@ var KTModalUpdateLga = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_lga_form").attr("action");
-                    var formData = new FormData();
-
-                    var id = $("#lga_id").val();
-                    // var avatar = $("#avatar")[0].files[0];
+                    var url = $("#kt_modal_update_politicalpartyagent_form").attr("action");
+					var formData = new FormData();
+                    
+                    var id = $("#politicalpartyagent_id").val();
+                    var lga_id = $("#js-data-lga-ajax").val();
+                    var ward_id = $("#js-data-wards-ajax").val();
+                    var pu_id = $("#js-data-pu-ajax").val();
                     var name = $("#name").val();
-                    // var email = $("#email").val();
-                    var lgastatus = $("#lgastatus").val();
+                    var political_party = $("#political_party").val();
+                    var agent_picture = $("#agent_picture")[0].files[0];
+                    var designation = $("#designation").val();
+                    var home_address = $("#home_address").val();
+                    var mobile = $("#mobile").val();
+                    var extra_mobile = $("#extra_mobile").val();
+                    var signature_agent = $("#signature_agent").val();
+                    var signature_auth_party_officials = $("#signature_auth_party_officials").val();
+                    var name_party_chairman = $("#name_party_chairman").val();
+                    var signature_party_chairman = $("#signature_party_chairman").val();
+                    var name_electoral_officer = $("#name_electoral_officer").val();
+                    var signature_electoral_officer = $("#signature_electoral_officer").val();
+					
                     formData.append("id", id);
                     formData.append("name", name);
-                    formData.append("status", lgastatus);
-                    // formData.append("email", email);
+                    formData.append("political_party", political_party);
+                    formData.append("agent_picture", agent_picture);
+                    formData.append("designation", designation);
+                    formData.append("home_address", home_address);
+                    formData.append("mobile", mobile);
+                    formData.append("extra_mobile", extra_mobile);
+                    formData.append("signature_agent", signature_agent);
+                    formData.append("signature_auth_party_officials", signature_auth_party_officials);
+                    formData.append("name_party_chairman", name_party_chairman);
+                    formData.append("signature_party_chairman", signature_party_chairman);
+                    formData.append("name_electoral_officer", name_electoral_officer);
+                    formData.append("signature_electoral_officer", signature_electoral_officer);
+                    formData.append("wards_id", ward_id);
+                    formData.append("lga_id", lga_id);
+                    formData.append("polling_unit_id", pu_id);
+					
+					var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');			
+					formData.append("_token", CSRF_TOKEN);
 
                     /*if (avatar != undefined) {
                         formData.append("avatar", avatar);
                     }*/
 
                     if (status == 'Valid') {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
+                       
 
                         $.ajax({
                             url: url,
@@ -114,17 +139,6 @@ var KTModalUpdateLga = function() {
                             }
                         }).catch(function(error) {
                             console.log(error);
-                            if (error.status == 422) {
-                                Swal.fire({
-                                    text: "The email has already been taken.",
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok, got it!",
-                                    customClass: {
-                                        confirmButton: "btn btn-primary"
-                                    }
-                                });
-                            } else {
                                 Swal.fire({
                                     text: "Somethings went wrong. Try again.",
                                     icon: "error",
@@ -134,7 +148,7 @@ var KTModalUpdateLga = function() {
                                         confirmButton: "btn btn-primary"
                                     }
                                 });
-                            }
+                            
                             submitButton.removeAttribute('data-kt-indicator');
                             submitButton.disabled = false;
                         });
@@ -212,13 +226,13 @@ var KTModalUpdateLga = function() {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_lga');
+            element = document.querySelector('#kt_modal_update_politicalpartyagent');
             modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_lga_form');
-            submitButton = form.querySelector('#kt_modal_update_lga_submit');
-            cancelButton = form.querySelector('#kt_modal_update_lga_cancel');
-            closeButton = element.querySelector('#kt_modal_update_lga_close');
+            form = element.querySelector('#kt_modal_update_politicalpartyagent_form');
+            submitButton = form.querySelector('#kt_modal_update_politicalpartyagent_submit');
+            cancelButton = form.querySelector('#kt_modal_update_politicalpartyagent_cancel');
+            closeButton = element.querySelector('#kt_modal_update_politicalpartyagent_close');
 
             initForm();
         }
@@ -227,5 +241,5 @@ var KTModalUpdateLga = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTModalUpdateLga.init();
+    KTModalUpdatepoliticalpartyagent.init();
 });

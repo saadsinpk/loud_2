@@ -66,7 +66,7 @@ class PoliticalPartyAgent extends Model
     }
 
     public function ward(){
-        return $this->belongsTo(Ward::class);
+        return $this->belongsTo(Ward::class,'wards_id');
     }
 
     public function pollingUnit(){

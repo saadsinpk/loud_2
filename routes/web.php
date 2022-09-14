@@ -117,6 +117,7 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
 
     Route::prefix("pollingunits")->group(function(){
         Route::get('/', [PollingUnitController::class, 'index'])->name("pollingunits.index");
+        Route::post('/list', [PollingUnitController::class, 'getList'])->name("pollingunits.list");
         Route::post('/', [PollingUnitController::class, 'store'])->name("pollingunits.store");
         Route::get('/view/{id}', [PollingUnitController::class, 'details'])->name("pollingunits.view");
         Route::get('/delete/{id}', [PollingUnitController::class, 'destroy'])->name("pollingunits.delete");

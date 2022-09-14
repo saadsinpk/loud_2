@@ -378,9 +378,7 @@ var KTModalpoliticalpartyagent = function() {
         // Public functions
         init: function() {
             modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_politicalpartyagent'));
-
             table = document.querySelector('#kt_politicalpartyagents_table');
-
             if (!table) {
                 return;
             }

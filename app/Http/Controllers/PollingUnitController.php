@@ -19,9 +19,7 @@ class PollingUnitController extends Controller
     public function index()
     {
         $pollingunits = PollingUnit::with(["lga","ward"])->orderBy("created_at", "DESC")->get();
-        $lgas = Lga::orderBy("created_at", "DESC")->get();
-        $wards = Ward::orderBy("created_at", "DESC")->get();
-
+        
         if (request()->ajax()) {
             return DataTables::of($pollingunits)
             ->addColumn('group', function ($data) {
@@ -73,7 +71,28 @@ class PollingUnitController extends Controller
             ->make(true);
         }
         
-        return view("pollingunits.index", compact("pollingunits","wards","lgas"));
+        return view("pollingunits.index", compact("pollingunits"));
+    }
+
+    /**
+     * getList return all avilable ward to use it in dropdown select2 ajax.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getList(Request $request)
+    {
+        $search = $request->search;
+        $lga_id = $request->lga_id;
+        $wards_id = $request->wards_id;
+
+        $pus = PollingUnit::select("id" , "name as text")
+        ->where('lga_id',$lga_id)
+        ->where('wards_id',$wards_id)
+        ->where('name', 'like', '%' .$search . '%')
+        ->orderBy("created_at", "DESC")
+        ->get();
+        return response()->json($pus);
     }
 
     /**

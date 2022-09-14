@@ -13,7 +13,7 @@ class PoliticalPartyAgentUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class PoliticalPartyAgentUpdateRequest extends FormRequest
         return [
             'political_party'               => 'required|min:3',
             'name'                          => 'required|min:3',
-            'agent_picture'                 => 'required',
+            'agent_picture'                 => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'lga_id'                        => 'required',
             'wards_id'                      => 'required',
             'polling_unit_id'               => 'required',

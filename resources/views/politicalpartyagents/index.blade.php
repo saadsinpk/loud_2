@@ -20,7 +20,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-admin-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
+                        <input type="text" data-kt-politicalpartyagent-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -28,17 +28,17 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-admin-table-toolbar="base">
-                        <!--begin::Add admin-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_admin">Add admin</button>
-                        <!--end::Add admin-->
+                    <div class="d-flex justify-content-end" data-kt-politicalpartyagent-table-toolbar="base">
+                        <!--begin::Add politicalpartyagent-->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_politicalpartyagent">Add political party agent</button>
+                        <!--end::Add politicalpartyagent-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Group actions-->
-                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-admin-table-toolbar="selected">
+                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-politicalpartyagent-table-toolbar="selected">
                         <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-admin-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-kt-admin-table-select="delete_selected">Delete Selected</button>
+                        <span class="me-2" data-kt-politicalpartyagent-table-select="selected_count"></span>Selected</div>
+                        <button type="button" class="btn btn-danger" data-kt-politicalpartyagent-table-select="delete_selected">Delete Selected</button>
                     </div>
                     <!--end::Group actions-->
                 </div>
@@ -48,18 +48,18 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_admins_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_politicalpartyagents_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
                                 <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_admins_table .form-check-input" value="1" />
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_politicalpartyagents_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="min-w-125px">admin Name</th>
-                            <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">political party agent Name</th>
+                            <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -77,22 +77,22 @@
         </div>
         <!--end::Card-->
         <!--begin::Modals-->
-        <!--begin::Modal - admins - Add-->
-        <div class="modal fade" id="kt_modal_add_admin" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal - politicalpartyagents - Add-->
+        <div class="modal fade" id="kt_modal_add_politicalpartyagent" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/admins') }}" id="kt_modal_add_admin_form" data-kt-redirect="{{ url('/admins') }}" method="POST">
+                    <form class="form" action="{{ url('/politicalpartyagents') }}" id="kt_modal_add_politicalpartyagent_form" data-kt-redirect="{{ url('/politicalpartyagents') }}" enctype="multipart/form-data" method="POST" novalidate="novalidate">
                         @csrf
                         <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_admin_header">
+                        <div class="modal-header" id="kt_modal_add_politicalpartyagent_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Add a Admin</h2>
+                            <h2 class="fw-bolder">Add a political party agent</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_modal_add_admin_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_modal_add_politicalpartyagent_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -108,69 +108,202 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_admin_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_admin_header" data-kt-scroll-wrappers="#kt_modal_add_admin_scroll" data-kt-scroll-offset="300px">
+                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_politicalpartyagent_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_politicalpartyagent_header" data-kt-scroll-wrappers="#kt_modal_add_politicalpartyagent_scroll" data-kt-scroll-offset="300px">
+                                
                                 <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fs-6 fw-bold mb-2">Political Party</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid" placeholder="Political Party" name="political_party" id="political_party" value="" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+								
+								<!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
                                     <label class="required fs-6 fw-bold mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="" name="name" value="" />
+                                    <input type="text" class="form-control form-control-solid" placeholder="Name" name="name" id="name" value="" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
-                                <!--begin::Input group-->
+								
+								<!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
-                                    <label class="fs-6 fw-bold mb-2">
-                                        <span class="required">Email</span>
-                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
-                                    </label>
+                                    <label class="required fs-6 fw-bold mb-2">Agent Picture</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="email" class="form-control form-control-solid" placeholder="" name="email" value="" />
+                                    <input type="file" class="form-control form-control-solid" placeholder="Agent Picture" name="agent_picture" id="agent_picture" value="" />
                                     <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7" data-kt-password-meter="true">
-                                    <!--begin::Wrapper-->
-                                    <div class="mb-1">
-                                        <!--begin::Label-->
-                                        <label class="form-label fw-bolder text-dark fs-6">Password</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input wrapper-->
-                                        <div class="position-relative mb-3">
-                                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
-                                            <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                                <i class="bi bi-eye-slash fs-2"></i>
-                                                <i class="bi bi-eye fs-2 d-none"></i>
-                                            </span>
-                                        </div>
-                                        <!--end::Input wrapper-->
-                                        <!--begin::Meter-->
-                                        <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                        </div>
-                                        <!--end::Meter-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Hint-->
-                                    <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
-                                    <!--end::Hint-->
-                                </div>
-                                <!--end::Input group=-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
                                 </div>
                                 <!--end::Input group-->
 
+
+											<!--begin::Input group-->
+											<div class="fv-row mb-7" id="js-data-lga-modal">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">LGA Assignment</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id"></select>
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7" id="js-data-wards-modal">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Award Assignment</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" ></select>
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+                
+											<!--begin::Input group-->
+											<div class="fv-row mb-7" id="js-data-pu-modal">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Polling Unit Assignment</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<select class="form-control form-control-solid" id="js-data-pu-ajax" name="polling_unit_id" ></select>
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+                                
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Designation</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="Designation" name="designation" id="designation" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Home Address</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="Home Address" name="home_address" id="home_address" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Mobile</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="Mobile" name="mobile" id="mobile" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Additional Mobile</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="Additional Mobile" name="extra_mobile"  id="extra_mobile" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Signature Agent</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												
+												
+												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_agent" id="signature_agent" value="1" />
+												</div>
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Signature auth party officials</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												
+												
+												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_auth_party_officials"  id="signature_auth_party_officials" value="1" />
+												</div>
+								
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Name Party Chairman</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="Name party chairman" name="name_party_chairman"  id="name_party_chairman" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+										<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Signature party chairman</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												
+												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_party_chairman" id="signature_party_chairman" value="1" />
+												</div>
+												<!--end::Input-->
+											</div>
+											
+											<!--end::Input group-->
+											
+										   <!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Name electoral officer</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="text" class="form-control form-control-solid" placeholder="name electoral officer" name="name_electoral_officer"  id="name_electoral_officer" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+										   <!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Signature electoral officer</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_electoral_officer"  id="signature_electoral_officer" value="1" />
+												</div>
+												
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
+											
+											
                                 <!--end::Billing form-->
                             </div>
                             <!--end::Scroll-->
@@ -179,7 +312,7 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_admin_cancel" class="btn btn-light me-3">Discard</button>
+                            <button type="reset" id="kt_modal_add_politicalpartyagent_cancel" class="btn btn-light me-3">Discard</button>
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" class="btn btn-primary">
@@ -195,10 +328,10 @@
                 </div>
             </div>
         </div>
-        <!--end::Modal - admins - Add-->
+        <!--end::Modal - politicalpartyagents - Add-->
 
         <!--begin::Modal - Adjust Balance-->
-        <div class="modal fade" id="kt_admins_export_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="kt_politicalpartyagents_export_modal" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
@@ -206,10 +339,10 @@
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Export Admins</h2>
+                        <h2 class="fw-bolder">Export political party agents</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div id="kt_admins_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                        <div id="kt_politicalpartyagents_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -225,7 +358,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                         <!--begin::Form-->
-                        <form id="kt_admins_export_form" class="form" action="#">
+                        <form id="kt_politicalpartyagents_export_form" class="form" action="#">
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
                                 <!--begin::Label-->
@@ -251,45 +384,11 @@
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
-                            <!--begin::Row-->
-                            <div class="row fv-row mb-15">
-                                <!--begin::Label-->
-                                <label class="fs-5 fw-bold form-label mb-5">Payment Type:</label>
-                                <!--end::Label-->
-                                <!--begin::Radio group-->
-                                <div class="d-flex flex-column">
-                                    <!--begin::Radio button-->
-                                    <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                        <input class="form-check-input" type="checkbox" value="1" checked="checked" name="payment_type" />
-                                        <span class="form-check-label text-gray-600 fw-bold">All</span>
-                                    </label>
-                                    <!--end::Radio button-->
-                                    <!--begin::Radio button-->
-                                    <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                        <input class="form-check-input" type="checkbox" value="2" checked="checked" name="payment_type" />
-                                        <span class="form-check-label text-gray-600 fw-bold">Visa</span>
-                                    </label>
-                                    <!--end::Radio button-->
-                                    <!--begin::Radio button-->
-                                    <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                        <input class="form-check-input" type="checkbox" value="3" name="payment_type" />
-                                        <span class="form-check-label text-gray-600 fw-bold">Mastercard</span>
-                                    </label>
-                                    <!--end::Radio button-->
-                                    <!--begin::Radio button-->
-                                    <label class="form-check form-check-custom form-check-sm form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="4" name="payment_type" />
-                                        <span class="form-check-label text-gray-600 fw-bold">American Express</span>
-                                    </label>
-                                    <!--end::Radio button-->
-                                </div>
-                                <!--end::Input group-->
-                            </div>
-                            <!--end::Row-->
+                            
                             <!--begin::Actions-->
                             <div class="text-center">
-                                <button type="reset" id="kt_admins_export_cancel" class="btn btn-light me-3">Discard</button>
-                                <button type="submit" id="kt_admins_export_submit" class="btn btn-primary">
+                                <button type="reset" id="kt_politicalpartyagents_export_cancel" class="btn btn-light me-3">Discard</button>
+                                <button type="submit" id="kt_politicalpartyagents_export_submit" class="btn btn-primary">
                                     <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -314,8 +413,9 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/admins/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/politicalpartyagents/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/politicalpartyagents/list.js') }}"></script>
+	<script src="{{ asset('assets/js/custom/apps/common/select2dropdown.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection
