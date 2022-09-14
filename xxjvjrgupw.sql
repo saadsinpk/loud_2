@@ -5,17 +5,6 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` text DEFAULT NULL,
-  `password` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -47,16 +36,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4,	'2019_12_14_000001_create_personal_access_tokens_table',	1),
 (5,	'2022_07_06_085126_create_permission_tables',	2);
 
-DROP TABLE IF EXISTS `model_has_permissions`;
-CREATE TABLE `model_has_permissions` (
-  `permission_id` bigint(20) unsigned NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
-  KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`),
-  CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1,	'superAdmin',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
+(2,	'admin',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
+(3,	'user',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
+(5,	'Test 2',	'web',	'2022-09-06 08:33:23',	'2022-09-06 08:33:23'),
+(6,	'New role',	'web',	'2022-09-07 08:50:26',	'2022-09-07 08:50:26'),
+(7,	'Ward 1 Role',	'web',	'2022-09-08 14:22:35',	'2022-09-08 14:22:35');
 
 DROP TABLE IF EXISTS `model_has_roles`;
 CREATE TABLE `model_has_roles` (
@@ -313,6 +311,16 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (389,	'Manage LADE 11',	'web',	NULL,	NULL),
 (390,	'Manage LADE 111',	'web',	NULL,	NULL);
 
+DROP TABLE IF EXISTS `model_has_permissions`;
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) unsigned NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`),
+  CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -353,24 +361,7 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (21,	'App\\Models\\User',	10,	'PersonalAccessToken',	'69be008448648bfda29c0302ada6e7573ffd1b6bd65223391f6273e1c10da956',	'[\"*\"]',	NULL,	'2022-07-13 07:40:48',	'2022-07-13 07:40:48'),
 (22,	'App\\Models\\User',	10,	'PersonalAccessToken',	'38c1c279982868a00e20690771c8862551fdc1ead9ccada313d76b505fb670b3',	'[\"*\"]',	NULL,	'2022-07-13 07:41:17',	'2022-07-13 07:41:17');
 
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE `roles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1,	'superAdmin',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
-(2,	'admin',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
-(3,	'user',	'web',	'2022-07-06 08:57:15',	'2022-07-06 08:57:15'),
-(5,	'Test 2',	'web',	'2022-09-06 08:33:23',	'2022-09-06 08:33:23'),
-(6,	'New role',	'web',	'2022-09-07 08:50:26',	'2022-09-07 08:50:26'),
-(7,	'Ward 1 Role',	'web',	'2022-09-08 14:22:35',	'2022-09-08 14:22:35');
 
 DROP TABLE IF EXISTS `role_has_permissions`;
 CREATE TABLE `role_has_permissions` (
