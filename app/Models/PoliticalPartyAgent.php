@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $political_party
- * @property int $name
+ * @property string $name
+ * @property string $agent_picture
  * @property int $lga_id
  * @property int $wards_id
  * @property int $polling_unit_id
@@ -42,6 +43,7 @@ class PoliticalPartyAgent extends Model
     protected $fillable = [
         'political_party',
         'name',
+        'agent_picture',
         'lga_id',
         'wards_id',
         'polling_unit_id',

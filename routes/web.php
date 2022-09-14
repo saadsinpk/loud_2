@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
 
     Route::prefix("lgas")->group(function(){
         Route::get('/', [LgaController::class, 'index'])->name("lgas.index");
+        Route::get('/list', [LgaController::class, 'getList'])->name("lgas.list");
         Route::post('/', [LgaController::class, 'store'])->name("lgas.store");
         Route::get('/view/{id}', [LgaController::class, 'details'])->name("lgas.view");
         Route::get('/delete/{id}', [LgaController::class, 'destroy'])->name("lgas.delete");
@@ -106,6 +107,7 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
 
     Route::prefix("wards")->group(function(){
         Route::get('/', [WardController::class, 'index'])->name("wards.index");
+        Route::post('/list', [WardController::class, 'getList'])->name("wards.list");
         Route::post('/', [WardController::class, 'store'])->name("wards.store");
         Route::get('/view/{id}', [WardController::class, 'details'])->name("wards.view");
         Route::get('/delete/{id}', [WardController::class, 'destroy'])->name("wards.delete");

@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateLga = function() {
+var KTModalUpdatepollingunit = function() {
     var element;
     var submitButton;
     var cancelButton;
@@ -19,14 +19,14 @@ var KTModalUpdateLga = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'LGA name is required'
+                                message: 'pollingunit name is required'
                             }
                         }
                     },
                     // 'email': {
                     //     validators: {
                     //         notEmpty: {
-                    //             message: 'lga email is required'
+                    //             message: 'pollingunit email is required'
                     //         },
                     //         emailAddress: {
                     //             message: 'The value is not a valid email address'
@@ -55,18 +55,19 @@ var KTModalUpdateLga = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_lga_form").attr("action");
+                    var url = $("#kt_modal_update_pollingunit_form").attr("action");
                     var formData = new FormData();
 
-                    var id = $("#lga_id").val();
+                    var id = $("#pollingunit_id").val();
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
-                    // var email = $("#email").val();
-                    var lgastatus = $("#lgastatus").val();
+                    var wards_id = $("#js-data-wards-ajax").val();
+                    var lga_id = $("#js-data-lga-ajax").val();
                     formData.append("id", id);
                     formData.append("name", name);
-                    formData.append("status", lgastatus);
-                    // formData.append("email", email);
+                    formData.append("wards_id", wards_id);
+                    formData.append("lga_id", lga_id);
+                  
 
                     /*if (avatar != undefined) {
                         formData.append("avatar", avatar);
@@ -212,13 +213,13 @@ var KTModalUpdateLga = function() {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_lga');
+            element = document.querySelector('#kt_modal_update_pollingunit');
             modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_lga_form');
-            submitButton = form.querySelector('#kt_modal_update_lga_submit');
-            cancelButton = form.querySelector('#kt_modal_update_lga_cancel');
-            closeButton = element.querySelector('#kt_modal_update_lga_close');
+            form = element.querySelector('#kt_modal_update_pollingunit_form');
+            submitButton = form.querySelector('#kt_modal_update_pollingunit_submit');
+            cancelButton = form.querySelector('#kt_modal_update_pollingunit_cancel');
+            closeButton = element.querySelector('#kt_modal_update_pollingunit_close');
 
             initForm();
         }
@@ -227,5 +228,5 @@ var KTModalUpdateLga = function() {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function() {
-    KTModalUpdateLga.init();
+    KTModalUpdatepollingunit.init();
 });

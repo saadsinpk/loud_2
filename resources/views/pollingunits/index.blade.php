@@ -20,7 +20,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-admin-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
+                        <input type="text" data-kt-pollingunit-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
                     </div>
                     <!--end::Search-->
                 </div>
@@ -28,17 +28,17 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
                     <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-admin-table-toolbar="base">
-                        <!--begin::Add admin-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_admin">Add admin</button>
-                        <!--end::Add admin-->
+                    <div class="d-flex justify-content-end" data-kt-pollingunit-table-toolbar="base">
+                        <!--begin::Add pollingunit-->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_pollingunit">Add Polling Unit</button>
+                        <!--end::Add pollingunit-->
                     </div>
                     <!--end::Toolbar-->
                     <!--begin::Group actions-->
-                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-admin-table-toolbar="selected">
+                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-pollingunit-table-toolbar="selected">
                         <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-admin-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-kt-admin-table-select="delete_selected">Delete Selected</button>
+                        <span class="me-2" data-kt-pollingunit-table-select="selected_count"></span>Selected</div>
+                        <button type="button" class="btn btn-danger" data-kt-pollingunit-table-select="delete_selected">Delete Selected</button>
                     </div>
                     <!--end::Group actions-->
                 </div>
@@ -48,18 +48,19 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_admins_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_pollingunits_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
                                 <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_admins_table .form-check-input" value="1" />
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_pollingunits_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="min-w-125px">admin Name</th>
-                            <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">PU Name</th>
+                            <th class="min-w-125px">LGA</th>
+                            <th class="min-w-125px">Ward</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -77,22 +78,22 @@
         </div>
         <!--end::Card-->
         <!--begin::Modals-->
-        <!--begin::Modal - admins - Add-->
-        <div class="modal fade" id="kt_modal_add_admin" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal - pollingunits - Add-->
+        <div class="modal fade" id="kt_modal_add_pollingunit" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/admins') }}" id="kt_modal_add_admin_form" data-kt-redirect="{{ url('/admins') }}" method="POST">
+                    <form class="form" action="{{ url('/pollingunits') }}" id="kt_modal_add_pollingunit_form" data-kt-redirect="{{ url('/pollingunits') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_admin_header">
+                        <div class="modal-header" id="kt_modal_add_pollingunit_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Add a Admin</h2>
+                            <h2 class="fw-bolder">Add a polling unit</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_modal_add_admin_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_modal_add_pollingunit_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -108,7 +109,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_admin_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_admin_header" data-kt-scroll-wrappers="#kt_modal_add_admin_scroll" data-kt-scroll-offset="300px">
+                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_pollingunit_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_pollingunit_header" data-kt-scroll-wrappers="#kt_modal_add_pollingunit_scroll" data-kt-scroll-offset="300px">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
@@ -119,58 +120,30 @@
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
+								
+								<!--begin::Input group-->
+                                <div class="fv-row mb-7" id="js-data-lga-modal">
                                     <!--begin::Label-->
-                                    <label class="fs-6 fw-bold mb-2">
-                                        <span class="required">Email</span>
-                                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
-                                    </label>
+                                    <label class="required fs-6 fw-bold mb-2">LGA Assignment</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="email" class="form-control form-control-solid" placeholder="" name="email" value="" />
+                                    <select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id"></select>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
-                
+								
                                 <!--begin::Input group-->
-                                <div class="fv-row mb-7" data-kt-password-meter="true">
-                                    <!--begin::Wrapper-->
-                                    <div class="mb-1">
-                                        <!--begin::Label-->
-                                        <label class="form-label fw-bolder text-dark fs-6">Password</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input wrapper-->
-                                        <div class="position-relative mb-3">
-                                            <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
-                                            <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                                <i class="bi bi-eye-slash fs-2"></i>
-                                                <i class="bi bi-eye fs-2 d-none"></i>
-                                            </span>
-                                        </div>
-                                        <!--end::Input wrapper-->
-                                        <!--begin::Meter-->
-                                        <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                            <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                        </div>
-                                        <!--end::Meter-->
-                                    </div>
-                                    <!--end::Wrapper-->
-                                    <!--begin::Hint-->
-                                    <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
-                                    <!--end::Hint-->
-                                </div>
-                                <!--end::Input group=-->
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
+                                <div class="fv-row mb-7" id="js-data-wards-modal">
+                                    <!--begin::Label-->
+                                    <label class="required fs-6 fw-bold mb-2">Award Assignment</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" ></select>
+                                    <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
 
+							
                                 <!--end::Billing form-->
                             </div>
                             <!--end::Scroll-->
@@ -179,7 +152,7 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_admin_cancel" class="btn btn-light me-3">Discard</button>
+                            <button type="reset" id="kt_modal_add_pollingunit_cancel" class="btn btn-light me-3">Discard</button>
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" class="btn btn-primary">
@@ -195,10 +168,10 @@
                 </div>
             </div>
         </div>
-        <!--end::Modal - admins - Add-->
+        <!--end::Modal - pollingunits - Add-->
 
         <!--begin::Modal - Adjust Balance-->
-        <div class="modal fade" id="kt_admins_export_modal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="kt_pollingunits_export_modal" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
@@ -206,10 +179,10 @@
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Export Admins</h2>
+                        <h2 class="fw-bolder">Export Polling Units</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
-                        <div id="kt_admins_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                        <div id="kt_pollingunits_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                             <span class="svg-icon svg-icon-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -225,7 +198,7 @@
                     <!--begin::Modal body-->
                     <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                         <!--begin::Form-->
-                        <form id="kt_admins_export_form" class="form" action="#">
+                        <form id="kt_pollingunits_export_form" class="form" action="#">
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
                                 <!--begin::Label-->
@@ -288,8 +261,8 @@
                             <!--end::Row-->
                             <!--begin::Actions-->
                             <div class="text-center">
-                                <button type="reset" id="kt_admins_export_cancel" class="btn btn-light me-3">Discard</button>
-                                <button type="submit" id="kt_admins_export_submit" class="btn btn-primary">
+                                <button type="reset" id="kt_pollingunits_export_cancel" class="btn btn-light me-3">Discard</button>
+                                <button type="submit" id="kt_pollingunits_export_submit" class="btn btn-primary">
                                     <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -314,8 +287,64 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/admins/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/pollingunits/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/pollingunits/list.js') }}"></script>
+	<script>
+	$(document).ready(function(){
+		
+	$('#js-data-lga-ajax').select2({
+	  dropdownParent: $('#js-data-lga-modal'),
+	  selectOnClose: true,
+	  ajax: {
+		url: '{{url("/lgas/list")}}',
+		type: "get",
+		dataType: 'json',
+		data: function (params) {
+            return {
+              search: params.term // search term
+            };
+	  },
+	  processResults: function (response) {
+			$("#js-data-wards-ajax").val(null).trigger("change");
+            return {
+              results: response
+            };
+          },
+      cache: true
+	  }
+		  
+	});
+	});
+	
+	$(document).ready(function(){
+	// CSRF Token
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		
+	$('#js-data-wards-ajax').select2({
+	  dropdownParent: $('#js-data-wards-modal'),
+	  selectOnClose: true,
+	  ajax: {
+		url: '{{url("/wards/list")}}',
+		type: "post",
+		dataType: 'json',
+		data: function (params) {
+            return {
+			  _token: CSRF_TOKEN,	
+			  lga_id: $('#js-data-lga-ajax').find(':selected').val(),	
+              search: params.term // search term
+            };
+	  },
+	  processResults: function (response) {
+            return {
+              results: response
+            };
+          },
+      cache: true
+	  }
+		  
+	});
+	});
+	</script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

@@ -88,6 +88,8 @@ var KTModalpollingunits = function() {
             serverSide: true,
             responsive: true,
             dom: 'Bfrtip',
+			paging: true,
+			pageLength: 10,
             ajax: {
                 url: url
             },
@@ -101,8 +103,12 @@ var KTModalpollingunits = function() {
                     name: 'name',
                 },
                 {
-                    data: 'status',
-                    name: 'status',
+                    data: 'lga.name',
+                    name: 'lga.name',
+                },
+                {
+                    data: 'ward.name',
+                    name: 'ward.name',
                 },
                 {
                     data: 'updated_at',
@@ -118,8 +124,7 @@ var KTModalpollingunits = function() {
             "info": false,
             'order': [],
             'columnDefs': [
-                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)  
             ]
         });
 
@@ -144,7 +149,7 @@ var KTModalpollingunits = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-pollingunits-table-filter="search"]');
+        const filterSearch = document.querySelector('[data-kt-pollingunit-table-filter="search"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -189,7 +194,7 @@ var KTModalpollingunits = function() {
                         });
 
                         $.ajax({
-                            url: `/pollingunitss/delete/${id}`,
+                            url: `/pollingunits/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {
@@ -246,7 +251,7 @@ var KTModalpollingunits = function() {
         // Select all checkboxes
         const checkboxes = table.querySelectorAll('[type="checkbox"]');
         // Select elements
-        const deleteSelected = document.querySelector('[data-kt-pollingunits-table-select="delete_selected"]');
+        const deleteSelected = document.querySelector('[data-kt-pollingunit-table-select="delete_selected"]');
 
         // Toggle delete selected toolbar
         checkboxes.forEach(c => {
@@ -264,7 +269,7 @@ var KTModalpollingunits = function() {
             // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
             console.log(ids);
             Swal.fire({
-                text: "Are you sure you want to delete selected pollingunits?",
+                text: "Are you sure you want to delete selected polling unit?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -284,7 +289,7 @@ var KTModalpollingunits = function() {
                     });
 
                     $.ajax({
-                        url: `/pollingunitss/delete-rows`,
+                        url: `/pollingunits/delete-rows`,
                         data: { ids: ids.substr(1) },
                         method: "post",
                         dataType: "JSON",
@@ -341,9 +346,9 @@ var KTModalpollingunits = function() {
     // Toggle toolbars
     const toggleToolbars = () => {
         // Define variables
-        const toolbarBase = document.querySelector('[data-kt-pollingunits-table-toolbar="base"]');
-        const toolbarSelected = document.querySelector('[data-kt-pollingunits-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-pollingunits-table-select="selected_count"]');
+        const toolbarBase = document.querySelector('[data-kt-pollingunit-table-toolbar="base"]');
+        const toolbarSelected = document.querySelector('[data-kt-pollingunit-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-pollingunit-table-select="selected_count"]');
 
         // Select refreshed checkbox DOM elements 
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
@@ -374,7 +379,7 @@ var KTModalpollingunits = function() {
     return {
         // Public functions
         init: function() {
-            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_pollingunits'));
+            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_pollingunit'));
 
             table = document.querySelector('#kt_pollingunits_table');
 
@@ -382,10 +387,10 @@ var KTModalpollingunits = function() {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_pollingunits_form');
-            cancelButton = form.querySelector('#kt_modal_add_pollingunits_cancel');
-            closeButton = form.querySelector('#kt_modal_add_pollingunits_close');
-            url = $("#kt_modal_add_pollingunits_form").attr("action");
+            form = document.querySelector('#kt_modal_add_pollingunit_form');
+            cancelButton = form.querySelector('#kt_modal_add_pollingunit_cancel');
+            closeButton = form.querySelector('#kt_modal_add_pollingunit_close');
+            url = $("#kt_modal_add_pollingunit_form").attr("action");
             initpollingunitsList();
             initToggleToolbar();
             handleSearchDatatable();

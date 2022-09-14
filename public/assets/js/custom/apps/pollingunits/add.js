@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    const roleFormId = "form#kt_modal_add_lga_form"
-    $(roleFormId).on("submit", function(e){
+    const pollingunitFormId = "form#kt_modal_add_pollingunit_form"
+    $(pollingunitFormId).on("submit", function(e){
         e.preventDefault()
         const url = $(this).attr("action")
         const method = $(this).attr("method")
@@ -12,12 +12,12 @@ $(document).ready(function(){
             data: formdata,
             dataType: "JSON",
             beforeSend:function(){
-                $(`${roleFormId} span.indicator-progress`).show()
-                $(`${roleFormId} button[type='submit']`).attr('disabled', true)
+                $(`${pollingunitFormId} span.indicator-progress`).show()
+                $(`${pollingunitFormId} button[type='submit']`).attr('disabled', true)
             },
             success: function(res) {
-                $(`${roleFormId} span.indicator-progress`).hide()
-                $(`${roleFormId} button[type='submit']`).attr('disabled', false)
+                $(`${pollingunitFormId} span.indicator-progress`).hide()
+                $(`${pollingunitFormId} button[type='submit']`).attr('disabled', false)
                 
                 Swal.fire({
                     title: "Success",
@@ -64,8 +64,8 @@ $(document).ready(function(){
 
             },
             complete:function(){
-                $(`${roleFormId} span.indicator-progress`).hide()
-                $(`${roleFormId} button[type='submit']`).attr('disabled', false)
+                $(`${pollingunitFormId} span.indicator-progress`).hide()
+                $(`${pollingunitFormId} button[type='submit']`).attr('disabled', false)
             }
         })
 

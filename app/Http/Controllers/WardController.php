@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Ward;
-use App\Models\Lga;
 use DataTables;
+use App\Models\Lga;
+use App\Models\Ward;
+use Illuminate\Http\Request;
+use App\Http\Requests\WardRequest;
 
 class WardController extends Controller
 {
@@ -73,6 +74,24 @@ class WardController extends Controller
         return view("ward.index", compact("wards","lgas"));
     }
 
+    /**
+     * getList return all avilable ward to use it in dropdown select2 ajax.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getList(Request $request)
+    {
+        $search = $request->search;
+        $lga_id = $request->lga_id;
+
+        $wards = Ward::select("id" , "name as text")
+        ->where('lga_id',$lga_id)
+        ->where('name', 'like', '%' .$search . '%')
+        ->orderBy("created_at", "DESC")
+        ->get();
+        return response()->json($wards);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -139,6 +158,11 @@ class WardController extends Controller
     {
         $item = Ward::find($id);
         $item->delete();
+        return response()->json('200');
+    }
+
+    public function destroyRows(Request $request) {
+        Ward::whereIn("id", explode(",", $request->ids))->delete();
         return response()->json('200');
     }
 }

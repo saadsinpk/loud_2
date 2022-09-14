@@ -87,6 +87,8 @@ var KTModalpoliticalpartyagent = function() {
             processing: true,
             serverSide: true,
             responsive: true,
+			paging: true,
+			pageLength: 10,
             dom: 'Bfrtip',
             ajax: {
                 url: url
@@ -97,12 +99,12 @@ var KTModalpoliticalpartyagent = function() {
                     orderable: false
                 },
                 {
-                    data: 'name',
-                    name: 'name',
+                    data: 'political_party',
+                    name: 'political_party',
                 },
                 {
-                    data: 'status',
-                    name: 'status',
+                    data: 'name',
+                    name: 'name',
                 },
                 {
                     data: 'updated_at',
@@ -119,7 +121,8 @@ var KTModalpoliticalpartyagent = function() {
             'order': [],
             'columnDefs': [
                 { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 1 }, // Disable ordering on column 6 (political_party)    
+                { orderable: false, targets: 2 }, // Disable ordering on column 6 (name)    
             ]
         });
 
@@ -236,7 +239,7 @@ var KTModalpoliticalpartyagent = function() {
     }
     $('#filterthis').click(function(){
        
-            $('#kt_politicalpartyagent_table').DataTable().destroy();
+            $('#kt_politicalpartyagents_table').DataTable().destroy();
             initpoliticalpartyagentList();
         
     });
@@ -376,7 +379,7 @@ var KTModalpoliticalpartyagent = function() {
         init: function() {
             modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_politicalpartyagent'));
 
-            table = document.querySelector('#kt_politicalpartyagent_table');
+            table = document.querySelector('#kt_politicalpartyagents_table');
 
             if (!table) {
                 return;

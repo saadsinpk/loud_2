@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Lga;
 use DataTables;
+use App\Models\Lga;
+use Illuminate\Http\Request;
+use App\Http\Requests\LgaRequest;
 //use Illuminate\Support\Facades\Validator;
 
 class LgaController extends Controller
@@ -72,6 +73,22 @@ class LgaController extends Controller
     }
 
     /**
+     * getList return all avilable ward to use it in dropdown select2 ajax.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getList(Request $request)
+    {
+        $search = $request->search;
+        $lgas = Lga::select("id" , "name as text")
+        ->where('name', 'like', '%' .$search . '%')
+        ->orderBy("created_at", "DESC")
+        ->get();
+        return response()->json($lgas);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -136,5 +153,10 @@ class LgaController extends Controller
             $item->delete();
             return response()->json('200');
         }
+    }
+
+    public function destroyRows(Request $request) {
+        Lga::whereIn("id", explode(",", $request->ids))->delete();
+        return response()->json('200');
     }
 }
