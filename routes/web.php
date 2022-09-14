@@ -18,6 +18,12 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\Auth\ForgotPassword;
 use App\Http\Controllers\Auth\LoginController;
 
+
+use App\Http\Controllers\LgaController;
+use App\Http\Controllers\WardController;
+use App\Http\Controllers\PollingUnitController;
+use App\Http\Controllers\PoliticalPartyAgentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,6 +92,45 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
         Route::post('/delete-rows', [PermissionsController::class, 'destroyRows'])->name("permisssions.delete.row");
         Route::post('/update', [PermissionsController::class, 'update'])->name("permisssions.update");
     });
+
+
+    Route::prefix("lgas")->group(function(){
+        Route::get('/', [LgaController::class, 'index'])->name("lgas.index");
+        Route::post('/', [LgaController::class, 'store'])->name("lgas.store");
+        Route::get('/view/{id}', [LgaController::class, 'details'])->name("lgas.view");
+        Route::get('/delete/{id}', [LgaController::class, 'destroy'])->name("lgas.delete");
+        Route::post('/delete-rows', [LgaController::class, 'destroyRows'])->name("lgas.delete.row");
+        Route::post('/update', [LgaController::class, 'update'])->name("lgas.update");
+        
+    });
+
+    Route::prefix("wards")->group(function(){
+        Route::get('/', [WardController::class, 'index'])->name("wards.index");
+        Route::post('/', [WardController::class, 'store'])->name("wards.store");
+        Route::get('/view/{id}', [WardController::class, 'details'])->name("wards.view");
+        Route::get('/delete/{id}', [WardController::class, 'destroy'])->name("wards.delete");
+        Route::post('/delete-rows', [WardController::class, 'destroyRows'])->name("wards.delete.row");
+        Route::post('/update', [WardController::class, 'update'])->name("wards.update");
+    });
+
+    Route::prefix("pollingunits")->group(function(){
+        Route::get('/', [PollingUnitController::class, 'index'])->name("pollingunits.index");
+        Route::post('/', [PollingUnitController::class, 'store'])->name("pollingunits.store");
+        Route::get('/view/{id}', [PollingUnitController::class, 'details'])->name("pollingunits.view");
+        Route::get('/delete/{id}', [PollingUnitController::class, 'destroy'])->name("pollingunits.delete");
+        Route::post('/delete-rows', [PollingUnitController::class, 'destroyRows'])->name("pollingunits.delete.row");
+        Route::post('/update', [PollingUnitController::class, 'update'])->name("pollingunits.update");
+    });
+
+    Route::prefix("politicalpartyagents")->group(function(){
+        Route::get('/', [PoliticalPartyAgentController::class, 'index'])->name("politicalpartyagents.index");
+        Route::post('/', [PoliticalPartyAgentController::class, 'store'])->name("politicalpartyagents.store");
+        Route::get('/view/{id}', [PoliticalPartyAgentController::class, 'details'])->name("politicalpartyagents.view");
+        Route::get('/delete/{id}', [PoliticalPartyAgentController::class, 'destroy'])->name("politicalpartyagents.delete");
+        Route::post('/delete-rows', [PoliticalPartyAgentController::class, 'destroyRows'])->name("lgas.delete.row");
+        Route::post('/update', [PoliticalPartyAgentController::class, 'update'])->name("politicalpartyagents.update");
+    });
+
 
 });
 require __DIR__.'/auth.php';
