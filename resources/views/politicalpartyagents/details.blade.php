@@ -179,28 +179,34 @@
 													
 													 <tr>                                                   <tr>
                                                         <td>Signature Agent</td>
-                                                        <td>{{ $politicalpartyagent->signature_agent }}</td>
+                                                        <td>@if($politicalpartyagent->signature_agent) Confirmed @else Waiting @endif</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
 													
 													<tr>                                                    <tr>
                                                         <td>signature_auth_party_officials</td>
-                                                        <td>{{ $politicalpartyagent->signature_auth_party_officials }}</td>
+                                                        <td>
+														@if($politicalpartyagent->signature_auth_party_officials) Confirmed @else Waiting @endif
+														</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
 													
 													 <tr>                                                   <tr>
                                                         <td>Name Party Chairman</td>
-                                                        <td>{{ $politicalpartyagent->name_party_chairman }}</td>
+                                                        <td>{{ $politicalpartyagent->name_party_chairman }}
+														</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
 													
 													<tr>                                                    <tr>
                                                         <td>signature_party_chairman</td>
-                                                        <td>{{ $politicalpartyagent->signature_party_chairman }}</td>
+                                                        <td>
+														
+														@if($politicalpartyagent->signature_party_chairman) Confirmed @else Waiting @endif
+														</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
@@ -214,7 +220,10 @@
 													
 													<tr>
 													<td>Signature electoral officer</td>
-                                                        <td>{{ $politicalpartyagent->signature_electoral_officer }}</td>
+                                                        <td>
+														
+														@if($politicalpartyagent->signature_electoral_officer) Confirmed @else Waiting @endif
+														</td>
                                                         <td class="text-end">
                                                         </td>
                                                     </tr>
@@ -271,7 +280,7 @@
                                 <!--begin::Modal body-->
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
-                                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_politicalpartyagent_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_politicalpartyagent_header" data-kt-scroll-wrappers="#kt_modal_update_politicalpartyagent_scroll" data-kt-scroll-offset="300px">
+                                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_politicalpartyagent_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_politicalpartyagent_form" data-kt-scroll-wrappers="#kt_modal_update_politicalpartyagent_scroll" data-kt-scroll-offset="0px">
                                         <!--begin::User toggle-->
                                         <div class="fw-bolder fs-3 rotate collapsible mb-7" data-bs-toggle="collapse" href="#kt_modal_update_politicalpartyagent_user_info" role="button" aria-expanded="false" aria-controls="kt_modal_update_politicalpartyagent_user_info">User Information
                                         <span class="ms-2 rotate-180">
@@ -309,16 +318,16 @@
                                             <!--end::Input group-->
 											
 
-								<!--begin::Input group-->
-                                <div class="fv-row mb-7">
-                                    <!--begin::Label-->
-                                    <label class="required fs-6 fw-bold mb-2">Agent Picture</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input type="file" class="form-control form-control-solid" placeholder="Agent Picture" name="agent_picture" id="agent_picture" value="" />
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
+											<!--begin::Input group-->
+											<div class="fv-row mb-7">
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2">Agent Picture</label>
+												<!--end::Label-->
+												<!--begin::Input-->
+												<input type="file" class="form-control form-control-solid" placeholder="Agent Picture" name="agent_picture" id="agent_picture" value="" />
+												<!--end::Input-->
+											</div>
+											<!--end::Input group-->
 
 
 											<!--begin::Input group-->
@@ -327,7 +336,9 @@
 												<label class="required fs-6 fw-bold mb-2">LGA Assignment</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id"></select>
+												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id">
+												<option value="{{$politicalpartyagent->lga->id}}">{{$politicalpartyagent->lga->name}}</option>
+												</select>
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
@@ -338,7 +349,9 @@
 												<label class="required fs-6 fw-bold mb-2">Award Assignment</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" ></select>
+												<select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" >
+												<option value="{{$politicalpartyagent->ward->id}}">{{$politicalpartyagent->ward->name}}</option>
+												</select>
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
@@ -349,7 +362,9 @@
 												<label class="required fs-6 fw-bold mb-2">Polling Unit Assignment</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<select class="form-control form-control-solid" id="js-data-pu-ajax" name="polling_unit_id" ></select>
+												<select class="form-control form-control-solid" id="js-data-pu-ajax" name="polling_unit_id" >
+												<option value="{{$politicalpartyagent->pollingunit->id}}">{{$politicalpartyagent->pollingunit->name}}</option>
+												</select>
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
@@ -398,36 +413,7 @@
 											</div>
 											<!--end::Input group-->
 											
-											<!--begin::Input group-->
-											<div class="fv-row mb-7">
-												<!--begin::Label-->
-												<label class="required fs-6 fw-bold mb-2">Signature Agent</label>
-												<!--end::Label-->
-												<!--begin::Input-->
-												
-												
-												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_agent" id="signature_agent" value="1" @if($politicalpartyagent->signature_agent) checked @endif/>
-												</div>
-												<!--end::Input-->
-											</div>
-											<!--end::Input group-->
 											
-											<!--begin::Input group-->
-											<div class="fv-row mb-7">
-												<!--begin::Label-->
-												<label class="required fs-6 fw-bold mb-2">Signature auth party officials</label>
-												<!--end::Label-->
-												<!--begin::Input-->
-												
-												
-												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_auth_party_officials"  id="signature_auth_party_officials" value="1" @if($politicalpartyagent->signature_auth_party_officials) checked @endif/>
-												</div>
-								
-												<!--end::Input-->
-											</div>
-											<!--end::Input group-->
 											
 											<!--begin::Input group-->
 											<div class="fv-row mb-7">
@@ -440,20 +426,7 @@
 											</div>
 											<!--end::Input group-->
 											
-										<!--begin::Input group-->
-											<div class="fv-row mb-7">
-												<!--begin::Label-->
-												<label class="required fs-6 fw-bold mb-2">Signature party chairman</label>
-												<!--end::Label-->
-												<!--begin::Input-->
-												
-												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_party_chairman" id="signature_party_chairman" value="1" @if($politicalpartyagent->signature_party_chairman) checked @endif/>
-												</div>
-												<!--end::Input-->
-											</div>
-											
-											<!--end::Input group-->
+										
 											
 										   <!--begin::Input group-->
 											<div class="fv-row mb-7">
@@ -465,22 +438,79 @@
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
+											<div class="d-flex fv-row mb-7">
+											<!--begin::Input group-->
+											<div class="d-flex col-md-6">
+												
+												<!--begin::Input-->
+												
+												
+												<div class="form-check form-check-sm  form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_agent" id="signature_agent" value="1" @if($politicalpartyagent->signature_agent) checked @endif/>
+												</div>
+												<!--end::Input-->
+												
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2" for="signature_agent">Signature Agent</label>
+												<!--end::Label-->
+											</div>
+											<!--end::Input group-->
+											
+											<!--begin::Input group-->
+											
+											<div class="d-flex col-md-6">
+												
+												<!--begin::Input-->
+												
+												
+												<div class="form-check form-check-sm  form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_auth_party_officials"  id="signature_auth_party_officials" value="1" @if($politicalpartyagent->signature_auth_party_officials) checked @endif/>
+												</div>
+								
+												<!--end::Input-->
+												
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2" for="signature_auth_party_officials">Signature authorization party officials</label>
+												<!--end::Label-->
+											</div>
+											<!--end::Input group-->
+											</div>
+											
+											<div class="d-flex fv-row mb-7">
+											<!--begin::Input group-->
+											<div class="d-flex col-md-6">
+												
+												<!--begin::Input-->
+												
+												<div class="form-check form-check-sm  form-check-solid me-3">
+													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_party_chairman" id="signature_party_chairman" value="1" @if($politicalpartyagent->signature_party_chairman) checked @endif/>
+												</div>
+												<!--end::Input-->
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2" for="signature_party_chairman">Signature party chairman</label>
+												<!--end::Label-->
+											</div>
+											
+											<!--end::Input group-->
 											
 										   <!--begin::Input group-->
-											<div class="fv-row mb-7">
-												<!--begin::Label-->
-												<label class="required fs-6 fw-bold mb-2">Signature electoral officer</label>
-												<!--end::Label-->
+											<div class="d-flex col-md-6">
+												
 												<!--begin::Input-->
-												<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+												<div class="form-check form-check-sm  form-check-solid me-3">
 													<input class="form-check-input" type="checkbox" data-kt-check="true" name="signature_electoral_officer"  id="signature_electoral_officer" value="1" @if($politicalpartyagent->signature_electoral_officer) checked @endif />
 												</div>
 												
 												<!--end::Input-->
+												
+												<!--begin::Label-->
+												<label class="required fs-6 fw-bold mb-2" for="signature_electoral_officer">Signature electoral officer</label>
+												<!--end::Label-->
 											</div>
 											<!--end::Input group-->
 											
                                            
+                                        </div>
                                         </div>
                                         <!--end::User form-->
                                     </div>

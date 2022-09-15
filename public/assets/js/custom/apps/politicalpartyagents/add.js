@@ -17,12 +17,28 @@ $(document).ready(function(){
         var home_address = $("#home_address").val();
         var mobile = $("#mobile").val();
         var extra_mobile = $("#extra_mobile").val();
-        var signature_agent = $("#signature_agent").val();
-        var signature_auth_party_officials = $("#signature_auth_party_officials").val();
+        
+		
+		var signature_agent = 0;
+		if($("#signature_agent").is(':checked')){
+			signature_agent = 1;
+		}
+					
+		var signature_auth_party_officials = 0;
+		if($("#signature_auth_party_officials").is(':checked')){
+			signature_auth_party_officials = 1;
+		}
+					
         var name_party_chairman = $("#name_party_chairman").val();
-        var signature_party_chairman = $("#signature_party_chairman").val();
+		var signature_party_chairman = 0;
+		if($("#signature_party_chairman").is(':checked')){
+				signature_party_chairman = 1;
+		}
         var name_electoral_officer = $("#name_electoral_officer").val();
-        var signature_electoral_officer = $("#signature_electoral_officer").val();
+		var signature_electoral_officer = 0;
+		if($("#signature_electoral_officer").is(':checked')){
+			signature_electoral_officer = 1;
+		}
 					
                  
         formData.append("name", name);

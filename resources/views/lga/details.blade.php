@@ -62,7 +62,7 @@
                                         <div class="text-gray-600">{{ $lga->name }}</div>
                                        
                                         <!--begin::Details item-->
-                                        <div class="fw-bolder mt-5">Register Time</div>
+                                        <div class="fw-bolder mt-5">Created Time</div>
                                         <div class="text-gray-600">{{ $lga->created_at->format("d M Y, g:i A") }}</div>
                                         <input type="hidden" id="lga_id" value="{{ $lga->id }}">
 

@@ -183,7 +183,7 @@
                                 <!--begin::Modal body-->
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
-                                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_pollingunit_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_pollingunit_header" data-kt-scroll-wrappers="#kt_modal_update_pollingunit_scroll" data-kt-scroll-offset="300px">
+                                    <div class="d-flex flex-column  me-n7 pe-7" id="kt_modal_update_pollingunit_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_pollingunit_header" data-kt-scroll-wrappers="#kt_modal_update_pollingunit_scroll" data-kt-scroll-offset="300px">
                                         <!--begin::User toggle-->
                                         <div class="fw-bolder fs-3 rotate collapsible mb-7" data-bs-toggle="collapse" href="#kt_modal_update_pollingunit_info" role="button" aria-expanded="false" aria-controls="kt_modal_update_pollingunit_info">Polling Unit Information
                                         <span class="ms-2 rotate-180">
@@ -216,7 +216,9 @@
 												<label class="required fs-6 fw-bold mb-2">LGA Assignment</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id"></select>
+												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id">
+												<option value="{{$pollingunit->lga->id}}">{{$pollingunit->lga->name}}</option>
+												</select>
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->
@@ -227,7 +229,9 @@
 												<label class="required fs-6 fw-bold mb-2">Award Assignment</label>
 												<!--end::Label-->
 												<!--begin::Input-->
-												<select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" ></select>
+												<select class="form-control form-control-solid" id="js-data-wards-ajax" name="wards_id" >
+												<option value="{{$pollingunit->ward->id}}">{{$pollingunit->ward->name}}</option>
+												</select>
 												<!--end::Input-->
 											</div>
 											<!--end::Input group-->

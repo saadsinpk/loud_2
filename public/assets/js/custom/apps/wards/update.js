@@ -23,16 +23,14 @@ var KTModalUpdateward = function() {
                             }
                         }
                     },
-                    // 'email': {
-                    //     validators: {
-                    //         notEmpty: {
-                    //             message: 'ward email is required'
-                    //         },
-                    //         emailAddress: {
-                    //             message: 'The value is not a valid email address'
-                    //         },
-                    //     }
-                    // }
+					'lga_id': {
+                        validators: {
+                            notEmpty: {
+                                message: 'LGA is required'
+                            }
+                        }
+                    },
+                    
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
@@ -62,7 +60,7 @@ var KTModalUpdateward = function() {
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
                     // var email = $("#email").val();
-                    var lga_id = $("#lga_id").val();
+                    var lga_id = $("#js-data-lga-ajax").val();
                     formData.append("id", id);
                     formData.append("name", name);
                     formData.append("lga_id", lga_id);

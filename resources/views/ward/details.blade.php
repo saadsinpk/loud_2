@@ -177,7 +177,7 @@
                                 <!--begin::Modal body-->
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
-                                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_ward_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_ward_header" data-kt-scroll-wrappers="#kt_modal_update_ward_scroll" data-kt-scroll-offset="300px">
+                                    <div class="d-flex flex-column  me-n7 pe-7" id="kt_modal_update_ward_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_ward_header" data-kt-scroll-wrappers="#kt_modal_update_ward_scroll" data-kt-scroll-offset="300px">
                                         <!--begin::ward toggle-->
                                         <div class="fw-bolder fs-3 rotate collapsible mb-7" data-bs-toggle="collapse" href="#kt_modal_update_ward_info" role="button" aria-expanded="false" aria-controls="kt_modal_update_ward_info">ward Information
                                         <span class="ms-2 rotate-180">
@@ -205,21 +205,19 @@
                                             </div>
                                             <!--end::Input group-->
                                              <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
+                                            <div class="fv-row mb-7" id="js-data-lga-modal">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-bold mb-2">
                                                     <span>LGA Assign</span>
                                                 </label>
                                                 <!--end::Label-->
-                                                <!--begin::Input-->
-                                               
-												    <select id="lga_id" name="lga_id" class="form-control form-control-solid">		
-                                                    @foreach($lgas as $lga)
-														<option value="{{ $lga->id}}" {{ in_array($lga->id, $ward_logs)? 'selected': '' }} >{{ ucfirst($lga->name) }}</option>
-                                                    @endforeach
-													</select>
-                                                
-                                                <!--end::Input-->
+												
+												<!--begin::Input-->
+												<select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id">
+												<option value="{{$ward->lga->id}}">{{$ward->lga->name}}</option>
+												</select>
+												<!--end::Input-->
+												
                                             </div>
                                             <!--end::Input group-->
                                         </div>
@@ -262,5 +260,6 @@
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/custom/apps/wards/update.js') }}"></script>
+	<script src="{{ asset('assets/js/custom/apps/common/select2dropdown.js') }}"></script>
     <!--end::Javascript-->
 @endsection

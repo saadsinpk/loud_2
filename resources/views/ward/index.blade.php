@@ -108,7 +108,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_ward_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_ward_header" data-kt-scroll-wrappers="#kt_modal_add_ward_scroll" data-kt-scroll-offset="300px">
+                            <div class=" me-n7 pe-7" id="kt_modal_add_ward_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_ward" data-kt-scroll-wrappers="#kt_modal_add_ward_scroll" data-kt-scroll-offset="">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
@@ -121,21 +121,19 @@
                                 <!--end::Input group-->
                                 <!--begin::Input group-->
                              
-                                            <div class="fv-row mb-7">
+                                            <div class="fv-row mb-7" id="js-data-lga-modal">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-bold mb-2">
                                                     <span>LGA Assign</span>
                                                 </label>
                                                 <!--end::Label-->
-                                                <!--begin::Input-->
-                                               
-												    <select id="lga_id" name="lga_id" class="form-control form-control-solid">		
-                                                    @foreach($lgas as $lga)
-														<option value="{{ $lga->id}}"  >{{ ucfirst($lga->name) }}</option>
-                                                    @endforeach
-													</select>
                                                 
+
+                                                <!--begin::Input-->
+                                                <select class="form-control form-control-solid" id="js-data-lga-ajax" name="lga_id">
+                                                </select>
                                                 <!--end::Input-->
+
                                             </div>
                                 <!--end::Input group-->
                 
@@ -239,6 +237,7 @@
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/custom/apps/wards/add.js') }}"></script>
     <script src="{{ asset('assets/js/custom/apps/wards/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/common/select2dropdown.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

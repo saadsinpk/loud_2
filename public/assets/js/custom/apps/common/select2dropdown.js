@@ -12,8 +12,13 @@
 				};
 		  },
 		  processResults: function (response) {
-				$("#js-data-wards-ajax").val(null).trigger("change");
-				$("#js-data-pu-ajax").val(null).trigger("change");
+			    if($("#js-data-wards-ajax").length > 0) {
+					$("#js-data-wards-ajax").val(null).trigger("change");
+				}
+				
+				if($("#js-data-pu-ajax").length > 0) {
+					$("#js-data-pu-ajax").val(null).trigger("change");
+				}
 				return {
 				  results: response
 				};
@@ -43,7 +48,9 @@
 				};
 		  },
 		  processResults: function (response) {
-				$("#js-data-pu-ajax").val(null).trigger("change");
+			    if($("#js-data-pu-ajax").length > 0) {
+					$("#js-data-pu-ajax").val(null).trigger("change");
+				}
 				return {
 				  results: response
 				};

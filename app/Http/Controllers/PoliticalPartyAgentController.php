@@ -117,10 +117,10 @@ class PoliticalPartyAgentController extends Controller
     public function update(PoliticalPartyAgentUpdateRequest $request)
     {
         
-        $data = $request->only(['political_party', 'agent_picture' , 'name' , 'mobile' , 'wards_id', 'lga_id'  , 'polling_unit_id' , 'designation' , 'home_address' , 'extra_mobile' , 'signature_agent' , 'signature_auth_party_officials' , 'name_party_chairman' , 'signature_party_chairman' , 'name_electoral_officer' , 'signature_electoral_officer']); 
+        $data = $request->only(['political_party', 'name' , 'mobile' , 'wards_id', 'lga_id'  , 'polling_unit_id' , 'designation' , 'home_address' , 'extra_mobile' , 'signature_agent' , 'signature_auth_party_officials' , 'name_party_chairman' , 'signature_party_chairman' , 'name_electoral_officer' , 'signature_electoral_officer']); 
 
         // upload image
-        if($request->file('agent_picture')){
+        if (($request->agent_picture) && ($request->file('agent_picture'))){
             $file = $request->file('agent_picture');
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file-> move(public_path('uploads/agent_images'), $filename);
