@@ -390,7 +390,6 @@ var KTModalAdmins = function() {
 }();
 
 // On document ready
-
-$(document).ready(function() {
+KTUtil.onDOMContentLoaded(function() {
     KTModalAdmins.init();
-})
+});

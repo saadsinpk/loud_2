@@ -314,7 +314,8 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-
+    <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/admins/list.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection
