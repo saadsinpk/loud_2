@@ -48,7 +48,6 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <div class="table-responsive">
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_politicalpartyagents_table">
                     <!--begin::Table head-->
                     <thead>
@@ -59,10 +58,10 @@
                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_politicalpartyagents_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="">political party agent Name</th>
-                            <th class="">Name</th>
-                            <th class="">Created Date</th>
-                            <th class="text-end">Actions</th>
+                            <th class="min-w-125px">political party agent Name</th>
+                            <th class="min-w-125px">Name</th>
+                            <th class="min-w-125px">Created Date</th>
+                            <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -72,7 +71,6 @@
                     </tbody>
                     <!--end::Table body-->
                 </table>
-            </div>
                 <!--end::Table-->
             </div>
             <!--end::Card body-->

@@ -9,7 +9,7 @@
             <!--begin::Card header-->
             <div class="card-header border-0 pt-6">
                 <!--begin::Card title-->
-                <div class="card-title mb-0">
+                <div class="card-title">
                     <!--begin::Search-->
                     <div class="d-flex align-items-center position-relative my-1">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
@@ -40,7 +40,7 @@
                         </span>
                     <input style="height: 42px;" autocomplete="off" type="text" name="to_date" class="form-control datepicker hasDatepicker form-control-solid w-250px ps-15" id="to_date" placeholder="End Date">
                 </div>  
-                <button type="submit" class="btn btn-secondary mt-2" id="filterthis">Filter</button>
+                <button style="height: 42px;margin-top: 10px;" type="submit" class="btn btn-success" id="filterthis">Filter</button>
                 <!--begin::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
@@ -64,23 +64,22 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body pt-0">
-                <div class="table-responsive">
                 <!--begin::Table-->
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_user_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class=" pe-2">
+                            <th class="w-10px pe-2">
                                 <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_user_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="">User Name</th>
-                            <th class="">Role</th>
-                            <th class="">Email</th>
-                            <th class="">Created Date</th>
-                            <th class="text-end">Actions</th>
+                            <th class="min-w-125px">User Name</th>
+                            <th class="min-w-125px">Role</th>
+                            <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">Created Date</th>
+                            <th class="text-end min-w-70px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -91,7 +90,6 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
-            </div>
             </div>
             <!--end::Card body-->
         </div>
