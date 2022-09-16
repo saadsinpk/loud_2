@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! Bootstrap 5 integration for DataTables
  *
- * ©2020 SpryMedia Ltd, all rights reserved.
+ * ï¿½2020 SpryMedia Ltd, all rights reserved.
  * License: MIT datatables.net/license/mit
  */
 table.dataTable {
@@ -2128,7 +2128,7 @@ div.dt-datetime-error {
 }
 
 .fc .fc-timegrid-slot:empty:before {
-  content: " ";
+  content: "ï¿½";
 }
 
 .fc .fc-timegrid-slot-minor {
@@ -2294,7 +2294,7 @@ div.dt-datetime-error {
 }
 
 .fc-timegrid-event-short .fc-event-time:after {
-  content: " - ";
+  content: "ï¿½-ï¿½";
 }
 
 .fc-timegrid-event-short .fc-event-title {
@@ -6286,7 +6286,7 @@ span.flatpickr-weekday {
 }
 
 .ql-editor ul > li::before {
-  content: "•";
+  content: "ï¿½";
 }
 
 .ql-editor ul[data-checked=true],
@@ -7696,7 +7696,7 @@ span.flatpickr-weekday {
 }
 
 .tagify__tag__removeBtn::after {
-  content: "×";
+  content: "ï¿½";
   transition: 0.3s, color 0s;
 }
 
@@ -33717,7 +33717,7 @@ progress {
   color: #7E8299;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "ï¿½ï¿½";
 }
 
 .img-fluid {
@@ -70456,7 +70456,7 @@ a:hover {
 }
 
 .breadcrumb-dot .breadcrumb-item:after {
-  content: "•";
+  content: "ï¿½";
 }
 
 .breadcrumb-separatorless .breadcrumb-item:after {
@@ -73137,7 +73137,7 @@ code:not([class*=language-]) {
 }
 .form-control.form-control-solid {
   background-color: #F5F8FA;
-  border-color: #F5F8FA;
+  border-color: #6d8fe5;
   color: #5E6278;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -81005,4 +81005,8 @@ body {
 --primary:#016c02;
 --secondary:#0035bb;
 --accent:#cf1800;
+}
+
+.loginback {
+background-color: #fff;
 }

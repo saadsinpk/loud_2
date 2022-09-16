@@ -47,22 +47,23 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body pt-0">
+                <div class="table-responsive">
                 <!--begin::Table-->
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_pollingunits_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
+                            <th class=pe-2">
                                 <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_pollingunits_table .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th class="min-w-125px">PU Name</th>
-                            <th class="min-w-125px">LGA</th>
-                            <th class="min-w-125px">Ward</th>
-                            <th class="min-w-125px">Created Date</th>
-                            <th class="text-end min-w-70px">Actions</th>
+                            <th class="">PU Name</th>
+                            <th class="">LGA</th>
+                            <th class="">Ward</th>
+                            <th class="">Created Date</th>
+                            <th class="text-end ">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -73,6 +74,7 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
+            </div>
             </div>
             <!--end::Card body-->
         </div>

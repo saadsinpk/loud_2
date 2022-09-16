@@ -9,15 +9,24 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/boxicons.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/core.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/theme-default.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/demo.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/page-auth.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
         <!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
-		
+		<script src="{{ asset('js/helpers.js') }}"></script>
 
 		<style>
 			#spinner {
@@ -158,22 +167,19 @@
 		@stack("styles")
 		
     </head>
-    <body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
-		<!--begin::Main-->
-		<!--begin::Root-->
-		<div class="d-flex flex-column flex-root">
+    <body>
+
+		<div class="layout-wrapper layout-content-navbar ">
 			<!--begin::Page-->
-			<div class="page d-flex flex-row flex-column-fluid">
-				<!--begin::Wrapper-->
-                <!--begin::Aside-->
+			<div class="layout-container">
                 @include("pages.sidebar")
                 <!--end::Aside-->
-				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+				<div class="layout-page">
                     <!--begin::Aside search-->
                         @include("pages.header")
                     <!--end::Aside search-->
 					<!--begin::Content-->
-					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+					<div class="content d-flex flex-column flex-column-fluid mt-3" id="kt_content">
 						@yield('content')
 					</div>
 					<!--end::Content-->
@@ -195,16 +201,16 @@
 			</div>
 		</div>
 		
-        @include("pages.scrollTop")
         
 		<!--begin::Javascript-->
 		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
-		<script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
-		<!--end::Global Javascript Bundle-->
-		
-		<!--begin::Page Vendors Javascript(used by this page)-->
-		<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+		<script  src="{{ asset('js/jquery.js') }}"></script>
+		<script  src="{{ asset('js/popper.js') }}"></script>
+		<script  src="{{ asset('js/bootstrap.js') }}"></script>
+		<script  src="{{ asset('js/perfect-scrollbar.js') }}"></script>
+
+		<script src="{{ asset('js/menu.js') }}"></script>
+		<script src="{{ asset('js/main.js') }}"></script>
 		<!--end::Page Vendors Javascript-->
 		
 		<script>
@@ -214,8 +220,6 @@
 		</script>
 
 	
-
-		@yield("after_script");
 
 
 
