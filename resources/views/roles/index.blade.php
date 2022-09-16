@@ -9,7 +9,7 @@
             <!--begin::Card header-->
             <div class="card-header border-0 pt-6">
                 <!--begin::Card title-->
-                <div class="card-title mb-0">
+                <div class="card-title">
                     <!--begin::Search-->
                     <div class="d-flex align-items-center position-relative my-1">
                         <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
@@ -40,7 +40,7 @@
                         </span>
                     <input style="height: 42px;" autocomplete="off" type="text" name="to_date" class="form-control datepicker hasDatepicker form-control-solid w-250px ps-15" id="to_date" placeholder="End Date">
                 </div>  
-                <button  type="submit" class="btn btn-secondary mt-2" id="filterthis">Filter</button>
+                <button style="height: 42px;margin-top: 10px;" type="submit" class="btn btn-success" id="filterthis">Filter</button>
                 <!--begin::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar">
@@ -64,7 +64,6 @@
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body pt-0">
-                <div class="table-responsive">
                 <!--begin::Table-->
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_role_table">
                     <!--begin::Table head-->
@@ -90,7 +89,6 @@
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
-            </div>
             </div>
             <!--end::Card body-->
         </div>
@@ -147,7 +145,7 @@
                         <th scope="col" width="20%">Name</th>
                         <th scope="col" width="1%">Guard</th> 
                     </thead>
-                  
+
                     @foreach($permissions as $permission)
                         <tr>
                             <td>

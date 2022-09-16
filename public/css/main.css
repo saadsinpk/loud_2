@@ -47,8 +47,40 @@ border-color: var(--primary);
     text-transform: uppercase;
     font-size: 1.3rem;
 }
+.dataTables_filter {
+    margin-top: 1rem;
+}
+.dataTables_filter label {
+    width: 100%;
+}
+.table td {
+    font-size: 0.8rem;
+}
+.pagination {
+    margin-top: 1rem;
+}
+a.btn.btn-action{
+    display: flex;
+    justify-content: center;
+}
+.menu-sub {
+    padding: 0 !important;
+}
+
+.menu-item {
+    border-bottom:1px solid #ddd;
+    padding:5px 0
+    
+}
+.menu-item:hover {
+    background: var(--secondary);
+    color: #fff;
+}
+#kt_content {
+    margin-top: 1rem;
+}
 @media only screen and (max-width: 600px) {
 .table th, .table td {
-    min-width: 9rem;
+    min-width: 7rem;
 }
 }
