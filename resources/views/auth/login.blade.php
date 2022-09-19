@@ -1,80 +1,113 @@
-@extends("layouts.guest")
-@section("content")
-        <!--begin::Main-->
-        <div class="d-flex flex-column flex-root">
-            <!--begin::Authentication - Sign-in -->
-            <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background: whitesmoke;">
-                <!--begin::Content-->
-                <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-                    <!--begin::Logo-->
-                    <a href="index.html" class="mb-12">
-                        <img alt="Logo" src="{{ asset("assets/media/logos/logo.png") }}" class="h-75px" />
-                    </a>
-                    <!--end::Logo-->
-                    <!--begin::Wrapper-->
-                    <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-                        <!--begin::Form-->
-                        <form action="{{ route("login") }}" class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
-                            <!--begin::Heading-->
-                            <div class="text-center mb-10">
-                                <!--begin::Title-->
-                                <h1 class="text-dark mb-3">Sign In to Site</h1>
-                                <!--end::Title-->
-                            </div>
-                            <!--begin::Heading-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" value="{{ old('email') }}" type="text" name="email" autocomplete="off" />
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-10">
-                                <!--begin::Wrapper-->
-                                <div class="d-flex flex-stack mb-2">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                                    <!--end::Label-->
-                                    <!--begin::Link-->
-                                    <a href="{{ route('password.reset.form') }}" class="link-primary fs-6 fw-bolder">  {{ __('Forgot your password?') }}</a>
-                                    <!--end::Link-->
-                                </div>
-                                <!--end::Wrapper-->
-                                <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="password" name="password" value="{{ old('password') }}" autocomplete="off" />
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Actions-->
-                            <div class="text-center">
-                                <!--begin::Submit button-->
-                                <button type="button" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                    <span class="indicator-label">Continue</span>
-                                    <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Loud | Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{{ asset('assets/css/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min.css') }}">
+  <!-- formValidation -->
+  <link rel="stylesheet"  href="{{ asset('assets/js/plugins/formvalidation/formValidation.min.css') }}">
+  
+  <!-- sweetalert2 --> 
+  <link rel="stylesheet"  href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+  
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" style="    width: 265px;"/>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in </p>
+
+      <form action="{{ route('login') }}" class="form w-100"  id="kt_sign_in_form">
+	
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" type="text" name="email" autocomplete="off">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password"  name="password" value="{{ old('password') }}" autocomplete="off">
+		  
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+          
+
+ <!--begin::Submit button-->
+                                <button type="button" id="kt_sign_in_submit" class="btn btn-primary btn-block">
+                                    <span class="indicator-label">Sign In</span>
+                                    <span class="indicator-progress"></span>
                                 </button>
                                 <!--end::Submit button-->
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Wrapper-->
-                </div>
-                <!--end::Content-->
-                <!--begin::Footer-->
-                <!--end::Footer-->
-            </div>
-            <!--end::Authentication - Sign-in-->
+								
+								
+          </div>
+          <!-- /.col -->
         </div>
+      </form>
 
-        @section("after_script")
-            <!--begin::Page Custom Javascript(used by this page)-->
-            <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
-            <!--end::Page Custom Javascript-->
-        @endsection
-@endsection
+      
+
+      <p class="mb-1">
+	  
+        <a href="{{ route('password.reset.form') }}" >  {{ __('Forgot your password?') }}</a>
+      </p>
+      <p class="mb-0">
+      
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{{ asset('assets/js/plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- jQuery \formvalidation -->
+<script src="{{ asset('assets/js/plugins/formvalidation/FormValidation.full.min.js') }}"></script>
+
+<!-- sweetalert2 --> 
+<script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+  
+<!-- Bootstrap 4 -->
+<script src="{{ asset('assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
+<!--end::Page Custom Javascript-->
+			
+</body>
+</html>

@@ -33,9 +33,9 @@ var KTSigninGeneral = function() {
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap: new FormValidation.plugins.Bootstrap5({
+                    /*bootstrap: new FormValidation.plugins.Bootstrap5({
                         rowSelector: '.fv-row'
-                    })
+                    })*/
                 }
             }
         );
@@ -157,6 +157,6 @@ var KTSigninGeneral = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTSigninGeneral.init();
 });
