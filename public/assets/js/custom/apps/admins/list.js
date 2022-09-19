@@ -65,8 +65,11 @@ var KTModalAdmins = function() {
                     }
                 }).then(function(result) {
                     if (result.value) {
-                        form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                        form.reset(); // Reset form	   
+						
+						
+                        //modal.modal('hide'); // Hide modal		
+						$('#kt_modal_add_admin').modal('hide');						
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -90,11 +93,7 @@ var KTModalAdmins = function() {
             ajax: {
                 url: url
             },
-            columns: [{
-                    data: 'checkbox',
-                    name: 'checkbox',
-                    orderable: false
-                },
+            columns: [
                 {
                     data: 'name',
                     name: 'name',
@@ -118,33 +117,25 @@ var KTModalAdmins = function() {
             'order': [],
 
             'columnDefs': [
-                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)   
             ]
         });
 
         // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
         datatable.on('draw', function() {
             ids = "";
-            initToggleToolbar();
+           // initToggleToolbar();
             handleDeleteRows();
             toggleToolbars();
-            dropdownInstance();
+         
         });
     }
 
-    var dropdownInstance = () => {
-        var items = document.querySelectorAll("a[data-kt-menu-trigger]");
-        KTMenu.createInstances();
-        $.each(items, function() {
-            KTMenu.getInstance(this);
-
-        })
-    }
+    
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-admin-table-filter="search"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_admins_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -236,7 +227,7 @@ var KTModalAdmins = function() {
     }
 
     // Init toggle toolbar
-    var initToggleToolbar = () => {
+   /* var initToggleToolbar = () => {
         // Toggle selected action toolbar
         // Select all checkboxes
         const checkboxes = table.querySelectorAll('[type="checkbox"]');
@@ -331,14 +322,14 @@ var KTModalAdmins = function() {
                 }
             });
         });
-    }
+    }*/
 
     // Toggle toolbars
     const toggleToolbars = () => {
         // Define variables
         const toolbarBase = document.querySelector('[data-kt-admin-table-toolbar="base"]');
-        const toolbarSelected = document.querySelector('[data-kt-admin-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-admin-table-select="selected_count"]');
+       // const toolbarSelected = document.querySelector('[data-kt-admin-table-toolbar="selected"]');
+       // const selectedCount = document.querySelector('[data-kt-admin-table-select="selected_count"]');
 
         // Select refreshed checkbox DOM elements 
         const allCheckboxes = table.querySelectorAll('tbody [type="checkbox"]');
@@ -357,12 +348,12 @@ var KTModalAdmins = function() {
         });
         // Toggle toolbars
         if (checkedState) {
-            selectedCount.innerHTML = count;
+           // selectedCount.innerHTML = count;
             toolbarBase.classList.add('d-none');
-            toolbarSelected.classList.remove('d-none');
+           // toolbarSelected.classList.remove('d-none');
         } else {
             toolbarBase.classList.remove('d-none');
-            toolbarSelected.classList.add('d-none');
+           // toolbarSelected.classList.add('d-none');
         }
     }
 
@@ -382,7 +373,7 @@ var KTModalAdmins = function() {
             closeButton = form.querySelector('#kt_modal_add_admin_close');
             url = $("#kt_modal_add_admin_form").attr("action");
             initadminList();
-            initToggleToolbar();
+          //  initToggleToolbar();
             handleSearchDatatable();
             closeForm();
         }
@@ -390,6 +381,6 @@ var KTModalAdmins = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalAdmins.init();
 });
