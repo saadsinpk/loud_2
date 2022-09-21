@@ -400,6 +400,6 @@ var KTModalpollingunits = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalpollingunits.init();
 });

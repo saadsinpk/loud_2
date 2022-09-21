@@ -65,6 +65,7 @@
                   <thead>
                   <tr>
 				  
+                    <th></th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>CREATED DATE</th>
@@ -78,6 +79,7 @@
                   <tfoot>
                   <tr>
 					
+					<th></th>
 					<th>Name</th>
                     <th>Email</th>
                     <th>CREATED DATE</th>
@@ -105,6 +107,49 @@
 		
 		
         <!--begin::Modals-->
+		
+		
+        <!--begin::Modal - admins - View -->
+		  <div class="modal fade" id="kt_modal_view_admin">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header text-center">
+				  <h4 class="modal-title">Admin Details</h4>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				
+				<!-- Profile Image -->
+				<div class="card card-primary card-outline">
+				  <div class="card-body box-profile">
+					<div class="text-center">
+					  <img class="profile-user-img img-fluid img-circle"
+						   src="{{ asset('assets/media/avatars/blank.png') }}"
+						   alt="Admin profile picture">
+					</div>
+
+					<h3 class="profile-username text-center"><span id="name_view"></span></h3>
+
+					<p class="text-muted text-center"><span id="email_view"></span></p>
+					<p class="text-muted text-center"><span id="role_view"></span></p>
+
+	
+				  </div>
+				  <!-- /.card-body -->
+				</div>
+				<!-- /.card -->
+				
+				</div>
+				
+			  </div>
+			  <!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		  </div>
+		  <!-- /.modal -->
+		
         <!--begin::Modal - admins - Add-->
         <div class="modal fade" id="kt_modal_add_admin" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
@@ -247,15 +292,11 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-<script>
 
-
-  
-</script>
 	
     <!--begin::Page Custom Javascript(used by this page)-->
 	
-    <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script> 
+   <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script> 
    <script src="{{ asset('assets/js/custom/apps/admins/list.js') }}"></script> 
 	
     <!--end::Page Custom Javascript-->

@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\LgaController;
 use App\Http\Controllers\WardController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\PollingUnitController;
 use App\Http\Controllers\PoliticalPartyAgentController;
 
@@ -130,10 +131,17 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
         Route::post('/', [PoliticalPartyAgentController::class, 'store'])->name("politicalpartyagents.store");
         Route::get('/view/{id}', [PoliticalPartyAgentController::class, 'details'])->name("politicalpartyagents.view");
         Route::get('/delete/{id}', [PoliticalPartyAgentController::class, 'destroy'])->name("politicalpartyagents.delete");
-        Route::post('/delete-rows', [PoliticalPartyAgentController::class, 'destroyRows'])->name("lgas.delete.row");
+        Route::post('/delete-rows', [PoliticalPartyAgentController::class, 'destroyRows'])->name("politicalpartyagents.delete.row");
         Route::post('/update', [PoliticalPartyAgentController::class, 'update'])->name("politicalpartyagents.update");
     });
 
 
+    Route::prefix("devices")->group(function(){
+        Route::get('/', [DeviceController::class, 'index'])->name("devices.index");
+        Route::get('/view/{id}', [DeviceController::class, 'details'])->name("devices.view");
+        Route::get('/delete/{id}', [DeviceController::class, 'destroy'])->name("devices.delete");
+        Route::post('/delete-rows', [DeviceController::class, 'destroyRows'])->name("devices.delete.row");
+        Route::post('/update', [DeviceController::class, 'update'])->name("devices.update");
+    });
 });
 require __DIR__.'/auth.php';

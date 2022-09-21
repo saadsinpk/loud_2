@@ -7,7 +7,8 @@ var KTModalUser = function() {
     var validator;
     var form;
     var modal;
-
+	var modalview;
+	var tableTr;
     var datatable;
     var table
     var url
@@ -136,25 +137,31 @@ var KTModalUser = function() {
         // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
         datatable.on('draw', function() {
             ids = "";
-            initToggleToolbar();
+            //initToggleToolbar();
             handleDeleteRows();
             toggleToolbars();
-            dropdownInstance();
+            handleClickabeRowtable();
+            
         });
     }
 
-    var dropdownInstance = () => {
-        var items = document.querySelectorAll("a[data-kt-menu-trigger]");
-        KTMenu.createInstances();
-        $.each(items, function() {
-            KTMenu.getInstance(this);
-
-        })
+    var handleClickabeRowtable = () => {
+        tableTr = table.querySelectorAll('tbody tr'); //document.querySelector('tbody tr');
+		tableTr.forEach(d => {
+			d.addEventListener('click', function(e) {
+                e.preventDefault();
+				let current_row = datatable.row(this).data();
+				  $('#name_view').text(current_row.name);
+				  $('#email_view').text(current_row.email);
+				 // $('#role_view').text(current_row.roles[0].name);
+				  modalview.modal('show');
+			});
+		});  
     }
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-user-table-filter="search"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_user_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -390,7 +397,7 @@ var KTModalUser = function() {
         // Public functions
         init: function() {
             modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_user'));
-
+			modalview = $('#kt_modal_view_admin');
             table = document.querySelector('#kt_user_table');
 
             if (!table) {
@@ -402,7 +409,7 @@ var KTModalUser = function() {
             closeButton = form.querySelector('#kt_modal_add_user_close');
             url = $("#kt_modal_add_user_form").attr("action");
             inituserList();
-            initToggleToolbar();
+          //  initToggleToolbar();
             handleSearchDatatable();
             closeForm();
         }
@@ -410,6 +417,6 @@ var KTModalUser = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalUser.init();
 });

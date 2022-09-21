@@ -4,10 +4,11 @@
 var KTModalAdmins = function() {
     var cancelButton;
     var closeButton;
+    var tableTr;
     var validator;
     var form;
     var modal;
-
+    var modalview;
     var datatable;
     var table
     var url
@@ -34,7 +35,8 @@ var KTModalAdmins = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                       // modal.hide(); // Hide modal	
+						$('#kt_modal_add_admin').modal('hide');
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -93,7 +95,11 @@ var KTModalAdmins = function() {
             ajax: {
                 url: url
             },
-            columns: [
+            columns: [{
+                    data: 'checkbox',
+                    name: 'checkbox',
+                    orderable: false
+                },
                 {
                     data: 'name',
                     name: 'name',
@@ -125,13 +131,31 @@ var KTModalAdmins = function() {
         datatable.on('draw', function() {
             ids = "";
            // initToggleToolbar();
+		    handleClickabeRowtable();
             handleDeleteRows();
             toggleToolbars();
+			
          
         });
+		
+
     }
 
     
+    
+    var handleClickabeRowtable = () => {
+        tableTr = table.querySelectorAll('tbody tr'); //document.querySelector('tbody tr');
+		tableTr.forEach(d => {
+			d.addEventListener('click', function(e) {
+                e.preventDefault();
+				let current_row = datatable.row(this).data();
+				  $('#name_view').text(current_row.name);
+				  $('#email_view').text(current_row.email);
+				  $('#role_view').text(current_row.roles[0].name);
+				  modalview.modal('show');
+			});
+		});  
+    }
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
@@ -145,7 +169,7 @@ var KTModalAdmins = function() {
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
-
+		
         deleteButtons.forEach(d => {
             // Delete button on click
             d.addEventListener('click', function(e) {
@@ -156,8 +180,8 @@ var KTModalAdmins = function() {
 
                 // Get admin name
                 const adminName = parent.querySelectorAll('td')[1].innerText;
-                const id = parent.querySelectorAll('td')[0].children[0].children[1].value;
-
+                const id = parent.querySelectorAll('td')[0].children[0].children[1].value; console.log(id);
+				
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
                     text: "Are you sure you want to delete " + adminName + "?",
@@ -185,6 +209,7 @@ var KTModalAdmins = function() {
                             dataType: "JSON",
                             success: function() {
                                 jQuery("#loading").remove();
+								modalview.modal('hide');
                                 Swal.fire({
                                     text: "You have deleted " + adminName + "!.",
                                     icon: "success",
@@ -222,8 +247,12 @@ var KTModalAdmins = function() {
                         });
                     }
                 });
+				
+				
             })
         });
+		
+		
     }
 
     // Init toggle toolbar
@@ -360,18 +389,19 @@ var KTModalAdmins = function() {
     return {
         // Public functions
         init: function() {
-            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_admin'));
-
+            modal = $('#kt_modal_add_admin');
+			modalview = $('#kt_modal_view_admin');
             table = document.querySelector('#kt_admins_table');
 
             if (!table) {
                 return;
             }
-
+			
             form = document.querySelector('#kt_modal_add_admin_form');
             cancelButton = form.querySelector('#kt_modal_add_admin_cancel');
             closeButton = form.querySelector('#kt_modal_add_admin_close');
             url = $("#kt_modal_add_admin_form").attr("action");
+			
             initadminList();
           //  initToggleToolbar();
             handleSearchDatatable();
@@ -383,4 +413,5 @@ var KTModalAdmins = function() {
 // On document ready
 $(document).ready(function(){
     KTModalAdmins.init();
+	
 });

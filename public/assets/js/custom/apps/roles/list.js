@@ -408,6 +408,6 @@ var KTModalRole = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalRole.init();
 });

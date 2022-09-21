@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $political_party
- * @property string $name
+ * @property string $first_name
+ * @property string $middle_name
+ * @property string $last_name
  * @property string $agent_picture
  * @property int $lga_id
  * @property int $wards_id
@@ -25,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $signature_party_chairman
  * @property text $name_electoral_officer
  * @property boolean $signature_electoral_officer
+ * @property boolean $latitude
+ * @property boolean $longitude
  * @property date $deleted_at
  * @property date $created_at
  * @property date $updated_at
@@ -42,7 +46,9 @@ class PoliticalPartyAgent extends Model
 
     protected $fillable = [
         'political_party',
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'agent_picture',
         'lga_id',
         'wards_id',
@@ -57,6 +63,8 @@ class PoliticalPartyAgent extends Model
         'signature_party_chairman',
         'name_electoral_officer',
         'signature_electoral_officer',
+        'latitude',
+        'longitude'
     ];
 
     protected $table = 'political_party_agents';
@@ -72,5 +80,11 @@ class PoliticalPartyAgent extends Model
     public function pollingUnit(){
         return $this->belongsTo(PollingUnit::class);
     }
+
+
+    public function agentPicture(){
+        return $this->hasMany(AgentPicture::class);
+    }
+    
 
 }

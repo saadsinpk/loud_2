@@ -23,24 +23,10 @@ var KTModalUpdatePermission = function() {
                             }
                         }
                     },
-                    // 'email': {
-                    //     validators: {
-                    //         notEmpty: {
-                    //             message: 'Permission email is required'
-                    //         },
-                    //         emailAddress: {
-                    //             message: 'The value is not a valid email address'
-                    //         },
-                    //     }
-                    // }
+                    
                 },
                 plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap: new FormValidation.plugins.Bootstrap5({
-                        rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
-                    })
+                    trigger: new FormValidation.plugins.Trigger()
                 }
             }
         );
@@ -160,7 +146,7 @@ var KTModalUpdatePermission = function() {
             }).then(function(result) {
                 if (result.value) {
                     form.reset(); // Reset form	
-                    modal.hide(); // Hide modal				
+                    			
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
@@ -175,37 +161,7 @@ var KTModalUpdatePermission = function() {
             });
         });
 
-        closeButton.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                text: "Are you sure you would like to cancel?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    form.reset(); // Reset form	
-                    modal.hide(); // Hide modal				
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                        }
-                    });
-                }
-            });
-        });
+    
     }
 
     return {
@@ -213,12 +169,12 @@ var KTModalUpdatePermission = function() {
         init: function() {
             // Elements
             element = document.querySelector('#kt_modal_update_mypermissions');
-            modal = new bootstrap.Modal(element);
+           
 
             form = element.querySelector('#kt_modal_update_mypermissions_form');
             submitButton = form.querySelector('#kt_modal_update_mypermissions_submit');
             cancelButton = form.querySelector('#kt_modal_update_mypermissions_cancel');
-            closeButton = element.querySelector('#kt_modal_update_mypermissions_close');
+           // closeButton = element.querySelector('#kt_modal_update_mypermissions_close');
 
             initForm();
         }
@@ -226,6 +182,6 @@ var KTModalUpdatePermission = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalUpdatePermission.init();
 });

@@ -28,34 +28,28 @@ class AdminController extends Controller
     }
 
     public function index() {
-        $users = User::role('superAdmin')->orderBy("created_at", "DESC")->get();
+        $users = User::role('superAdmin')
+        ->with('roles')
+        ->orderBy("created_at", "DESC")->get();
         if (request()->ajax()) {
             return DataTables::of($users)
             ->addColumn('group', function ($data) {
                 return '';
             })
-            ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                <input type="hidden" value="'.$data->id.'">
-                            </div>';
-                return $checkbox;
-            })
+                ->addColumn('checkbox', function ($data) {
+                    $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
+                                    <input type="hidden" value="'.$data->id.'">
+                                </div>';
+                    return $checkbox;
+                })
             ->addColumn('created_at', function ($row) { 
                 $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
                 return $create_date;
             })             
             ->addColumn('action', function ($data) {
                 $action = '';
-               
-                    
-                $action .= '<a class="btn btn-primary btn-sm" href="'.url("/admins/view/$data->id").'">
-                              <i class="fas fa-folder"></i>
-                              </i>
-                              View
-                          </a>';
-                
-
+ 
                 $action .= '<a class="btn btn-info btn-sm" href="'.url("/admins/view/$data->id").'">
                               <i class="fas fa-pencil-alt">
                               </i>
@@ -63,14 +57,11 @@ class AdminController extends Controller
                           </a>';
 
 
-                $action .= '
-
-                         <a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
+                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
                               <i class="fas fa-trash">
                               </i>
                               Delete
-                          </a>
-                             ';
+                          </a>';
                 return $action;
             })
 

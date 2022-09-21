@@ -408,6 +408,6 @@ var KTModalPermission = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalPermission.init();
 });

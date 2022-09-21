@@ -75,6 +75,15 @@ if($uri_segments[1]=="user"){
           </li>
 		  
           <li class="nav-item">
+            <a href="{{ url('/devices') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                User Devices
+              </p>
+            </a>
+          </li>
+		  
+          <li class="nav-item">
             <a href="{{ url('/roles') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>

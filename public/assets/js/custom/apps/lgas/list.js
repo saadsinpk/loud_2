@@ -390,6 +390,6 @@ var KTModalLga = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalLga.init();
 });

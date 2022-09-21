@@ -35,12 +35,7 @@ var KTModalUpdateLga = function() {
                     // }
                 },
                 plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap: new FormValidation.plugins.Bootstrap5({
-                        rowSelector: '.fv-row',
-                        eleInvalidClass: '',
-                        eleValidClass: ''
-                    })
+                    trigger: new FormValidation.plugins.Trigger()
                 }
             }
         );
@@ -102,7 +97,7 @@ var KTModalUpdateLga = function() {
                                         submitButton.disabled = false;
                                         form.reset(); // Reset form	
                                         if (result.isConfirmed) {
-                                            modal.hide();
+                                          //  modal.hide();
                                             window.location.reload();
                                         }
                                     });
@@ -158,7 +153,7 @@ var KTModalUpdateLga = function() {
             }).then(function(result) {
                 if (result.value) {
                     form.reset(); // Reset form	
-                    modal.hide(); // Hide modal				
+                   // modal.hide(); // Hide modal				
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
@@ -190,7 +185,7 @@ var KTModalUpdateLga = function() {
             }).then(function(result) {
                 if (result.value) {
                     form.reset(); // Reset form	
-                    modal.hide(); // Hide modal				
+                    //modal.hide(); // Hide modal				
                 } else if (result.dismiss === 'cancel') {
                     Swal.fire({
                         text: "Your form has not been cancelled!.",
@@ -211,12 +206,12 @@ var KTModalUpdateLga = function() {
         init: function() {
             // Elements
             element = document.querySelector('#kt_modal_update_lga');
-            modal = new bootstrap.Modal(element);
+           // modal = new bootstrap.Modal(element);
 
             form = element.querySelector('#kt_modal_update_lga_form');
             submitButton = form.querySelector('#kt_modal_update_lga_submit');
             cancelButton = form.querySelector('#kt_modal_update_lga_cancel');
-            closeButton = element.querySelector('#kt_modal_update_lga_close');
+          //  closeButton = element.querySelector('#kt_modal_update_lga_close');
 
             initForm();
         }
@@ -224,6 +219,6 @@ var KTModalUpdateLga = function() {
 }();
 
 // On document ready
-KTUtil.onDOMContentLoaded(function() {
+$(document).ready(function(){
     KTModalUpdateLga.init();
 });

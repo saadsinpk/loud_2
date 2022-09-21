@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
         'otp_sent_on',
         'provider',
         'provider_id',
-        'firebase_token',
+        'profile_picture',
         'updated_at',
         'created_at',
     ];
@@ -62,4 +62,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }    
+
+    public function device(){
+        return $this->hasMany(Device::class);
+    }
+
 }

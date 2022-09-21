@@ -16,7 +16,10 @@ class CreatePoliticalPartyAgentsTable extends Migration
         Schema::create('political_party_agents', function (Blueprint $table) {
             $table->id();
             $table->string('political_party');
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
+            $table->enum('party_leader',['LG Chairman','Ward Chairman','Vice','Secretary','PRO','Treasurer','Others 1' , 'Others 2'])->nullable();
             $table->unsignedBigInteger('lga_id')->nullable();
             $table->foreign('lga_id')->references('id')->on('lgas')->onDelete('cascade');   
             $table->unsignedBigInteger('wards_id')->nullable();
@@ -33,6 +36,8 @@ class CreatePoliticalPartyAgentsTable extends Migration
             $table->boolean('signature_party_chairman')->default(0);
             $table->text('name_electoral_officer')->nullable();
             $table->boolean('signature_electoral_officer')->default(0);
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
           //  $table->enum('status',['active','inactive'])->default('active');
             $table->softDeletes();
             $table->timestamps();
