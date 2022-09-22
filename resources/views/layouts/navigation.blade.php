@@ -1,3 +1,4 @@
+  
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -5,35 +6,56 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        
-		  <a href="{{ request()->segment(1) }}" class="nav-link">{{ ucfirst( request()->segment(1) ) }}</a>
-      </li>
+     
+      
     </ul>
 
   <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
- <a href="{{ route("logout") }}" class="menu-link px-5"  onclick="event.preventDefault();
-                        document.getElementById('action-logout-form').submit();">
-                        <span class="svg-icon svg-icon-1 me-n1 minimize-default">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.3" x="8.5" y="11" width="12" height="2" rx="1" fill="black"></rect>
-                                <path d="M10.3687 11.6927L12.1244 10.2297C12.5946 9.83785 12.6268 9.12683 12.194 8.69401C11.8043 8.3043 11.1784 8.28591 10.7664 8.65206L7.84084 11.2526C7.39332 11.6504 7.39332 12.3496 7.84084 12.7474L10.7664 15.3479C11.1784 15.7141 11.8043 15.6957 12.194 15.306C12.6268 14.8732 12.5946 14.1621 12.1244 13.7703L10.3687 12.3073C10.1768 12.1474 10.1768 11.8526 10.3687 11.6927Z" fill="black"></path>
-                                <path opacity="0.5" d="M16 5V6C16 6.55228 15.5523 7 15 7C14.4477 7 14 6.55228 14 6C14 5.44772 13.5523 5 13 5H6C5.44771 5 5 5.44772 5 6V18C5 18.5523 5.44771 19 6 19H13C13.5523 19 14 18.5523 14 18C14 17.4477 14.4477 17 15 17C15.5523 17 16 17.4477 16 18V19C16 20.1046 15.1046 21 14 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H14C15.1046 3 16 3.89543 16 5Z" fill="black"></path>
-                            </svg>
-                        </span>
-                            Logout
-                    </a>
-          <form id="action-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #fff; font-size:14px; padding:15px;">
+              
+
+                @if(auth()->user()->avatar)
+                    <img src="{{ asset('public/uploads/avatar/'. auth()->user()->avatar)  }}" alt="Admin" class="user-image"/>
+                @else
+                    <img src="{{ asset('assets/media/avatars/blank.png') }}" class="user-image" />
+                @endif
+
+              <span class="hidden-xs">{{ auth()->user()->name }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              
+            
+              
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="{{ url('admin/view/'.auth()->user()->id) }}" class="btn btn-block btn-flat btn-xs">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('action-logout-form').submit();"  class="btn btn-block btn-flat btn-xs">
+                    Sign out</a>
+
+                    <form id="action-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-          </form>
-      </li>
-	  </ul>
+                     </form>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+         
+        </ul>
+      </div>
+
+    
   </nav>
   <!-- /.navbar -->
 

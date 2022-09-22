@@ -92,13 +92,13 @@ var KTModalAdmins = function() {
         datatable = $(table).DataTable({
             processing: true,
             serverSide: true,
+			searching:false,
             ajax: {
                 url: url
             },
             columns: [{
-                    data: 'checkbox',
-                    name: 'checkbox',
-                    orderable: false
+                    data: 'no',
+                    name: 'no'
                 },
                 {
                     data: 'name',
@@ -107,7 +107,11 @@ var KTModalAdmins = function() {
                 {
                     data: 'email',
                     name: 'email',
-                }   ,
+                },
+{
+                    data: 'role_name',
+                    name: 'role_name',
+                },
                 {
                     data: 'created_at',
                     name: 'created_at',
@@ -133,16 +137,12 @@ var KTModalAdmins = function() {
            // initToggleToolbar();
 		    handleClickabeRowtable();
             handleDeleteRows();
+			handleEditRows();
             toggleToolbars();
 			
-         
         });
-		
-
     }
 
-    
-    
     var handleClickabeRowtable = () => {
         tableTr = table.querySelectorAll('tbody tr'); //document.querySelector('tbody tr');
 		tableTr.forEach(d => {
@@ -164,6 +164,22 @@ var KTModalAdmins = function() {
             datatable.search(e.target.value).draw();
         });
     }
+	
+	
+    // Edit 
+    var handleEditRows = () => {
+        // Select all edit buttons
+        const editButtons = table.querySelectorAll('[data-kt-table-filter="edit_row"]');
+        editButtons.forEach(d => {
+            // Edit button on click
+            d.addEventListener('click', function(e) {
+				e.stopPropagation();
+                e.preventDefault();
+				const url = d.getAttribute('href');
+				window.open(url,"_self");
+			});
+		});
+	}
 
     // Delete admin
     var handleDeleteRows = () => {
@@ -174,13 +190,13 @@ var KTModalAdmins = function() {
             // Delete button on click
             d.addEventListener('click', function(e) {
                 e.preventDefault();
-
+				e.stopPropagation();
                 // Select parent row
                 const parent = e.target.closest('tr');
 
                 // Get admin name
                 const adminName = parent.querySelectorAll('td')[1].innerText;
-                const id = parent.querySelectorAll('td')[0].children[0].children[1].value; console.log(id);
+                const id = d.getAttribute('data-id'); 
 				
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
@@ -251,7 +267,6 @@ var KTModalAdmins = function() {
 				
             })
         });
-		
 		
     }
 

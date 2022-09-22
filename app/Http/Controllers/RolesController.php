@@ -33,64 +33,72 @@ class RolesController extends Controller
     public function index(Request $request)
     {   
         // Role::orderBy('id','DESC');
-        $roles = Role::with("permissions")->orderBy("created_at", "DESC")->get();
+       // $roles = Role::with("permissions")->orderBy("created_at", "DESC")->get();
         $permissions = Permission::get();
         
-        $fromDate=date("Y-m-d ",strtotime($request->from_date));
-        $toDate=date("Y-m-d",strtotime($request->to_date));
-        // echo "<pre>";
-        // print_r($permissions->toArray());
-        // echo "</pre>";
-        // exit();
+        $draw = $request->get('draw');
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchword = $request->input('searchword');
+        $page = (int)$start > 0 ? ($start / $length) + 1 : 1;
+        $limit = (int)$length > 0 ? $length : 10;
+        $fromDate = date("Y-m-d ",strtotime($request->from_date));
+        $toDate = date("Y-m-d",strtotime($request->to_date));
+        // Total records
+        $totalRecords = Role::count();
+        $roles = Role::with('permissions')->orderBy("created_at", "DESC");
+
         if (request()->ajax()) {
-            if(!empty($request->from_date)){
-                $roles = Role::whereDate('created_at','>=', $fromDate)->whereDate('created_at','<=', $toDate)->get();
+            if($request->from_date){
+                $roles = $roles->whereDate('created_at','>=', $fromDate);
             }
-            return DataTables::of($roles)
-            ->addColumn('group', function ($data) {
-                return '';
-            })
 
-            ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                <input type="hidden" value="'.$data->id.'">
-                            </div>';
-                return $checkbox;
-            })
-            ->addColumn('permissions.name', function ($data) {
-                $checkbox2='';
-                foreach ($data['permissions'] as $key => $value) {
-                    $checkbox2.=ucfirst($value->name).",";
-                }
-                $checkbox2=rtrim($checkbox2,",");
-                return $checkbox2;
-            })
-            ->addColumn('updated_at', function ($row) { 
-                $updated_at = "<span style='display:none;'>".$row->updated_at->timestamp."</span>".e($row->updated_at->format('d M Y, g:i A'));
-                return $updated_at;
-            })             
-            ->addColumn('action', function ($data) {
+            if($request->to_date){
+                $roles = $roles->whereDate('created_at','<=', $toDate);
+            }
+
+            if($searchword){
+                $roles = $roles->where('name','like', '%'.$searchword.'%');
+            }
+
+            $roles = $roles->paginate($limit, ["*"], 'page', $page);
+
+            $num = 1;
+            $items = array();
+            foreach ($roles->items() as $idx => $row) {
                 $action = '';
-                $action .= '<a class="btn btn-info btn-sm" href="'.url("/roles/view/$data->id").'">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/roles/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
 
+                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
-                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>';
+                $permissions = '<small>';
+                foreach ($row->permissions as $key => $value) {
+                    $permissions.="- ".ucfirst($value->name)."<br>";
+                }
 
-                return $action;
-            })
+                $permissions.= '</small>';
+                $items[] = array(
+                    "no" => $num,
+                    "id" => $row['id'],
+                    "permissionsname" => $permissions,
+                    "name" => $row['name'],
+                    "created_at" => $row['created_at'],
+                    "updated_at" => $row['updated_at'],
+                    "action" => $action
+                );
 
-            ->rawColumns(['checkbox','checkbox2', 'group', 'action', 'updated_at'])
-            ->addIndexColumn()
-            ->make(true);
+                $num++;
+            }
+
+            //-- START CREATE JSON RESPONSE FOR DATATABLES
+            $response = array(
+                "draw" => (int)$draw,
+                "recordsTotal" => (int)$totalRecords,
+                "recordsFiltered" => (int)$roles->total(),
+                "data" => $items
+            );
+
+            return response()->json($response);
         }
         
         return view("roles.index", compact("roles","permissions"));    

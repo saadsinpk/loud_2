@@ -7,7 +7,8 @@ var KTModalRole = function() {
     var validator;
     var form;
     var modal;
-
+	var modalview;
+	var tableTr;
     var datatable;
     var table
     var url
@@ -34,7 +35,8 @@ var KTModalRole = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                        //modal.hide(); // Hide modal		
+						$('#kt_modal_add_role').modal('hide');		
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -66,7 +68,8 @@ var KTModalRole = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                        //modal.hide(); // Hide modal	
+							$('#kt_modal_add_role').modal('hide');	
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -83,34 +86,31 @@ var KTModalRole = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initroleList = function(from_date='',to_date='') {
+    var initroleList = function(from_date='',to_date='',searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
+            searching: false,
             ajax: {
                 url: url,
-                data:{from_date:from_date,to_date:to_date}
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
-            columns: [{
-                    data: 'checkbox',
-                    name: 'checkbox',
-                    orderable: false
-                },
+            columns: [
                 {
+                    data: 'no',
+                    name: 'no',
+                },
+				{
                     data: 'name',
                     name: 'name',
                 },
-                {
-                    data: 'permissions.name',
-                    name: 'permissions.name',
-                },
+                /*{
+                    data: 'permissionsname',
+                    name: 'permissionsname',
+                },*/
                 {
                     data: 'updated_at',
                     name: 'updated_at',
@@ -126,8 +126,7 @@ var KTModalRole = function() {
             'order': [],
 
             'columnDefs': [
-                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox) 
             ]
         });
 
@@ -136,28 +135,50 @@ var KTModalRole = function() {
             ids = "";
             initToggleToolbar();
             handleDeleteRows();
+			handleEditRows();
             toggleToolbars();
-            dropdownInstance();
+			handleClickabeRowtable();
         });
     }
 
-    var dropdownInstance = () => {
-        var items = document.querySelectorAll("a[data-kt-menu-trigger]");
-        KTMenu.createInstances();
-        $.each(items, function() {
-            KTMenu.getInstance(this);
-
-        })
+ 
+    var handleClickabeRowtable = () => {
+        tableTr = table.querySelectorAll('tbody tr'); //document.querySelector('tbody tr');
+		tableTr.forEach(d => {
+			d.addEventListener('click', function(e) {
+                e.preventDefault();
+				let current_row = datatable.row(this).data();
+				  $('#name_view').text(current_row.name);
+				  $('#permissions_view').html(current_row.permissionsname);
+				 // $('#role_view').text(current_row.roles[0].name);
+				  modalview.modal('show');
+			});
+		});  
     }
-
+	
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-role-table-filter="search"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_role_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
     }
 
+    // Edit 
+    var handleEditRows = () => {
+        // Select all edit buttons
+        const editButtons = table.querySelectorAll('[data-kt-table-filter="edit_row"]');
+        editButtons.forEach(d => {
+            // Edit button on click
+            d.addEventListener('click', function(e) {
+				e.stopPropagation();
+                e.preventDefault();
+				const url = d.getAttribute('href');
+				window.open(url,"_self");
+			});
+		});
+	}
+	
     // Delete role
     var handleDeleteRows = () => {
         // Select all delete buttons
@@ -167,13 +188,13 @@ var KTModalRole = function() {
             // Delete button on click
             d.addEventListener('click', function(e) {
                 e.preventDefault();
-
+				e.stopPropagation();
                 // Select parent row
                 const parent = e.target.closest('tr');
 
                 // Get role name
                 const roleName = parent.querySelectorAll('td')[1].innerText;
-                const id = parent.querySelectorAll('td')[0].children[0].children[1].value;
+                const id = d.getAttribute('data-id'); 
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
@@ -245,13 +266,12 @@ var KTModalRole = function() {
     $('#filterthis').click(function(){
         var from_date=$('#from_date').val();
         var to_date=$('#to_date').val();
+        var searchword = $('#searchword').val();
 
-        if(from_date!='' && to_date!=""){
+        
             $('#kt_role_table').DataTable().destroy();
-            initroleList(from_date,to_date);
-        }else{
-            alert("Both date required!");
-        }
+            initroleList(from_date,to_date,searchword);
+        
     });
     // Init toggle toolbar
     var initToggleToolbar = () => {
@@ -388,7 +408,7 @@ var KTModalRole = function() {
         // Public functions
         init: function() {
             modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_role'));
-
+			modalview = $('#kt_modal_view_admin');
             table = document.querySelector('#kt_role_table');
 
             if (!table) {
@@ -400,7 +420,7 @@ var KTModalRole = function() {
             closeButton = form.querySelector('#kt_modal_add_role_close');
             url = $("#kt_modal_add_role_form").attr("action");
             initroleList();
-            initToggleToolbar();
+           // initToggleToolbar();
             handleSearchDatatable();
             closeForm();
         }

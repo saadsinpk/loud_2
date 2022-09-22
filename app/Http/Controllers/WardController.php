@@ -26,7 +26,7 @@ class WardController extends Controller
                 return '';
             })
             ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                $checkbox = '<div class="d-none">
                                 <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
                                 <input type="hidden" value="'.$data->id.'">
                             </div>';
@@ -39,19 +39,9 @@ class WardController extends Controller
             ->addColumn('action', function ($data) {
                 $action = '';
               
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url("/wards/view/$data->id").'"><i class="fas fa-pencil-alt"></i></a>';
 
-                $action .= '<a class="btn btn-info btn-sm" href="'.url("/wards/view/$data->id").'">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>';
-
-
-                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>';
+                $action .= '<a class="btn btn-xs btn-danger col-3 mr-2" href="#" data-kt-table-filter="delete_row"><i class="fas fa-trash"></i></a>';
 
                 return $action;
             })

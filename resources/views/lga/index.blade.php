@@ -18,17 +18,13 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">LGA's</li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
 
-<!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
         <!--begin::Card-->
         <div class="card">
             <!--begin::Card header-->
@@ -55,7 +51,7 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end" data-kt-lga-table-toolbar="base">
                         <!--begin::Add lga-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_lga">Add LGA</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kt_modal_add_lga">Add LGA</button>
                         <!--end::Add lga-->
                     </div>
                     <!--end::Toolbar-->
@@ -79,9 +75,7 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_lga_table .form-check-input" value="1" />
-                                </div>
+                                S No.
                             </th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Created Date</th>
@@ -171,11 +165,7 @@
         </div>
         <!--end::Modal - LGA - Add-->
 
-       
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Post-->
+    
 @endsection
 
 @section("after_script")

@@ -15,49 +15,70 @@ class LgaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lgas = Lga::orderBy("created_at", "DESC")->get();
+
+        $draw = $request->get('draw');
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchword = $request->input('searchword');
+        $page = (int)$start > 0 ? ($start / $length) + 1 : 1;
+        $limit = (int)$length > 0 ? $length : 10;
+        $fromDate = date("Y-m-d ",strtotime($request->from_date));
+        $toDate = date("Y-m-d",strtotime($request->to_date));
+        // Total records
+        $totalRecords = Lga::count();
+
+        $list = Lga::orderBy("created_at", "DESC");
+
         if (request()->ajax()) {
-            return DataTables::of($lgas)
-            ->addColumn('group', function ($data) {
-                return '';
-            })
-            ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                <input type="hidden" value="'.$data->id.'">
-                            </div>';
-                return $checkbox;
-            })
-            ->addColumn('created_at', function ($row) { 
-                $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
-                return $create_date;
-            })             
-            ->addColumn('action', function ($data) {
-                $action = '';   
-                $action .= '<a class="btn btn-info btn-sm" href="'.url("/lgas/view/$data->id").'">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>';
+            if($request->from_date){
+                $list = $list->whereDate('created_at','>=', $fromDate);
+            }
 
+            if($request->to_date){
+                $list = $list->whereDate('created_at','<=', $toDate);
+            }
 
-                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>';
+            if($searchword){
+                $list = $list->where('name','like', '%'.$searchword.'%');
+            }
 
-                return $action;
-            })
+            $list = $list->paginate($limit, ["*"], 'page', $page);
 
-            ->rawColumns(['checkbox', 'group', 'action', 'created_at'])
-            ->addIndexColumn()
-            ->make(true);
+            $num = 1;
+            $items = array();
+            foreach ($list->items() as $idx => $row) {
+                $action = '';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/lgas/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
+
+                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
+
+                $items[] = array(
+                    "no" => $num,
+                    "id" => $row['id'],
+                    "name" => $row['name'],
+                    "created_at" => $row['created_at']->format('d M Y, g:i A'),
+                    "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
+                    "action" => $action
+                );
+
+                $num++;
+            }
+
+            //-- START CREATE JSON RESPONSE FOR DATATABLES
+            $response = array(
+                "draw" => (int)$draw,
+                "recordsTotal" => (int)$totalRecords,
+                "recordsFiltered" => (int)$list->total(),
+                "data" => $items
+            );
+
+            return response()->json($response);
+
         }
         
-        return view("lga.index", compact("lgas"));
+        return view("lga.index", compact("list"));
     }
 
     /**

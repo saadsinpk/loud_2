@@ -35,7 +35,8 @@ var KTModalUser = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                        //modal.hide(); // Hide modal		
+						$('#kt_modal_add_user').modal('hide');	
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -67,7 +68,8 @@ var KTModalUser = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                       // modal.hide(); // Hide modal	
+					$('#kt_modal_add_user').modal('hide');						   
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -83,36 +85,37 @@ var KTModalUser = function() {
             })
         }
         // Private functions
-    var inituserList = function(from_date='',to_date='') {
+    var inituserList = function(from_date='',to_date='',searchword='') {
         // Set date data order
         datatable = $(table).DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
+            searching: false,
+			
             ajax: {
                 url: url,
-                data:{from_date:from_date,to_date:to_date}
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
-                    data: 'checkbox',
-                    name: 'checkbox',
-                    orderable: false
+                    data: 'no',
+                    name: 'no',
                 },
                 {
                     data: 'name',
                     name: 'name',
                 },
                 {
-                    data: 'role_id',
-                    name: 'role_id',
-                },
-                {
                     data: 'email',
                     name: 'email',
+                },
+                {
+                    data: 'profile_picture',
+                    name: 'profile_picture',
+                },
+                {
+                    data: 'role_name',
+                    name: 'role_name',
                 },
                 {
                     data: 'created_at',
@@ -139,6 +142,7 @@ var KTModalUser = function() {
             ids = "";
             //initToggleToolbar();
             handleDeleteRows();
+			handleEditRows();
             toggleToolbars();
             handleClickabeRowtable();
             
@@ -150,10 +154,10 @@ var KTModalUser = function() {
 		tableTr.forEach(d => {
 			d.addEventListener('click', function(e) {
                 e.preventDefault();
-				let current_row = datatable.row(this).data();
+				let current_row = datatable.row(this).data(); console.log(current_row);
 				  $('#name_view').text(current_row.name);
 				  $('#email_view').text(current_row.email);
-				 // $('#role_view').text(current_row.roles[0].name);
+				  $('#role_view').text(current_row.roles[0].name);
 				  modalview.modal('show');
 			});
 		});  
@@ -166,6 +170,22 @@ var KTModalUser = function() {
             datatable.search(e.target.value).draw();
         });
     }
+	
+	
+    // Edit 
+    var handleEditRows = () => {
+        // Select all edit buttons
+        const editButtons = table.querySelectorAll('[data-kt-table-filter="edit_row"]');
+        editButtons.forEach(d => {
+            // Edit button on click
+            d.addEventListener('click', function(e) {
+				e.stopPropagation();
+                e.preventDefault();
+				const url = d.getAttribute('href');
+				window.open(url,"_self");
+			});
+		});
+	}
 
     // Delete user
     var handleDeleteRows = () => {
@@ -176,13 +196,13 @@ var KTModalUser = function() {
             // Delete button on click
             d.addEventListener('click', function(e) {
                 e.preventDefault();
-
+				e.stopPropagation();
                 // Select parent row
                 const parent = e.target.closest('tr');
 
                 // Get user name
                 const userName = parent.querySelectorAll('td')[1].innerText;
-                const id = parent.querySelectorAll('td')[0].children[0].children[1].value;
+                const id = d.getAttribute('data-id'); 
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
@@ -254,13 +274,11 @@ var KTModalUser = function() {
     $('#filterthis').click(function(){
         var from_date=$('#from_date').val();
         var to_date=$('#to_date').val();
+        var searchword = $('#searchword').val();
 
-        if(from_date!='' && to_date!=""){
             $('#kt_user_table').DataTable().destroy();
-            inituserList(from_date,to_date);
-        }else{
-            alert("Both date required!");
-        }
+            inituserList(from_date,to_date,searchword);
+        
     });
     // Init toggle toolbar
     var initToggleToolbar = () => {

@@ -25,10 +25,7 @@
       </div><!-- /.container-fluid -->
     </section>
 
-<!--begin::Post-->
-<div class="post d-flex flex-column-fluid" id="kt_post">
-    <!--begin::Container-->
-    <div id="kt_content_container" class="container-xxl">
+
         <!--begin::Card-->
         <div class="card">
             <!--begin::Card header-->
@@ -72,7 +69,7 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end" data-kt-role-table-toolbar="base">
                         <!--begin::Add user-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_mypermissions">Add New</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kt_modal_add_mypermissions">Add New</button>
                         <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
@@ -299,10 +296,7 @@
             <!--end::Modal dialog-->
         </div>
         <!--end::Modals-->
-    </div>
-    <!--end::Container-->
-</div>
-<!--end::Post-->
+    
 @endsection
 
 @section("after_script")

@@ -18,13 +18,12 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Users</li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
 
         <!--begin::Card-->
         <div class="card">
@@ -33,46 +32,58 @@
                 <!--begin::Card title-->
                 <div class="card-title">
                     <!--begin::Search-->
-                    <div class="d-flex align-items-center position-relative my-1">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
-                    </div>
+                    
                     <!--end::Search-->
                 </div>
-                <div class="form-group d-flex align-items-center position-relative my-1">
-                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                        </span>
-                    <input style="height: 42px;" autocomplete="off" type="text" name="from_date" class="form-control datepicker hasDatepicker form-control-solid w-250px ps-15" id="from_date" placeholder="Start Date">
-                </div> 
-                <div class="form-group d-flex align-items-center position-relative my-1">
-                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                        </span>
-                    <input style="height: 42px;" autocomplete="off" type="text" name="to_date" class="form-control datepicker hasDatepicker form-control-solid w-250px ps-15" id="to_date" placeholder="End Date">
-                </div>  
-                <button style="height: 42px;margin-top: 10px;" type="submit" class="btn btn-success" id="filterthis">Filter</button>
-                <!--begin::Card title-->
-                <!--begin::Card toolbar-->
-                <div class="card-toolbar">
-                    <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                
+				<div class="row">
+				
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" data-kt-user-table-filter="search" name="searchword" id="searchword" class="form-control" placeholder="Search..." />
+						 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                    </div>
+                </div>
+				
+				
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="from_date" id="from_date" placeholder="Start Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+					<div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="to_date" id="to_date" placeholder="End Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group col-1"></div>
+				<div class="form-group col-md-1 col-sx-12 col-ms-12">
+				 <button  type="submit" class="btn btn-primary btn-block " id="filterthis">Filter</button>
+				</div> 
+				
+				<!--begin::Toolbar-->
+                    <div class="form-group col-md-1 col-sx-12 col-ms-12" data-kt-user-table-toolbar="base">
                         <!--begin::Add user-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">Add user</button>
+                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_user">Add New</button>
                         <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
+					
+                </div>
+				
+               
+                <!--begin::Card title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar" style="display:none">
                     <!--begin::Group actions-->
                     <div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
                         <div class="fw-bolder me-5">
@@ -92,14 +103,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_user_table .form-check-input" value="1" />
-                                </div>
-                            </th>
+                            <th class="min-w-125px">S No.</th>
                             <th class="min-w-125px">User Name</th>
-                            <th class="min-w-125px">Role</th>
                             <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">Profile Image</th>
+                            <th class="min-w-125px">Role</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -259,7 +267,7 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header text-center">
-                  <h4 class="modal-title">Admin Details</h4>
+                  <h4 class="modal-title">User Details</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -271,12 +279,11 @@
                   <div class="card-body box-profile">
                     <div class="text-center">
                       <img class="profile-user-img img-fluid img-circle"
-                           src="{{ asset('assets/media/avatars/blank.png') }}"
-                           alt="Admin profile picture">
+                           src="{{ asset('assets/media/avatars/avatar.png') }}"
+                           alt="User profile picture">
                     </div>
 
                     <h3 class="profile-username text-center"><span id="name_view"></span></h3>
-
                     <p class="text-muted text-center"><span id="email_view"></span></p>
                     <p class="text-muted text-center"><span id="role_view"></span></p>
 

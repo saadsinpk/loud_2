@@ -7,7 +7,8 @@ var KTModalPermission = function() {
     var validator;
     var form;
     var modal;
-
+	var modalview;
+	var tableTr;
     var datatable;
     var table
     var url
@@ -34,7 +35,8 @@ var KTModalPermission = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                        //modal.hide(); // Hide modal	
+							$('#kt_modal_add_mypermissions').modal('hide');
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -66,7 +68,8 @@ var KTModalPermission = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        modal.hide(); // Hide modal				
+                       // modal.hide(); // Hide modal
+						$('#kt_modal_add_mypermissions').modal('hide');
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -82,7 +85,7 @@ var KTModalPermission = function() {
             })
         }
         // Private functions
-    var initpermissionList = function(from_date='',to_date='') {
+    var initpermissionList = function(from_date='',to_date='',searchword='') {
         
 
         // Set date data order
@@ -90,18 +93,14 @@ var KTModalPermission = function() {
             processing: true,
             serverSide: true,
             responsive: true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
+            searching: false,
             ajax: {
                 url: url,
-                data:{from_date:from_date,to_date:to_date}
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
-                    data: 'checkbox',
-                    name: 'checkbox',
-                    orderable: false
+                    data: 'no',
+                    name: 'no'
                 },
                 {
                     data: 'name',
@@ -126,8 +125,7 @@ var KTModalPermission = function() {
             'order': [],
 
             'columnDefs': [
-                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)  
             ]
         });
 
@@ -136,28 +134,49 @@ var KTModalPermission = function() {
             ids = "";
             initToggleToolbar();
             handleDeleteRows();
+			handleEditRows();
             toggleToolbars();
-            dropdownInstance();
+            handleClickabeRowtable();
         });
     }
 
-    var dropdownInstance = () => {
-        var items = document.querySelectorAll("a[data-kt-menu-trigger]");
-        KTMenu.createInstances();
-        $.each(items, function() {
-            KTMenu.getInstance(this);
-
-        })
+    var handleClickabeRowtable = () => {
+        tableTr = table.querySelectorAll('tbody tr'); //document.querySelector('tbody tr');
+		tableTr.forEach(d => {
+			d.addEventListener('click', function(e) {
+                e.preventDefault();
+				let current_row = datatable.row(this).data();
+				  $('#name_view').text(current_row.name);
+				  $('#email_view').text(current_row.email);
+				  $('#role_view').text(current_row.roles[0].name);
+				  modalview.modal('show');
+			});
+		});  
     }
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[data-kt-role-table-filter="search"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_admins_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
     }
 
+    // Edit 
+    var handleEditRows = () => {
+        // Select all edit buttons
+        const editButtons = table.querySelectorAll('[data-kt-table-filter="edit_row"]');
+        editButtons.forEach(d => {
+            // Edit button on click
+            d.addEventListener('click', function(e) {
+				e.stopPropagation();
+                e.preventDefault();
+				const url = d.getAttribute('href');
+				window.open(url,"_self");
+			});
+		});
+	}
+	
     // Delete role
     var handleDeleteRows = () => {
         // Select all delete buttons
@@ -167,13 +186,13 @@ var KTModalPermission = function() {
             // Delete button on click
             d.addEventListener('click', function(e) {
                 e.preventDefault();
-
+				e.stopPropagation();
                 // Select parent row
                 const parent = e.target.closest('tr');
 
                 // Get role name
                 const roleName = parent.querySelectorAll('td')[1].innerText;
-                const id = parent.querySelectorAll('td')[0].children[0].children[1].value;
+                const id = d.getAttribute('data-id'); 
 
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
@@ -245,13 +264,10 @@ var KTModalPermission = function() {
     $('#filterthis').click(function(){
         var from_date=$('#from_date').val();
         var to_date=$('#to_date').val();
-
-        if(from_date!='' && to_date!=""){
-            $('#kt_role_table').DataTable().destroy();
-            initpermissionList(from_date,to_date);
-        }else{
-            alert("Both date required!");
-        }
+        var searchword =$('#searchword').val();
+		$('#kt_role_table').DataTable().destroy();
+        initpermissionList(from_date,to_date,searchword);
+        
     });
     // Init toggle toolbar
     var initToggleToolbar = () => {
@@ -387,8 +403,9 @@ var KTModalPermission = function() {
     return {
         // Public functions
         init: function() {
-            modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_mypermissions'));
-
+            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_mypermissions'));
+			modal = $('#kt_modal_add_mypermissions');
+			modalview = $('#kt_modal_view_admin');
             table = document.querySelector('#kt_mypermissions_table');
 
             if (!table) {
@@ -400,7 +417,7 @@ var KTModalPermission = function() {
             closeButton = form.querySelector('#kt_modal_add_mypermissions_close');
             url = $("#kt_modal_add_mypermissions_form").attr("action");
             initpermissionList();
-            initToggleToolbar();
+            //initToggleToolbar();
             handleSearchDatatable();
             closeForm();
         }

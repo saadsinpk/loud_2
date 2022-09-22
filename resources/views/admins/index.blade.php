@@ -19,7 +19,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Admins</li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -43,7 +43,7 @@
                     <div class="d-flex justify-content-end" data-kt-admin-table-toolbar="base">
                         <!--begin::Add admin-->
                         
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#kt_modal_add_admin">Add Admin</button>
+						<button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_admin">Add Admin</button>
 				
                         <!--end::Add admin-->
                     </div>
@@ -92,10 +92,6 @@
             </div>
             <!-- /.card -->
     
-	
-	
-
-
       </div>
           <!-- /.col -->
         </div>
@@ -107,8 +103,6 @@
 		
 		
         <!--begin::Modals-->
-		
-		
         <!--begin::Modal - admins - View -->
 		  <div class="modal fade" id="kt_modal_view_admin">
 			<div class="modal-dialog">
@@ -120,7 +114,6 @@
 				  </button>
 				</div>
 				<div class="modal-body">
-				
 				<!-- Profile Image -->
 				<div class="card card-primary card-outline">
 				  <div class="card-body box-profile">
@@ -129,20 +122,14 @@
 						   src="{{ asset('assets/media/avatars/blank.png') }}"
 						   alt="Admin profile picture">
 					</div>
-
 					<h3 class="profile-username text-center"><span id="name_view"></span></h3>
-
 					<p class="text-muted text-center"><span id="email_view"></span></p>
 					<p class="text-muted text-center"><span id="role_view"></span></p>
-
-	
 				  </div>
 				  <!-- /.card-body -->
 				</div>
 				<!-- /.card -->
-				
 				</div>
-				
 			  </div>
 			  <!-- /.modal-content -->
 			</div>
@@ -291,11 +278,8 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
-
 	
-    <!--begin::Page Custom Javascript(used by this page)-->
-	
+<!--begin::Page Custom Javascript(used by this page)-->
    <script src="{{ asset('assets/js/custom/apps/admins/add.js') }}"></script> 
    <script src="{{ asset('assets/js/custom/apps/admins/list.js') }}"></script> 
 	

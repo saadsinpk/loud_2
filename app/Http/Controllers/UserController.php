@@ -12,77 +12,80 @@ use DataTables;
 
 class UserController extends Controller
 {
-    function __construct()
-    {
-    }
-    //
-
-    public function dashboard() {
-        return view("dashboard");
-    }
 
     public function index(Request $request) {
-        $users = User::orderBy("created_at", "DESC")->get();
-        $roles=Roles::orderBy("created_at", "DESC")->get();
-        $fromDate=date("Y-m-d ",strtotime($request->from_date));
-        $toDate=date("Y-m-d",strtotime($request->to_date));
+        
+        $draw = $request->get('draw');
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchword = $request->input('searchword');
+        $page = (int)$start > 0 ? ($start / $length) + 1 : 1;
+        $limit = (int)$length > 0 ? $length : 10;
+        $roles = Roles::orderBy("created_at", "DESC")->get();
+        $fromDate = date("Y-m-d ",strtotime($request->from_date));
+        $toDate = date("Y-m-d",strtotime($request->to_date));
+        // Total records
+        $totalRecords = User::role('user')->count();
+
+        $users = User::role('user')->with('roles')->orderBy("created_at", "DESC");
 
         if (request()->ajax()) {
-            if(!empty($request->from_date)){
-                $users = User::whereDate('created_at','>=', $fromDate)->whereDate('created_at','<=', $toDate)->get();
+            if($request->from_date){
+                $users = $users->whereDate('created_at','>=', $fromDate);
             }
-            return DataTables::of($users)
-            ->addColumn('group', function ($data) {
-                return '';
-            })
 
-            ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                <input type="hidden" value="'.$data->id.'">
-                            </div>';
-                return $checkbox;
-            })
-            ->addColumn('role_id', function ($data) {
-                $role=$data->roles;
+            if($request->to_date){
+                $users = $users->whereDate('created_at','<=', $toDate);
+            }
 
-                if(isset($role->toArray()[0])) {
-                    $role_name=$role->toArray()[0]['name'];
-                } else {
-                    $role_name = 'No Roles Selected';
-                }
-                return $role_name;
-            })
-            ->addColumn('created_at', function ($row) { 
-                $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
-                return $create_date;
-            })             
-            ->addColumn('action', function ($data) {
+            if($searchword){
+                $users = $users->where('name','like', '%'.$searchword.'%');
+            }
+
+            $users = $users->paginate($limit, ["*"], 'page', $page);
+           
+            $num = 1;
+            $items = array();
+            foreach ($users->items() as $idx => $row) {
                 $action = '';
-                
-                $action .= '<a class="btn btn-info btn-sm" href="'.url("/user/view/$data->id").'">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url('/user/view/'.$row['id']).'"><i class="fas fa-pencil-alt"></i></a>';
 
+                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
-                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>';
+                if(!empty($row['profile_picture'])){
+                    $profile_picture = '<img src="'.url('uploads/users_images/'.$row['profile_picture']).'" width="36" height="36" />';
+                }else{
+                    $profile_picture = '<img src="'.asset('assets/media/avatars/avatar.png').'" width="36" height="36"/>';
+                }
 
+                $items[] = array(
+                    "no" => $num,
+                    "id" => $row['id'],
+                    "roles" => $row['roles'],
+                    "role_name" => $row['roles'][0]->name,
+                    "profile_picture" => $profile_picture,
+                    "name" => $row['name'],
+                    "email" => $row['email'],
+                    "created_at" => $row['created_at'],
+                    "action" => $action
+                );
 
-                return $action;
-            })
+                $num++;
+            }
 
-            ->rawColumns(['checkbox','checkbox2', 'group', 'action', 'created_at'])
-            ->addIndexColumn()
-            ->make(true);
+            //-- START CREATE JSON RESPONSE FOR DATATABLES
+            $response = array(
+                "draw" => (int)$draw,
+                "recordsTotal" => (int)$totalRecords,
+                "recordsFiltered" => (int)$users->total(),
+                "data" => $items
+            );
+
+            return response()->json($response);
+
         }
         
-        return view("user.index", compact("users","roles"));
+        return view("user.index", compact("roles"));
     }
 
 
@@ -93,6 +96,7 @@ class UserController extends Controller
             'email' => 'required|string|email|unique:users',
             'password' => 'required_with:confirm-password|string|same:confirm-password',
             'confirm-password'   =>  'required|string|min:8',
+            'role_id' => 'required',
         ]);
 
         if ($validator->fails()) {    
@@ -103,19 +107,26 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
-        // $user->profile_picture =  $request->profile_picture;
+        $user->profile_picture =  '';
+
+        // upload image
+        if($request->file('profile_picture')){
+            $file = $request->file('profile_picture');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('uploads/users_images'), $filename);
+            $user->profile_picture =  $filename;
+        }
+
         $role_name = Roles::where("id","=",$request->role_id)->first();
         if(!empty($role_name)) {
             $role_name = $role_name->name;
-        } else {
-            $role_name = '';
-        }
+        } 
+
         $user->assignRole($role_name);
 
         if (!$user->save()) {
             return  response()->json(['msg'=>"Something went wrong, please try again later."], 422);
         }
-
 
         return response()->json(['msg'=>"User created successfully"], 200);
     }

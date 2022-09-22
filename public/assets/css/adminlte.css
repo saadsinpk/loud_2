@@ -89,6 +89,22 @@ p {
   margin-bottom: 1rem;
 }
 
+.navbar-custom-menu{
+	position: absolute;
+    right: 0;
+    background: #dc3545;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 0px;
+    color: #fff;
+}
+
+.navbar-custom-menu a{
+	 color: #ccc;
+}
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
@@ -12614,13 +12630,16 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*="sidebar-light"] .user-panel {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 0px solid #dee2e6;
 }
 
 .user-panel,
 .user-panel .info {
-  overflow: hidden;
-  white-space: nowrap;
+	overflow: hidden;
+	white-space: nowrap;
+	display: flex !important;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 .user-panel .image {
@@ -26664,6 +26683,9 @@ body.text-sm .input-group-text {
 
 .card-primary.card-outline {
   border-top: 3px solid #007bff;
+	max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {

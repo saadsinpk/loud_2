@@ -47,18 +47,10 @@ class PermissionsController extends Controller
             })             
             ->addColumn('action', function ($data) {
                 $action = '';
-                $action .= '<a class="btn btn-info btn-sm" href="'.url("/mypermissions/view/$data->id").'">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url("/mypermissions/view/$data->id").'"><i class="fas fa-pencil-alt"></i></a>';
 
 
-                $action .= '<a class="btn btn-danger btn-sm" href="#" data-kt-table-filter="delete_row">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>';
+                $action .= '<a class="btn btn-xs btn-danger col-3 mr-2" href="#" data-kt-table-filter="delete_row"><i class="fas fa-trash"></i></a>';
 
                 return $action;
             })
