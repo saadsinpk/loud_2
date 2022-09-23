@@ -14,11 +14,31 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('profile_picture')->nullable();
-            $table->string('otp')->nullable();
-            $table->string('otp_sent_on')->nullable();
-            $table->string('provider')->nullable();
-            $table->text('provider_id')->nullable();
+
+            if (!Schema::hasColumn('users', 'profile_picture')) {
+                $table->text('profile_picture')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'otp')) {
+                    $table->string('otp')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'otp_sent_on')) {
+                    $table->string('otp_sent_on')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'provider')) {
+                    $table->string('provider')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'provider_id')) {
+                    $table->text('provider_id')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'deleted_at')) {
+                    $table->softDeletes()->before('created_at');
+            }
+
         });
     }
 
@@ -30,11 +50,30 @@ class AddFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profile_picture');
-            $table->dropColumn('otp');
-            $table->dropColumn('otp_sent_on');
-            $table->dropColumn('provider');
-            $table->dropColumn('provider_id');
+            if (Schema::hasColumn('users', 'profile_picture')) {
+                $table->dropColumn('profile_picture');
+            }
+
+            if (Schema::hasColumn('users', 'otp')) {
+                $table->dropColumn('otp');
+            }
+
+            if (Schema::hasColumn('users', 'otp_sent_on')) {
+                $table->dropColumn('otp_sent_on');
+            }
+
+            if (Schema::hasColumn('users', 'provider')) {
+                $table->dropColumn('provider');
+            }
+
+            if (Schema::hasColumn('users', 'provider_id')) {
+                $table->dropColumn('provider_id');
+            }
+
+            if (Schema::hasColumn('users', 'deleted_at')) {
+                $table->dropColumn('deleted_at');
+            }
+
         });
     }
 }

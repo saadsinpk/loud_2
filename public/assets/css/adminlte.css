@@ -5155,10 +5155,26 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+	background-color: #dc3545;
+    border-color: #dc3545;
 }
 
+
+.page-item .page-link {
+
+  z-index: 3;
+  color: #fff;
+	background-color: #1b0b0dc4;
+    border-color: #dc3545;
+ 
+}
+
+.page-item .page-link:hover {
+
+	background-color: #dc3545;
+	border-color: #fff;
+ 
+}
 .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;

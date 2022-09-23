@@ -1,6 +1,6 @@
 "use strict";
 // Class definition
-var KTModalpoliticalpartyagent = function() {
+var KTModalParty = function() {
     var cancelButton;
     var closeButton;
     var validator;
@@ -33,8 +33,8 @@ var KTModalpoliticalpartyagent = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                       // modal.hide(); // Hide modal	
-							$('#kt_modal_add_ward').modal('hide');
+                        //modal.hide(); // Hide modal
+					    $('#kt_modal_add_party').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -66,8 +66,8 @@ var KTModalpoliticalpartyagent = function() {
                 }).then(function(result) {
                     if (result.value) {
                         form.reset(); // Reset form	
-                        //modal.hide(); // Hide modal	
-							$('#kt_modal_add_ward').modal('hide');
+                       // modal.hide(); // Hide modal	
+						$('#kt_modal_add_party').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -84,25 +84,20 @@ var KTModalpoliticalpartyagent = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initpoliticalpartyagentList = function(from_date='',to_date='',searchword='') {
+    var initPartyList = function() {
 
         // Set date data order
         datatable = $(table).DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-			searching: false,
+            searching: false,
             ajax: {
-                url: url,
-                data:{from_date:from_date,to_date:to_date,searchword:searchword}
+                url: url
             },
             columns: [{
                     data: 'no',
-                    name: 'no'
-                },
-                {
-                    data: 'political_party',
-                    name: 'political_party',
+                    name: 'no',
                 },
                 {
                     data: 'name',
@@ -122,16 +117,17 @@ var KTModalpoliticalpartyagent = function() {
             "info": false,
             'order': [],
             'columnDefs': [
-                { orderable: false, targets: 0 }, 
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox) 
             ]
         });
 
         // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
         datatable.on('draw', function() {
             ids = "";
-            
+           // initToggleToolbar();
             handleDeleteRows();
 			handleEditRows();
+           // toggleToolbars();
             handleClickabeRowtable();
         });
     }
@@ -143,8 +139,6 @@ var KTModalpoliticalpartyagent = function() {
                 e.preventDefault();
 				let current_row = datatable.row(this).data();
 				  $('#name_view').text(current_row.name);
-				  $('#email_view').text(current_row.email);
-				  $('#role_view').text(current_row.roles[0].name);
 				  modalview.modal('show');
 			});
 		});  
@@ -152,12 +146,13 @@ var KTModalpoliticalpartyagent = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[aria-controls="kt_admins_table"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_partys_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
     }
-
+	
+	
     // Edit 
     var handleEditRows = () => {
         // Select all edit buttons
@@ -172,8 +167,8 @@ var KTModalpoliticalpartyagent = function() {
 			});
 		});
 	}
-	
-    // Delete politicalpartyagent
+
+    // Delete party
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
@@ -186,7 +181,7 @@ var KTModalpoliticalpartyagent = function() {
                 // Select parent row
                 const parent = e.target.closest('tr');
 
-                // Get politicalpartyagent name
+                // Get party name
                 const name = parent.querySelectorAll('td')[1].innerText;
                 const id = d.getAttribute('data-id'); 
 
@@ -212,7 +207,7 @@ var KTModalpoliticalpartyagent = function() {
                         });
 
                         $.ajax({
-                            url: `/politicalpartyagents/delete/${id}`,
+                            url: `/parties/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {
@@ -259,29 +254,31 @@ var KTModalpoliticalpartyagent = function() {
     }
     $('#filterthis').click(function(){
        
-            $('#kt_politicalpartyagents_table').DataTable().destroy();
-            initpoliticalpartyagentList();
+            $('#kt_party_table').DataTable().destroy();
+            initpartyList();
         
     });
+ 
 
-  
+
 
     return {
         // Public functions
         init: function() {
-            modal = $('#kt_modal_add_politicalpartyagent');
-            modalview = $('#kt_modal_view_admin');
-			table = document.querySelector('#kt_politicalpartyagents_table');
+            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_party'));
+			modal = $('#kt_modal_add_party');
+			modalview = $('#kt_modal_view_party');
+            table = document.querySelector('#kt_party_table');
+
             if (!table) {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_politicalpartyagent_form');
-            cancelButton = form.querySelector('#kt_modal_add_politicalpartyagent_cancel');
-            closeButton = form.querySelector('#kt_modal_add_politicalpartyagent_close');
-            url = $("#kt_modal_add_politicalpartyagent_form").attr("action");
-            initpoliticalpartyagentList();
-          
+            form = document.querySelector('#kt_modal_add_party_form');
+            cancelButton = form.querySelector('#kt_modal_add_party_cancel');
+            closeButton = form.querySelector('#kt_modal_add_party_close');
+            url = $("#kt_modal_add_party_form").attr("action");
+            initPartyList();
             closeForm();
         }
     };
@@ -289,5 +286,5 @@ var KTModalpoliticalpartyagent = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalpoliticalpartyagent.init();
+    KTModalParty.init();
 });

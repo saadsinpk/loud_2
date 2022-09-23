@@ -15,43 +15,74 @@ class WardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $wards = Ward::with("lga")->orderBy("created_at", "DESC")->get();
-        $lgas = Lga::orderBy("created_at", "DESC")->get();
+
+        $draw = $request->get('draw');
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchword = $request->input('searchword');
+        $page = (int)$start > 0 ? ($start / $length) + 1 : 1;
+        $limit = (int)$length > 0 ? $length : 10;
+        $fromDate = date("Y-m-d ",strtotime($request->from_date));
+        $toDate = date("Y-m-d",strtotime($request->to_date));
+        // Total records
+        $totalRecords = Ward::count();
+
+        $list = Ward::with("lga")->orderBy("created_at", "DESC");
 
         if (request()->ajax()) {
-            return DataTables::of($wards)
-            ->addColumn('group', function ($data) {
-                return '';
-            })
-            ->addColumn('checkbox', function ($data) {
-                $checkbox = '<div class="d-none">
-                                <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                <input type="hidden" value="'.$data->id.'">
-                            </div>';
-                return $checkbox;
-            })
-            ->addColumn('created_at', function ($row) { 
-                $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
-                return $create_date;
-            })             
-            ->addColumn('action', function ($data) {
+            if($request->from_date){
+                $list = $list->whereDate('created_at','>=', $fromDate);
+            }
+
+            if($request->to_date){
+                $list = $list->whereDate('created_at','<=', $toDate);
+            }
+
+            if($searchword){
+                $list = $list->where('name','like', '%'.$searchword.'%');
+            }
+
+            $list = $list->paginate($limit, ["*"], 'page', $page);
+
+            $num = 1;
+            $items = array();
+            foreach ($list->items() as $idx => $row) {
                 $action = '';
-              
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url("/wards/view/$data->id").'"><i class="fas fa-pencil-alt"></i></a>';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/wards/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
 
-                $action .= '<a class="btn btn-xs btn-danger col-3 mr-2" href="#" data-kt-table-filter="delete_row"><i class="fas fa-trash"></i></a>';
+                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
-                return $action;
-            })
+                $items[] = array(
+                    "no" => $num,
+                    "id" => $row['id'],
+                    "name" => $row['name'],
+                    "lga_name" => $row['lga']['name'],
+                    "lga_id" => $row['lga_id'],
+                    "local_government" => $row['local_government'],
+                    "created_at" => $row['created_at']->format('d M Y, g:i A'),
+                    "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
+                    "action" => $action
+                );
 
-            ->rawColumns(['checkbox', 'group', 'action', 'created_at'])
-            ->addIndexColumn()
-            ->make(true);
+                $num++;
+            }
+
+            //-- START CREATE JSON RESPONSE FOR DATATABLES
+            $response = array(
+                "draw" => (int)$draw,
+                "recordsTotal" => (int)$totalRecords,
+                "recordsFiltered" => (int)$list->total(),
+                "data" => $items
+            );
+
+            return response()->json($response);
+
         }
-        
-        return view("ward.index", compact("wards","lgas"));
+
+                
+        return view("ward.index", compact("list"));
     }
 
     /**
@@ -83,9 +114,10 @@ class WardController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'lga_id' => 'required'
+            'lga_id' => 'required',
+            'local_government' => 'required'
         ]);
-        $data = $request->only(['name' , 'lga_id']);
+        $data = $request->only(['name' , 'local_government' , 'lga_id']);
         $item = Ward::create($data);
         return response()->json(['msg'=>"Ward created successfully"], 200);
     }
@@ -116,9 +148,10 @@ class WardController extends Controller
 
         $this->validate($request, [
             'name' => 'required',
-            'lga_id' => 'required'
+            'lga_id' => 'required',
+            'local_government' => 'required'
         ]);
-        $data = $request->only(['name', 'lga_id']);
+        $data = $request->only(['name', 'local_government','lga_id']);
         $item = Ward::find($request->id);
         $item->fill($data);
         $item->save();

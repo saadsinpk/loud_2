@@ -20,16 +20,119 @@
   <!-- sweetalert2 --> 
   <link rel="stylesheet"  href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
   
+  <style>
+    body{
+      min-height: 359.9px;
+      background: url('/assets/media/loginbg.png');
+      background-size: 200px;
+      background-color: #fff !important;
+      max-height: 400px;
+      min-height: 400px !important;
+      overflow: hidden;
+    }
+
+    #kt_sign_in_submit{
+      background: #b08129;
+      border-radius: 0px;
+      border-color: #fff;
+      height: 37px;
+    }
+
+    #kt_sign_in_submit:hover{
+      background: #5d4414;
+      border-color: transparent;
+    }
+
+    .login-card-body, .register-card-body {
+      border-color: #ffffff5c;
+      border-top: 0;
+      color: #fff;
+      padding: 20px;
+      background: #b08129;
+    }
+
+     .login-card-body a{
+      color: #fff;
+     }
+
+      .login-card-body input{
+          border-radius: 0px;
+        border-color: #ffffff5c;
+      }
+
+      .login-card-body .input-group .input-group-text, .register-card-body .input-group .input-group-text{
+        color: #5d4414;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-color: #ffffff5c;
+      }
+
+      .login-logo, .register-logo{
+        background: #4f350447;
+        margin-bottom: 0px;
+      }
+
+      .main_img{
+        left: 0px;
+        position: absolute;
+          top: -50px;
+            z-index: -1;
+      }
+      
+      .main_img img{
+        width: 92%;
+      }
+
+    .section_name{
+       left: 0px;
+      position: absolute;
+      bottom: 0;
+      z-index: -2;
+      background: #040300bf;
+      padding: 15px;
+      border-top-right-radius: 0%;
+      height: 255px;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+      border-bottom-right-radius: 0%;
+    }
+
+    .login-box{
+        margin-top: 85px;
+    }
+
+    label:not(.form-check-label):not(.custom-file-label){
+      font-weight: normal;
+    }
+
+    .login-box-msg{
+      font-size: 22px;
+    }
+
+  </style>
 </head>
 <body class="hold-transition login-page">
+
+<div class="main_img">
+    <img alt="Adulrahman" src="{{ asset('assets/media/adulrahman.png') }}"/>
+
+</div>  
+
+<div class="section_name">
+  <img alt="Adulrahman" src="{{ asset('assets/media/abdulrama-again.png') }}" style="    width: 300px;"/>
+</div>
+
 <div class="login-box">
+<!--
   <div class="login-logo">
     <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" style="    width: 265px;"/>
-  </div>
+  </div> -->
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in </p>
+      <p class="login-box-msg"><strong>LOG IN</strong> </p>
 
       <form action="{{ route('login') }}" class="form w-100"  id="kt_sign_in_form">
 	
@@ -50,7 +153,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style="align-items: center;">
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">

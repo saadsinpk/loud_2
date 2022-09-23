@@ -19,7 +19,7 @@ class CreatePoliticalPartyAgentsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name');
             $table->string('last_name');
-            $table->enum('party_leader',['LG Chairman','Ward Chairman','Vice','Secretary','PRO','Treasurer','Others 1' , 'Others 2'])->nullable();
+          //  $table->enum('party_leader',['LG Chairman','Ward Chairman','Vice','Secretary','PRO','Treasurer','Others 1' , 'Others 2'])->nullable();
             $table->unsignedBigInteger('lga_id')->nullable();
             $table->foreign('lga_id')->references('id')->on('lgas')->onDelete('cascade');   
             $table->unsignedBigInteger('wards_id')->nullable();

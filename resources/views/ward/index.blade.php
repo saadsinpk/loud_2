@@ -4,7 +4,7 @@
     <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-    
+    <link rel="stylesheet"  href="{{ asset('assets/js/plugins/select2/css/select2.min.css') }}">
 @endsection
 @section("content")
     <!-- Content Header (Page header) -->
@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Wards</li>
+             <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -29,38 +29,55 @@
             <!--begin::Card header-->
             <div class="card-header border-0 pt-6">
                 <!--begin::Card title-->
-                <div class="card-title">
-                    <!--begin::Search-->
-                    <div class="d-flex align-items-center position-relative my-1">
-                        <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="black" />
-                            </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                        <input type="text" data-kt-ward-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search..." />
-                    </div>
-                    <!--end::Search-->
-                </div>
+                <div class="card-title"></div>
                 <!--begin::Card title-->
-                <!--begin::Card toolbar-->
-                <div class="card-toolbar">
-                    <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-ward-table-toolbar="base">
-                        <!--begin::Add ward-->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kt_modal_add_ward">Add ward</button>
-                        <!--end::Add ward-->
+
+                <div class="row">
+                <div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" data-kt-user-table-filter="search" name="searchword" id="searchword" class="form-control" placeholder="Search..." />
+                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="from_date" id="from_date" placeholder="Start Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="to_date" id="to_date" placeholder="End Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-1"></div>
+                <div class="form-group col-md-1 col-sx-12 col-ms-12">
+                 <button  type="submit" class="btn btn-primary btn-block " id="filterthis">Filter</button>
+                </div> 
+                
+                <!--begin::Toolbar-->
+                    <div class="form-group col-md-1 col-sx-12 col-ms-12" data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_ward">Add New</button>
+                        <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
-                    <!--begin::Group actions-->
-                    <div class="d-flex justify-content-end align-items-center d-none" data-kt-ward-table-toolbar="selected">
-                        <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-ward-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-kt-ward-table-select="delete_selected">Delete Selected</button>
-                    </div>
-                    <!--end::Group actions-->
+                    
+                </div>
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                   
                 </div>
                 <!--end::Card toolbar-->
             </div>
@@ -73,12 +90,10 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="w-10px pe-2">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_wards_table .form-check-input" value="1" />
-                                </div>
-                            </th>
+                            
+                            <th class="min-w-125px">S No.</th>
                             <th class="min-w-125px">ward Name</th>
+                            <th class="min-w-125px">Local Government</th>
                             <th class="min-w-125px">LGA</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
@@ -139,6 +154,18 @@
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-7">
+                                    <!--begin::Label-->
+                                    <label class="required fs-6 fw-bold mb-2">Local Government</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid" placeholder="" name="local_government" value="" />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
                                 <!--begin::Input group-->
                              
                                             <div class="fv-row mb-7" id="js-data-lga-modal">
@@ -185,68 +212,40 @@
             </div>
         </div>
         <!--end::Modal - wards - Add-->
-
-        <!--begin::Modal - Adjust Balance-->
-        <div class="modal fade" id="kt_wards_export_modal" tabindex="-1" aria-hidden="true">
-            <!--begin::Modal dialog-->
-            <div class="modal-dialog modal-dialog-centered mw-650px">
-                <!--begin::Modal content-->
-                <div class="modal-content">
-                    <!--begin::Modal header-->
-                    <div class="modal-header">
-                        <!--begin::Modal title-->
-                        <h2 class="fw-bolder">Export wards</h2>
-                        <!--end::Modal title-->
-                        <!--begin::Close-->
-                        <div id="kt_wards_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </div>
-                        <!--end::Close-->
-                    </div>
-                    <!--end::Modal header-->
-                    <!--begin::Modal body-->
-                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                        <!--begin::Form-->
-                        <form id="kt_wards_export_form" class="form" action="#">
-                            <!--begin::Input group-->
-                            <div class="fv-row mb-10">
-                                <!--begin::Label-->
-                                <label class="fs-5 fw-bold form-label mb-5">Select Date Range:</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input class="form-control form-control-solid" placeholder="Pick a date" name="date" />
-                                <!--end::Input-->
-                            </div>
-                            <!--end::Input group-->
-                           
-                           
-                            <!--begin::Actions-->
-                            <div class="text-center">
-                                <button type="reset" id="kt_wards_export_cancel" class="btn btn-light me-3">Discard</button>
-                                <button type="submit" id="kt_wards_export_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Submit</span>
-                                    <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
-                            </div>
-                            <!--end::Actions-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Modal body-->
+    <!--begin::Modal - admins - View -->
+          <div class="modal fade" id="kt_modal_view_admin">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title">User Details</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
-                <!--end::Modal content-->
+                <div class="modal-body">
+                
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                  <div class="card-body box-profile">
+                    
+                    <h3 class="profile-username text-center"><span id="name_view"></span></h3>
+                    <p class="text-muted text-center"><span id="local_government"></span></p>
+                    <p class="text-muted text-center"><span id="lga_name"></span></p>
+
+    
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                
+                </div>
+                
+              </div>
+              <!-- /.modal-content -->
             </div>
-            <!--end::Modal dialog-->
-        </div>
-        <!--end::Modals-->
+            <!-- /.modal-dialog -->
+          </div>
+     
     
 @endsection
 
@@ -264,7 +263,7 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
+<script src="{{ asset('assets/js/plugins/select2/js/select2.min.js') }}"></script>
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/custom/apps/wards/add.js') }}"></script>
     <script src="{{ asset('assets/js/custom/apps/wards/list.js') }}"></script>

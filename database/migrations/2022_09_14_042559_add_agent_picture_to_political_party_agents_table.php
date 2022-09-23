@@ -14,7 +14,7 @@ class AddAgentPictureToPoliticalPartyAgentsTable extends Migration
     public function up()
     {
         Schema::table('political_party_agents', function (Blueprint $table) {
-            $table->text('agent_picture')->nullable()->after('name');
+            $table->text('agent_picture')->nullable()->after('first_name');
         });
     }
 

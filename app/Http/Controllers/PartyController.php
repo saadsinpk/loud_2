@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DataTables;
-use App\Models\Lga;
-use App\Models\Ward;
-use App\Models\PollingUnit;
+use App\Models\Party;
 use Illuminate\Http\Request;
-use App\Http\Requests\PollingUnitRequest;
 
-class PollingUnitController extends Controller
+class PartyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,6 @@ class PollingUnitController extends Controller
      */
     public function index(Request $request)
     {
-
         $draw = $request->get('draw');
         $start = $request->input('start');
         $length = $request->input('length');
@@ -28,9 +23,9 @@ class PollingUnitController extends Controller
         $fromDate = date("Y-m-d ",strtotime($request->from_date));
         $toDate = date("Y-m-d",strtotime($request->to_date));
         // Total records
-        $totalRecords = PollingUnit::count();
+        $totalRecords = Party::count();
 
-        $list = PollingUnit::with(["lga","ward"])->orderBy("created_at", "DESC");
+        $list = Party::orderBy("created_at", "DESC");
 
         if (request()->ajax()) {
             if($request->from_date){
@@ -51,7 +46,7 @@ class PollingUnitController extends Controller
             $items = array();
             foreach ($list->items() as $idx => $row) {
                 $action = '';
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/pollingunits/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/parties/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
 
                 $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
@@ -59,11 +54,6 @@ class PollingUnitController extends Controller
                     "no" => $num,
                     "id" => $row['id'],
                     "name" => $row['name'],
-                    "ward_name" => $row['ward']['name'],
-                    "ward_id" => $row['ward_id'],
-                    "lga_name" => $row['lga']['name'],
-                    "lga_id" => $row['lga_id'],
-                    "local_government" => $row['local_government'],
                     "created_at" => $row['created_at']->format('d M Y, g:i A'),
                     "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
                     "action" => $action
@@ -83,31 +73,18 @@ class PollingUnitController extends Controller
             return response()->json($response);
 
         }
-
-      
         
-        return view("pollingunits.index", compact("list"));
+        return view("party.index", compact("list"));
     }
 
     /**
-     * getList return all avilable ward to use it in dropdown select2 ajax.
+     * Show the form for creating a new resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getList(Request $request)
+    public function create()
     {
-        $search = $request->search;
-        $lga_id = $request->lga_id;
-        $wards_id = $request->wards_id;
-
-        $pus = PollingUnit::select("id" , "name as text")
-        ->where('lga_id',$lga_id)
-        ->where('wards_id',$wards_id)
-        ->where('name', 'like', '%' .$search . '%')
-        ->orderBy("created_at", "DESC")
-        ->get();
-        return response()->json($pus);
+        //
     }
 
     /**
@@ -116,11 +93,14 @@ class PollingUnitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PollingUnitRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->only(['name' , 'local_government' , 'lga_id' , 'wards_id']);
-        $item = PollingUnit::create($data);
-        return response()->json(['msg'=>"Polling Unit created successfully"], 200);
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $data = $request->only(['name']);
+        $item = Party::create($data);
+        return response()->json(['msg'=>"Party created successfully"], 200);
     }
 
     /**
@@ -130,11 +110,20 @@ class PollingUnitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function details($id) {
-        $pollingunit = PollingUnit::find($id);
-       // $lgas = Lga::orderBy("created_at", "DESC")->get();
-        $pu_ward_ids = $pollingunit->ward()->pluck('id')->toArray(); 
-        $pu_lga_ids = $pollingunit->lga()->pluck('id')->toArray(); 
-        return view("pollingunits.details", compact('pollingunit','pu_ward_ids','pu_lga_ids'));
+
+        $item = Party::find($id);
+        return view("lga.details", compact('item'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -144,10 +133,13 @@ class PollingUnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PollingUnitRequest $request)
+    public function update(Request $request)
     {
-        $data = $request->only(['name', 'local_government' ,'lga_id' , 'wards_id']);
-        $item = PollingUnit::find($request->id);
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $data = $request->only(['name']);
+        $item = Party::find($request->id);
         $item->fill($data);
         $item->save();
         
@@ -163,16 +155,11 @@ class PollingUnitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        // must check if used in Political Party Agent so can't remove it
-        $item = PollingUnit::find($id);
-        $item->delete();
-        return response()->json('200');
+    {
+        $item = Party::find($id);
+        if($item){
+            $item->delete();
+            return response()->json('200');
+        }
     }
-
-    public function destroyRows(Request $request) {
-        PollingUnit::whereIn("id", explode(",", $request->ids))->delete();
-        return response()->json('200');
-    }
-
 }

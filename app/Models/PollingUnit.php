@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $lga_id
  * @property int $wards_id
+ * @property string $local_government
  * @property date $deleted_at
  * @property date $created_at
  * @property date $updated_at
@@ -28,6 +29,7 @@ class PollingUnit extends Model
 
     protected $fillable = [
         'name',
+        'local_government',
         'lga_id',
         'wards_id'
     ];

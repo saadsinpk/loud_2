@@ -164,8 +164,4 @@ class LgaController extends Controller
         }
     }
 
-    public function destroyRows(Request $request) {
-        Lga::whereIn("id", explode(",", $request->ids))->delete();
-        return response()->json('200');
-    }
 }

@@ -13,7 +13,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>LGA's</h1>
+            <h1>Parties</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -71,7 +71,7 @@
 				<!--begin::Toolbar-->
                     <div class="form-group col-md-1 col-sx-12 col-ms-12" data-kt-user-table-toolbar="base">
                         <!--begin::Add user-->
-                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_lga">Add New</button>
+                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_party">Add New</button>
                         <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
@@ -85,7 +85,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_lga_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_party_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -113,11 +113,11 @@
         <!--begin::Modals-->
 		
         <!--begin::Modal - admins - View -->
-		  <div class="modal fade" id="kt_modal_view_lga">
+		  <div class="modal fade" id="kt_modal_view_party">
 			<div class="modal-dialog">
 			  <div class="modal-content">
 				<div class="modal-header text-center">
-				  <h4 class="modal-title">LGA Details</h4>
+				  <h4 class="modal-title">Party Details</h4>
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				  </button>
@@ -141,22 +141,22 @@
 		  </div>
 		  <!-- /.modal -->
 		  
-        <!--begin::Modal - LGA - Add-->
-        <div class="modal fade" id="kt_modal_add_lga" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal - Party - Add-->
+        <div class="modal fade" id="kt_modal_add_party" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/lgas') }}" id="kt_modal_add_lga_form" data-kt-redirect="{{ url('/lgas') }}" method="POST">
+                    <form class="form" action="{{ url('/parties') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/parties') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_lga_header">
+                        <div class="modal-header" id="kt_modal_add_party_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Add a LGA</h2>
+                            <h2 class="fw-bolder">Add a Party</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_modal_add_lga_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_modal_add_party_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -172,14 +172,14 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_lga_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_lga_header" data-kt-scroll-wrappers="#kt_modal_add_lga_scroll" data-kt-scroll-offset="300px">
+                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_party_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_party_header" data-kt-scroll-wrappers="#kt_modal_add_party_scroll" data-kt-scroll-offset="300px">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
                                     <label class="required fs-6 fw-bold mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="LGA Name" name="name" value="" />
+                                    <input type="text" class="form-control form-control-solid" placeholder="party Name" name="name" value="" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -193,7 +193,7 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_lga_cancel" class="btn btn-light me-3">Discard</button>
+                            <button type="reset" id="kt_modal_add_party_cancel" class="btn btn-light me-3">Discard</button>
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" class="btn btn-primary">
@@ -209,7 +209,7 @@
                 </div>
             </div>
         </div>
-        <!--end::Modal - LGA - Add-->
+        <!--end::Modal - party - Add-->
 
     
 @endsection
@@ -231,8 +231,8 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/lgas/add.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/lgas/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/party/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/party/list.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

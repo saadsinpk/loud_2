@@ -27,40 +27,73 @@ class AdminController extends Controller
         return view("dashboard", compact("total_user"));
     }
 
-    public function index() {
-        $users = User::role('superAdmin')
-        ->with('roles')
-        ->orderBy("created_at", "DESC")->get();
+    public function index(Request $request) {
+
+        $draw = $request->get('draw');
+        $start = $request->input('start');
+        $length = $request->input('length');
+        $searchword = $request->input('searchword');
+        $page = (int)$start > 0 ? ($start / $length) + 1 : 1;
+        $limit = (int)$length > 0 ? $length : 10;
+        // Total records
+        $totalRecords = User::role('superAdmin')->count();
+
+        $users = User::role('superAdmin')->with('roles')->orderBy("created_at", "DESC");
+
         if (request()->ajax()) {
-            return DataTables::of($users)
-            ->addColumn('group', function ($data) {
-                return '';
-            })
-                ->addColumn('checkbox', function ($data) {
-                    $checkbox = '<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                    <input class="form-check-input" type="checkbox" data-kt-check="true" value="1" />
-                                    <input type="hidden" value="'.$data->id.'">
-                                </div>';
-                    return $checkbox;
-                })
-            ->addColumn('created_at', function ($row) { 
-                $create_date = "<span style='display:none;'>".$row->created_at->timestamp."</span>".e($row->created_at->format('d M Y, g:i A'));
-                return $create_date;
-            })             
-            ->addColumn('action', function ($data) {
+
+            if($searchword){
+                $users = $users->where('name','like', '%'.$searchword.'%');
+            }
+
+            $users = $users->paginate($limit, ["*"], 'page', $page);
+           
+            $num = 1;
+            $items = array();
+            foreach ($users->items() as $idx => $row) {
                 $action = '';
- 
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url("/admins/view/$data->id").'"><i class="fas fa-pencil-alt"></i></a>';
 
+              //  $action .= '<a class="btn btn-xs btn-primary col-3 mr-2" href="'.url('/admins/view/'.$row['id']).'"><i class="fas fa-eye"></i></a>';
 
-                $action .= '<a class="btn btn-xs btn-danger col-3 mr-2" href="#" data-kt-table-filter="delete_row"><i class="fas fa-trash"></i></a>';
-                return $action;
-            })
+                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url('/admins/view/'.$row['id']).'"><i class="fas fa-pencil-alt"></i></a>';
 
-            ->rawColumns(['checkbox', 'group', 'action', 'created_at'])
-            ->addIndexColumn()
-            ->make(true);
+                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
+
+                if(!empty($row['profile_picture'])){
+                    $profile_picture = '<img src="'.url('uploads/users_images/'.$row['profile_picture']).'" width="36" height="36" />';
+                }else{
+                    $profile_picture = '<img src="'.asset('assets/media/avatars/avatar.png').'" width="36" height="36"/>';
+                }
+
+                $items[] = array(
+                    "no" => $num,
+                    "id" => $row['id'],
+                    "roles" => $row['roles'],
+                    "role_name" => $row['roles'][0]->name,
+                    "profile_picture" => $profile_picture,
+                    "name" => $row['name'],
+                    "email" => $row['email'],
+                    "created_at" => $row['created_at']->format('d M Y, g:i A'),
+                    "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
+                    "action" => $action
+                );
+
+                $num++;
+            }
+
+            //-- START CREATE JSON RESPONSE FOR DATATABLES
+            $response = array(
+                "draw" => (int)$draw,
+                "recordsTotal" => (int)$totalRecords,
+                "recordsFiltered" => (int)$users->total(),
+                "data" => $items
+            );
+
+            return response()->json($response);
+
         }
+
+       
         
         return view("admins.index", compact("users"));
     }

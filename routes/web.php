@@ -7,7 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\PollController;
-use App\Http\Controllers\VoteController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
@@ -19,8 +18,11 @@ use App\Http\Controllers\Auth\ForgotPassword;
 use App\Http\Controllers\Auth\LoginController;
 
 
+
 use App\Http\Controllers\LgaController;
 use App\Http\Controllers\WardController;
+use App\Http\Controllers\VoteController;
+use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\PollingUnitController;
 use App\Http\Controllers\PoliticalPartyAgentController;
@@ -142,6 +144,26 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
         Route::get('/delete/{id}', [DeviceController::class, 'destroy'])->name("devices.delete");
         Route::post('/delete-rows', [DeviceController::class, 'destroyRows'])->name("devices.delete.row");
         Route::post('/update', [DeviceController::class, 'update'])->name("devices.update");
+    });
+
+
+    
+    Route::prefix("parties")->group(function(){
+        Route::get('/', [PartyController::class, 'index'])->name("parties.index");
+        Route::post('/', [PartyController::class, 'store'])->name("parties.store");
+        Route::get('/view/{id}', [PartyController::class, 'details'])->name("parties.view");
+        Route::get('/delete/{id}', [PartyController::class, 'destroy'])->name("parties.delete");
+        Route::post('/update', [PartyController::class, 'update'])->name("parties.update");
+    });
+
+    
+
+    Route::prefix("votes")->group(function(){
+        Route::get('/', [VoteController::class, 'index'])->name("votes.index");
+        Route::post('/', [VoteController::class, 'store'])->name("votes.store");
+        Route::get('/view/{id}', [VoteController::class, 'details'])->name("votes.view");
+        Route::get('/delete/{id}', [VoteController::class, 'destroy'])->name("votes.delete");
+        Route::post('/update', [VoteController::class, 'update'])->name("votes.update");
     });
 });
 require __DIR__.'/auth.php';

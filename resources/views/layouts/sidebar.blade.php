@@ -74,14 +74,14 @@ if($uri_segments[1]=="user"){
             </a>
           </li>
 		  
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="{{ url('/devices') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 User Devices
               </p>
             </a>
-          </li>
+          </li> -->
 		  
           <li class="nav-item">
             <a href="{{ url('/roles') }}" class="nav-link">
@@ -92,6 +92,24 @@ if($uri_segments[1]=="user"){
             </a>
           </li>
 		  
+          <li class="nav-item">
+            <a href="{{ url('/parties') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Parties
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('/votes') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Results
+              </p>
+            </a>
+          </li>
+
             <li class="nav-item">
 		   <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>

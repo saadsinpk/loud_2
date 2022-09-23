@@ -2,10 +2,10 @@
 
 @section("additional_stylesheet")
 
-	<link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-	<link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-	<link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-	
+    <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    
 @endsection
 
 @section("content")
@@ -29,75 +29,95 @@
 	
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
+     
             
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Admins List</h3>
+                <!--begin::Card header-->
+				<div class="card-header border-0 pt-6">
+                <!--begin::Card title-->
+                <div class="card-title">
+				</div>
+                <!--begin::Card title-->
 				
-				<!--begin::Card toolbar-->
-                <div class="card-toolbar">
-                    <!--begin::Toolbar-->
-                    <div class="d-flex justify-content-end" data-kt-admin-table-toolbar="base">
-                        <!--begin::Add admin-->
-                        
-						<button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_admin">Add Admin</button>
+				<div class="row">
 				
-                        <!--end::Add admin-->
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" data-kt-user-table-filter="search" name="searchword" id="searchword" class="form-control" placeholder="Search..." />
+						 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-search"></i></div>
+                        </div>
+                    </div>
+                </div>
+				
+				
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="from_date" id="from_date" placeholder="Start Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="form-group col-md-3 col-sx-12 col-ms-12">
+					<div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="to_date" id="to_date" placeholder="End Date"/>
+                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group col-1"></div>
+				<div class="form-group col-md-1 col-sx-12 col-ms-12">
+				 <button  type="submit" class="btn btn-primary btn-block " id="filterthis">Filter</button>
+				</div> 
+				
+				<!--begin::Toolbar-->
+                    <div class="form-group col-md-1 col-sx-12 col-ms-12" data-kt-user-table-toolbar="base">
+                        <!--begin::Add user-->
+                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_admin">Add New</button>
+                        <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
-                    <!--begin::Group actions-->
-                   <!-- <div class="d-flex justify-content-end align-items-center d-none" data-kt-admin-table-toolbar="selected">
-                        <div class="fw-bolder me-5">
-                        <span class="me-2" data-kt-admin-table-select="selected_count"></span>Selected</div>
-                        <button type="button" class="btn btn-danger" data-kt-admin-table-select="delete_selected">Delete Selected</button>
-                    </div> -->
-                    <!--end::Group actions-->
+					
                 </div>
-                <!--end::Card toolbar-->
+				
 				
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table  id="kt_admins_table" class="table table-bordered table-striped" >
-                  <thead>
-                  <tr>
-				  
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>CREATED DATE</th>
-                    <th>Actions</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                 
-                  
-                  </tbody>
-                  <tfoot>
-                  <tr>
-					
-					<th></th>
-					<th>Name</th>
-                    <th>Email</th>
-                    <th>CREATED DATE</th>
-                    <th>Actions</th>
-                  </tr>
-                  </tfoot>
+             <!--begin::Card body-->
+            <div class="card-body pt-0">
+                <!--begin::Table-->
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_admins_table">
+                    <!--begin::Table head-->
+                    <thead>
+                        <!--begin::Table row-->
+                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="min-w-125px">S No.</th>
+                            <th class="min-w-125px">User Name</th>
+                            <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">Profile Image</th>
+                            <th class="min-w-125px">Role</th>
+                            <th class="min-w-125px">Created Date</th>
+                            <th class="text-end min-w-70px">Actions</th>
+                        </tr>
+                        <!--end::Table row-->
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody class="fw-bold text-gray-600">
+                    </tbody>
+                    <!--end::Table body-->
                 </table>
-              </div>
-              <!-- /.card-body -->
+                <!--end::Table-->
+            </div>
+            <!--end::Card body-->
+             
             </div>
             <!-- /.card -->
     
-      </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      
 	  
 
 		

@@ -132,15 +132,13 @@ var KTModalUser = function() {
             'order': [],
 
             'columnDefs': [
-                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-                { orderable: false, targets: 4 }, // Disable ordering on column 6 (actions)    
+                { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)   
             ]
         });
 
         // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
         datatable.on('draw', function() {
             ids = "";
-            //initToggleToolbar();
             handleDeleteRows();
 			handleEditRows();
             toggleToolbars();
@@ -280,103 +278,7 @@ var KTModalUser = function() {
             inituserList(from_date,to_date,searchword);
         
     });
-    // Init toggle toolbar
-    var initToggleToolbar = () => {
-        // Toggle selected action toolbar
-        // Select all checkboxes
-        const checkboxes = table.querySelectorAll('[type="checkbox"]');
-        // Select elements
-        const deleteSelected = document.querySelector('[data-kt-user-table-select="delete_selected"]');
-
-        // Toggle delete selected toolbar
-        checkboxes.forEach(c => {
-            // Checkbox on click event
-            c.addEventListener('click', function() {
-                setTimeout(function() {
-                    ids = "";
-                    toggleToolbars();
-                }, 50);
-            });
-        });
-
-        // Deleted selected rows
-        deleteSelected.addEventListener('click', function() {
-            // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
-            console.log(ids);
-            Swal.fire({
-                text: "Are you sure you want to delete selected user?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, delete!",
-                cancelButtonText: "No, cancel",
-                customClass: {
-                    confirmButton: "btn fw-bold btn-danger",
-                    cancelButton: "btn fw-bold btn-active-light-primary"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    jQuery("body").append('<div id="loading" style="width: 100%;height: 100%;position: fixed;background: rgba(113, 148, 48, 0.3);top: 0;left: 0;z-index: 6000 !important;text-align: center;vertical-align: middle;padding: 9px 0;font-weight: bold;color: #fff;border-radius: 10px;font-size: 50px;"><div class="center_fix_verticle" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);"><span class="show_message" style="font-size: 36px;color: green;">Loading...</span></div>    </div>');
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $.ajax({
-                        url: `/user/delete-rows`,
-                        data: { ids: ids.substr(1) },
-                        method: "post",
-                        dataType: "JSON",
-                        success: function() {
-                            jQuery("#loading").remove();
-                            Swal.fire({
-                                text: "You have deleted all selected user!.",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            }).then(function() {
-                                // Remove all selected user
-                                checkboxes.forEach(c => {
-                                    if (c.checked) {
-                                        datatable.row($(c.closest('tbody tr'))).remove().draw();
-                                    }
-                                });
-
-                                // Remove header checked box
-                                const headerCheckbox = table.querySelectorAll('[type="checkbox"]')[0];
-                                headerCheckbox.checked = false;
-                            });
-                        }
-                    }).catch(function(error) {
-                        jQuery("#loading").remove();
-                        Swal.fire({
-                            text: "Somethings went wrong. Try again.",
-                            icon: "error",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn btn-primary"
-                            }
-                        });
-                    });
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Selected user was not deleted.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn fw-bold btn-primary",
-                        }
-                    });
-                }
-            });
-        });
-    }
+    
 
     // Toggle toolbars
     const toggleToolbars = () => {
@@ -427,7 +329,6 @@ var KTModalUser = function() {
             closeButton = form.querySelector('#kt_modal_add_user_close');
             url = $("#kt_modal_add_user_form").attr("action");
             inituserList();
-          //  initToggleToolbar();
             handleSearchDatatable();
             closeForm();
         }

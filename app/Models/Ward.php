@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $lga_id
+ * @property string $local_government
  * @property date $deleted_at
  * @property date $created_at
  * @property date $updated_at
@@ -26,7 +27,8 @@ class Ward extends Model
 
     protected $fillable = [
         'name',
-        'lga_id'
+        'lga_id',
+        'local_government'
     ];
 
     protected $table = 'wards';
