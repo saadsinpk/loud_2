@@ -5,7 +5,6 @@ var KTModalUpdateLga = function() {
     var element;
     var submitButton;
     var cancelButton;
-    var closeButton;
     var form;
     var modal;
     var validator;
@@ -168,37 +167,6 @@ var KTModalUpdateLga = function() {
             });
         });
 
-        closeButton.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                text: "Are you sure you would like to cancel?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    form.reset(); // Reset form	
-                    //modal.hide(); // Hide modal				
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                        }
-                    });
-                }
-            });
-        });
     }
 
     return {
@@ -211,7 +179,7 @@ var KTModalUpdateLga = function() {
             form = element.querySelector('#kt_modal_update_lga_form');
             submitButton = form.querySelector('#kt_modal_update_lga_submit');
             cancelButton = form.querySelector('#kt_modal_update_lga_cancel');
-          //  closeButton = element.querySelector('#kt_modal_update_lga_close');
+
 
             initForm();
         }

@@ -11,12 +11,17 @@ $(document).ready(function(){
         var ward_id = $("#js-data-wards-ajax").val();
         var pu_id = $("#js-data-pu-ajax").val();
 		var agent_picture = $("#agent_picture")[0].files[0];
-        var name = $("#name").val();
+        var first_name = $("#first_name").val();
+        var middle_name = $("#middle_name").val();
+        var last_name = $("#last_name").val();
         var political_party = $("#political_party").val();
         var designation = $("#designation").val();
         var home_address = $("#home_address").val();
         var mobile = $("#mobile").val();
         var extra_mobile = $("#extra_mobile").val();
+		
+        var latitude = $("#latitude").val();
+        var longitude = $("#longitude").val();
         
 		
 		var signature_agent = 0;
@@ -41,7 +46,11 @@ $(document).ready(function(){
 		}
 					
                  
-        formData.append("name", name);
+        formData.append("latitude", latitude);
+        formData.append("longitude", longitude);
+        formData.append("first_name", first_name);
+        formData.append("middle_name", middle_name);
+        formData.append("last_name", last_name);
         formData.append("political_party", political_party);
         formData.append("agent_picture", agent_picture);
         formData.append("designation", designation);

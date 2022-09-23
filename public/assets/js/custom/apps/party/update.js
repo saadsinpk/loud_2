@@ -1,11 +1,10 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateLga = function() {
+var KTModalUpdateparty = function() {
     var element;
     var submitButton;
     var cancelButton;
-    var closeButton;
     var form;
     var modal;
     var validator;
@@ -19,20 +18,10 @@ var KTModalUpdateLga = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'LGA name is required'
+                                message: 'party name is required'
                             }
                         }
                     },
-                    // 'email': {
-                    //     validators: {
-                    //         notEmpty: {
-                    //             message: 'lga email is required'
-                    //         },
-                    //         emailAddress: {
-                    //             message: 'The value is not a valid email address'
-                    //         },
-                    //     }
-                    // }
                 },
                 plugins: {
                     trigger: new FormValidation.plugins.Trigger()
@@ -50,10 +39,10 @@ var KTModalUpdateLga = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_lga_form").attr("action");
+                    var url = $("#kt_modal_update_party_form").attr("action");
                     var formData = new FormData();
 
-                    var id = $("#lga_id").val();
+                    var id = $("#party_id").val();
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
                     formData.append("id", id);
@@ -168,50 +157,20 @@ var KTModalUpdateLga = function() {
             });
         });
 
-        closeButton.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                text: "Are you sure you would like to cancel?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    form.reset(); // Reset form	
-                    //modal.hide(); // Hide modal				
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                        }
-                    });
-                }
-            });
-        });
+       
     }
 
     return {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_lga');
+            element = document.querySelector('#kt_modal_update_party');
            // modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_lga_form');
-            submitButton = form.querySelector('#kt_modal_update_lga_submit');
-            cancelButton = form.querySelector('#kt_modal_update_lga_cancel');
-          //  closeButton = element.querySelector('#kt_modal_update_lga_close');
+            form = element.querySelector('#kt_modal_update_party_form');
+            submitButton = form.querySelector('#kt_modal_update_party_submit');
+            cancelButton = form.querySelector('#kt_modal_update_party_cancel');
+
 
             initForm();
         }
@@ -220,5 +179,5 @@ var KTModalUpdateLga = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalUpdateLga.init();
+    KTModalUpdateparty.init();
 });
