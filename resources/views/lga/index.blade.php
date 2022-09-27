@@ -148,7 +148,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/lgas') }}" id="kt_modal_add_lga_form" data-kt-redirect="{{ url('/lgas') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/lgas') }}" id="kt_modal_add_lga_form" data-kt-redirect="{{ url('/lgas') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_lga_header">

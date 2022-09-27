@@ -176,7 +176,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" action="{{ url('user/update') }}" id="kt_modal_update_user_form" enctype="multipart/form-data" novalidate="novalidate" method="post">
+                            <form class="form" action="{{ url('admin/user/update') }}" id="kt_modal_update_user_form" enctype="multipart/form-data" novalidate="novalidate" method="post">
                                 @csrf
                                 <input id="id" name="id" type="hidden" value="{{ $user->id }}">
                                 <!--begin::Modal header-->

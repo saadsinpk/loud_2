@@ -13,7 +13,7 @@ if($uri_segments[1]=="user"){
   <aside class="main-sidebar elevation-4 sidebar-light-danger">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">  
-	  <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="brand-image  elevation-0" style="opacity: .8"/>
+	  <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="brand-image  elevation-0" />
 	  
     <!--
       <span class="brand-text font-weight-light">Loud</span> -->
@@ -55,7 +55,7 @@ if($uri_segments[1]=="user"){
             
           </li>
           <li class="nav-item">
-            <a href="{{ url('/admins') }}" class="nav-link">
+            <a href="{{ url('/admin/admins') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Admins
@@ -66,7 +66,7 @@ if($uri_segments[1]=="user"){
           </li>
        
           <li class="nav-item">
-            <a href="{{ url('/user') }}" class="nav-link">
+            <a href="{{ url('/admin/user') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users
@@ -84,16 +84,66 @@ if($uri_segments[1]=="user"){
           </li> -->
 		  
           <li class="nav-item">
-            <a href="{{ url('/roles') }}" class="nav-link">
+            <a href="{{ url('/admin/roles') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Roles
               </p>
             </a>
           </li>
-		  
+
           <li class="nav-item">
-            <a href="{{ url('/parties') }}" class="nav-link">
+            <a href="{{ url('/admin/states') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                States
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/constituencies') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Constituencies
+              </p>
+            </a>
+          </li> 
+
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/elections') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Elections
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/senatorialdistricts') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Senatorial Districts
+              </p>
+            </a>
+          </li>
+    
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/federalconstituencies') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Federal Constituencies
+              </p>
+            </a>
+          </li>      
+
+          
+          <li class="nav-item">
+            <a href="{{ url('/admin/parties') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Parties
@@ -102,7 +152,7 @@ if($uri_segments[1]=="user"){
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('/votes') }}" class="nav-link">
+            <a href="{{ url('/admin/votes') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Results
@@ -111,7 +161,7 @@ if($uri_segments[1]=="user"){
           </li>
 
             <li class="nav-item">
-		   <a href="#" class="nav-link">
+		        <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Political Party Agents
@@ -124,26 +174,26 @@ if($uri_segments[1]=="user"){
             <ul class="nav nav-treeview">
              
               <li class="nav-item">
-                <a href="{{ url('/lgas') }}" class="nav-link">
+                <a href="{{ url('/admin/lgas') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>LGAs</p>
                 </a>
               </li>
               
               <li class="nav-item">
-                <a href="{{ url('/wards') }}" class="nav-link">
+                <a href="{{ url('/admin/wards') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Wards</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/pollingunits') }}" class="nav-link">
+                <a href="{{ url('/admin/pollingunits') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Polling Units</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/politicalpartyagents') }}" class="nav-link">
+                <a href="{{ url('/admin/politicalpartyagents') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Political Party Agents</p>
                 </a>
@@ -154,50 +204,7 @@ if($uri_segments[1]=="user"){
           </li>
 		  
 		  
-		 <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Pages
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-             
-              <li class="nav-item">
-                <a href="pages/examples/profile.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
-                </a>
-              </li>
-              
-              <li class="nav-item">
-                <a href="pages/examples/projects.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Projects</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project-add.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Add</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project-edit.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Edit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/project-detail.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Project Detail</p>
-                </a>
-              </li>
-             
-            </ul>
-          </li> -->
+
          
         </ul>
       </nav>

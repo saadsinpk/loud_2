@@ -130,7 +130,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/roles') }}" id="kt_modal_add_role_form" data-kt-redirect="{{ url('/roles') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/roles') }}" id="kt_modal_add_role_form" data-kt-redirect="{{ url('/roles') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_role_header">

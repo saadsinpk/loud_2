@@ -123,7 +123,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/mypermissions') }}" id="kt_modal_add_mypermissions_form" data-kt-redirect="{{ url('/mypermissions') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/mypermissions') }}" id="kt_modal_add_mypermissions_form" data-kt-redirect="{{ url('/mypermissions') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_mypermissions_header">

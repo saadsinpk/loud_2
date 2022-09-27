@@ -159,7 +159,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" action="{{ url('pollingunits/update') }}" id="kt_modal_update_pollingunit_form" enctype="multipart/form-data" novalidate="novalidate">
+                            <form class="form" action="{{ url('admin/pollingunits/update') }}" id="kt_modal_update_pollingunit_form" enctype="multipart/form-data" novalidate="novalidate">
                                 <input id="id" name="id" type="hidden" value="{{ $pollingunit->id }}">
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_update_pollingunit_header">

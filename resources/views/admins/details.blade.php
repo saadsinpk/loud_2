@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card card-primary">
-           <form class="form" action="{{ url('admins/update') }}" id="kt_modal_update_admin_form"  enctype="multipart/form-data" novalidate="novalidate">
+           <form class="form" action="{{ url('admin/admins/update') }}" id="kt_modal_update_admin_form"  enctype="multipart/form-data" novalidate="novalidate">
              
 			<input id="id" name="id" type="hidden" value="{{ $user->id }}">
             <div class="card-body">

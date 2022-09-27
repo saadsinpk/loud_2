@@ -133,7 +133,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/user') }}" id="kt_modal_add_user_form" data-kt-redirect="{{ url('/user') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/user') }}" id="kt_modal_add_user_form" data-kt-redirect="{{ url('/user') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_user_header">

@@ -121,7 +121,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/politicalpartyagents') }}" id="kt_modal_add_politicalpartyagent_form" data-kt-redirect="{{ url('/politicalpartyagents') }}" enctype="multipart/form-data" method="POST" novalidate="novalidate">
+                    <form class="form" action="{{ url('/admin/politicalpartyagents') }}" id="kt_modal_add_politicalpartyagent_form" data-kt-redirect="{{ url('/politicalpartyagents') }}" enctype="multipart/form-data" method="POST" novalidate="novalidate">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_politicalpartyagent_header">

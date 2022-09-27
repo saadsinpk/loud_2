@@ -13,6 +13,7 @@ class CreateLgasTable extends Migration
      */
     public function up()
     {
+        // local government
         Schema::create('lgas', function (Blueprint $table) {
             $table->id();
             $table->string('name');

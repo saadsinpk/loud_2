@@ -54,6 +54,9 @@ class PartyController extends Controller
                     "no" => $num,
                     "id" => $row['id'],
                     "name" => $row['name'],
+                    "color" => $row['color'],
+                    "flag" => $row['flag'],
+                    "sign" => $row['sign'],
                     "created_at" => $row['created_at']->format('d M Y, g:i A'),
                     "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
                     "action" => $action
@@ -98,7 +101,14 @@ class PartyController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $data = $request->only(['name']);
+        $data = $request->only(['name' , 'color' , 'sign' , 'flag']);
+        // upload image
+        if($request->file('flag')){
+            $file = $request->file('flag');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('uploads/flags'), $filename);
+            $data['flag'] = $filename;
+        }
         $item = Party::create($data);
         return response()->json(['msg'=>"Party created successfully"], 200);
     }
@@ -111,8 +121,8 @@ class PartyController extends Controller
      */
     public function details($id) {
 
-        $item = Party::find($id);
-        return view("lga.details", compact('item'));
+        $party = Party::find($id);
+        return view("party.details", compact('party'));
     }
 
     /**
@@ -138,7 +148,15 @@ class PartyController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $data = $request->only(['name']);
+        $data = $request->only(['name' , 'color' , 'sign' , 'flag']);
+        // upload image
+        if($request->file('flag')){
+            $file = $request->file('flag');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('uploads/flags'), $filename);
+            $data['flag'] = $filename;
+        }
+
         $item = Party::find($request->id);
         $item->fill($data);
         $item->save();

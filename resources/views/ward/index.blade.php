@@ -119,7 +119,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/wards') }}" id="kt_modal_add_ward_form" data-kt-redirect="{{ url('/wards') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/wards') }}" id="kt_modal_add_ward_form" data-kt-redirect="{{ url('/wards') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_ward_header">

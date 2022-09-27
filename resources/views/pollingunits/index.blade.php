@@ -123,7 +123,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/pollingunits') }}" id="kt_modal_add_pollingunit_form" data-kt-redirect="{{ url('/pollingunits') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/pollingunits') }}" id="kt_modal_add_pollingunit_form" data-kt-redirect="{{ url('/pollingunits') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_pollingunit_header">

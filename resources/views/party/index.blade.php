@@ -5,6 +5,8 @@
     <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('assets/js/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     
+    <link rel="stylesheet"  href="{{ asset('assets/js/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+
 @endsection
 @section("content")
 
@@ -94,6 +96,9 @@
                                 S No.
                             </th>
                             <th class="min-w-125px">Name</th>
+                            <th class="min-w-125px">Color</th>
+                            <th class="min-w-125px">Flag</th>
+                            <th class="min-w-125px">Sign</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -148,7 +153,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/parties') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/parties') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/parties') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/parties') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_party_header">
@@ -185,6 +190,13 @@
                                 <!--end::Input group-->
                            
                 
+                                <!-- Color Picker -->
+                                <div class="form-group">
+                                  <label>Color picker:</label>
+                                  <input type="text" id="color" name="color" class="form-control my-colorpicker1">
+                                </div>
+                                <!-- /.form group -->
+
                                 <!--end::Billing form-->
                             </div>
                             <!--end::Scroll-->
@@ -229,6 +241,8 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/custom/apps/party/add.js') }}"></script>

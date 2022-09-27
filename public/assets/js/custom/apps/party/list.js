@@ -104,6 +104,18 @@ var KTModalParty = function() {
                     name: 'name',
                 },
                 {
+                    data: 'color',
+                    name: 'color',
+                },
+                {
+                    data: 'sign',
+                    name: 'sign',
+                },
+                {
+                    data: 'flag',
+                    name: 'flag',
+                },
+                {
                     data: 'updated_at',
                     name: 'updated_at',
                 },

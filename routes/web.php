@@ -17,15 +17,25 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\Auth\ForgotPassword;
 use App\Http\Controllers\Auth\LoginController;
 
-
-
 use App\Http\Controllers\LgaController;
 use App\Http\Controllers\WardController;
-use App\Http\Controllers\VoteController;
+use App\Http\Controllers\VotesController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\StatesController;
+use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\PollingUnitController;
+use App\Http\Controllers\ConstituenciesController;
+use App\Http\Controllers\SubmitHistoriesController;
+use App\Http\Controllers\ElectionProcessecsController;
+use App\Http\Controllers\SenatorialDistrictController;
 use App\Http\Controllers\PoliticalPartyAgentController;
+use App\Http\Controllers\FederalConstituenciesController;
+
+// website
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,11 +49,11 @@ use App\Http\Controllers\PoliticalPartyAgentController;
 */
 
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-Route::get('/', function () {
+Route::get('/admin', function () {
     if(auth()->user()) {
-        return redirect("/dashboard");
+        return redirect("/admin/dashboard");
     }else {
         return view('auth/login');
     }
@@ -55,7 +65,9 @@ Route::post('reset-passoword', [ForgotPassword::class, 'reset_password'])->name(
 
 
 Route::group(['middleware' => ['auth', 'adminRole']], function () {
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name("dashboard");
+    
+Route::prefix("admin")->group(function(){
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name("dashboard");    
     Route::prefix("admins")->group(function(){
     // Route::group(['middleware' => ['auth', 'permission']], function() {
         Route::get('/', [AdminController::class, 'index'])->name("admin.index");
@@ -67,6 +79,7 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
         Route::post('/update', [AdminController::class, 'update'])->name("admin.update");
         Route::get('/create', [AdminController::class, 'create'])->name("admin.create");
     });
+
     Route::prefix("user")->group(function(){
         Route::get('/', [UserController::class, 'index'])->name("user.index");
         Route::post('/', [UserController::class, 'store'])->name("user.store");
@@ -147,7 +160,49 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
     });
 
 
-    
+    Route::prefix("states")->group(function(){
+        Route::get('/', [StatesController::class, 'index'])->name("states.index");
+        Route::post('/', [StatesController::class, 'store'])->name("states.store");
+        Route::get('/view/{id}', [StatesController::class, 'details'])->name("states.view");
+        Route::get('/delete/{id}', [StatesController::class, 'destroy'])->name("states.delete");
+        Route::post('/update', [StatesController::class, 'update'])->name("states.update");
+    });
+
+    Route::prefix("constituencies")->group(function(){
+        Route::get('/', [ConstituenciesController::class, 'index'])->name("constituencies.index");
+        Route::post('/', [ConstituenciesController::class, 'store'])->name("constituencies.store");
+        Route::get('/view/{id}', [ConstituenciesController::class, 'details'])->name("constituencies.view");
+        Route::get('/delete/{id}', [ConstituenciesController::class, 'destroy'])->name("constituencies.delete");
+        Route::post('/update', [ConstituenciesController::class, 'update'])->name("constituencies.update");
+    });
+
+    Route::prefix("elections")->group(function(){
+        Route::get('/', [ElectionController::class, 'index'])->name("elections.index");
+        Route::post('/', [ElectionController::class, 'store'])->name("elections.store");
+        Route::get('/view/{id}', [ElectionController::class, 'details'])->name("elections.view");
+        Route::get('/delete/{id}', [ElectionController::class, 'destroy'])->name("elections.delete");
+        Route::post('/update', [ElectionController::class, 'update'])->name("elections.update");
+    });
+
+
+    Route::prefix("senatorialdistricts")->group(function(){
+        Route::get('/', [SenatorialDistrictController::class, 'index'])->name("senatorialdistricts.index");
+        Route::post('/', [SenatorialDistrictController::class, 'store'])->name("senatorialdistricts.store");
+        Route::get('/view/{id}', [SenatorialDistrictController::class, 'details'])->name("senatorialdistricts.view");
+        Route::get('/delete/{id}', [SenatorialDistrictController::class, 'destroy'])->name("senatorialdistricts.delete");
+        Route::post('/update', [SenatorialDistrictController::class, 'update'])->name("senatorialdistricts.update");
+    });
+
+
+    Route::prefix("federalconstituencies")->group(function(){
+        Route::get('/', [FederalConstituenciesController::class, 'index'])->name("federalconstituencies.index");
+        Route::post('/', [FederalConstituenciesController::class, 'store'])->name("federalconstituencies.store");
+        Route::get('/view/{id}', [FederalConstituenciesController::class, 'details'])->name("federalconstituencies.view");
+        Route::get('/delete/{id}', [FederalConstituenciesController::class, 'destroy'])->name("federalconstituencies.delete");
+        Route::post('/update', [FederalConstituenciesController::class, 'update'])->name("federalconstituencies.update");
+    });
+
+
     Route::prefix("parties")->group(function(){
         Route::get('/', [PartyController::class, 'index'])->name("parties.index");
         Route::post('/', [PartyController::class, 'store'])->name("parties.store");
@@ -156,14 +211,28 @@ Route::group(['middleware' => ['auth', 'adminRole']], function () {
         Route::post('/update', [PartyController::class, 'update'])->name("parties.update");
     });
 
-    
-
     Route::prefix("votes")->group(function(){
-        Route::get('/', [VoteController::class, 'index'])->name("votes.index");
-        Route::post('/', [VoteController::class, 'store'])->name("votes.store");
-        Route::get('/view/{id}', [VoteController::class, 'details'])->name("votes.view");
-        Route::get('/delete/{id}', [VoteController::class, 'destroy'])->name("votes.delete");
-        Route::post('/update', [VoteController::class, 'update'])->name("votes.update");
+        Route::get('/', [VotesController::class, 'index'])->name("votes.index");
+        Route::post('/', [VotesController::class, 'store'])->name("votes.store");
+        Route::get('/view/{id}', [VotesController::class, 'details'])->name("votes.view");
+        Route::get('/delete/{id}', [VotesController::class, 'destroy'])->name("votes.delete");
+        Route::post('/update', [VotesController::class, 'update'])->name("votes.update");
+    });
+
+    Route::prefix("submithistories")->group(function(){
+        Route::get('/', [SubmitHistoriesController::class, 'index'])->name("submithistories.index");
+        Route::post('/', [SubmitHistoriesController::class, 'store'])->name("submithistories.store");
+        Route::get('/view/{id}', [SubmitHistoriesController::class, 'details'])->name("submithistories.view");
+        Route::get('/delete/{id}', [SubmitHistoriesController::class, 'destroy'])->name("submithistories.delete");
+        Route::post('/update', [SubmitHistoriesController::class, 'update'])->name("submithistories.update");
+    });
+
+    Route::prefix("contacts")->group(function(){
+        Route::get('/', [ContactsController::class, 'index'])->name("contacts.index");
+        Route::get('/view/{id}', [ContactsController::class, 'details'])->name("contacts.view");
+        Route::get('/delete/{id}', [ContactsController::class, 'destroy'])->name("contacts.delete");
+      //  Route::post('/update', [ContactsController::class, 'update'])->name("contacts.update");
+    });
     });
 });
 require __DIR__.'/auth.php';

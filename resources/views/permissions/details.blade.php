@@ -143,7 +143,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" action="{{ url('mypermissions/update') }}" id="kt_modal_update_mypermissions_form" enctype="multipart/form-data" novalidate="novalidate">
+                            <form class="form" action="{{ url('admin/mypermissions/update') }}" id="kt_modal_update_mypermissions_form" enctype="multipart/form-data" novalidate="novalidate">
                                 <input id="id" name="id" type="hidden" value="{{ $permissions->id }}">
                                 <input id="permissionss" name="permission" type="hidden">
                                 <!--begin::Modal header-->

@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property int $lga_id
  * @property int $wards_id
- * @property string $local_government
+ * @property string $accredited
+ * @property string $registered_voters
  * @property date $deleted_at
  * @property date $created_at
  * @property date $updated_at
@@ -29,13 +30,22 @@ class PollingUnit extends Model
 
     protected $fillable = [
         'name',
-        'local_government',
+        'accredited',
+        'registered_voters',
         'lga_id',
         'wards_id'
     ];
 
     protected $table = 'polling_units';
 
+    /**
+     * Get election.
+     */
+    public function election()
+    {
+        return $this->morphOne(Election::class, 'model');
+    }
+    
     public function lga(){
         return $this->belongsTo(Lga::class);
     }

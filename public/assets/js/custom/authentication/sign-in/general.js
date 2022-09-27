@@ -5,6 +5,8 @@ var KTSigninGeneral = function() {
     // Elements
     var form;
     var submitButton;
+    var passwordInput;
+    var emailInput;
     var validator;
 
     // Handle form
@@ -65,7 +67,7 @@ var KTSigninGeneral = function() {
                         data: formdata,
                         dataType: "JSON",
                         success: function(res) {
-                            console.log(res)
+                            
                             if (res == "200") {
                                 // Show loading indication
 
@@ -81,7 +83,7 @@ var KTSigninGeneral = function() {
                                     submitButton.disabled = false;
 
                                     // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                                    location.href = "/dashboard";
+                                    location.href = "/admin/dashboard";
                                 }, 2000);
                             }
                         },
@@ -98,7 +100,7 @@ var KTSigninGeneral = function() {
                                     confirmButton: "btn btn-primary"
                                 }
                             }).then(function() {
-                                location.href = "/";
+                                //location.href = "/";
                             });
                         } else if (error.status == 401) {
                             Swal.fire({
@@ -110,8 +112,8 @@ var KTSigninGeneral = function() {
                                     confirmButton: "btn btn-primary"
                                 }
                             }).then(function() {
-                                location.href = "/";
-                            });;
+                                //location.href = "/";
+                            });
                         } else {
                             Swal.fire({
                                 text: "Somethings went wrong.",
@@ -122,7 +124,7 @@ var KTSigninGeneral = function() {
                                     confirmButton: "btn btn-primary"
                                 }
                             }).then(function() {
-                                location.href = "/";
+                                //location.href = "/";
                             });
                         }
                     });
@@ -143,6 +145,20 @@ var KTSigninGeneral = function() {
                 }
             });
         });
+		
+		// Handle form submit
+        emailInput.addEventListener('keyup', function(event) {
+			 if (event.keyCode  === 13) { 
+				submitButton.click();
+			 }
+		});
+		
+        // Handle form submit
+        passwordInput.addEventListener('keyup', function(event) {
+			 if (event.keyCode  === 13) {
+				submitButton.click();
+			 }
+		});
     }
 
     // Public functions
@@ -151,6 +167,8 @@ var KTSigninGeneral = function() {
         init: function() {
             form = document.querySelector('#kt_sign_in_form');
             submitButton = document.querySelector('#kt_sign_in_submit');
+            emailInput = document.querySelector('#emailInput');
+            passwordInput = document.querySelector('#passwordInput');
             handleForm();
         }
     };

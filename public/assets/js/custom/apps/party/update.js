@@ -41,19 +41,17 @@ var KTModalUpdateparty = function() {
 
                     var url = $("#kt_modal_update_party_form").attr("action");
                     var formData = new FormData();
-
                     var id = $("#party_id").val();
-                    // var avatar = $("#avatar")[0].files[0];
+                    var color = $("#color").val();
+                    var flag  = $("#flag")[0].files[0];
+                    var sign = $("#sign").val();
                     var name = $("#name").val();
                     formData.append("id", id);
                     formData.append("name", name);
-                    
-                    // formData.append("email", email);
-
-                    /*if (avatar != undefined) {
-                        formData.append("avatar", avatar);
-                    }*/
-
+                    formData.append("color", color);
+                    formData.append("flag", flag);
+                    formData.append("sign", sign);
+                
                     if (status == 'Valid') {
                         $.ajaxSetup({
                             headers: {

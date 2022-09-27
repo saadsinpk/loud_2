@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $lga_id
- * @property string $local_government
  * @property date $deleted_at
  * @property date $created_at
  * @property date $updated_at
@@ -27,11 +26,18 @@ class Ward extends Model
 
     protected $fillable = [
         'name',
-        'lga_id',
-        'local_government'
+        'lga_id', //local_government
     ];
 
     protected $table = 'wards';
+
+    /**
+     * Get election.
+     */
+    public function election()
+    {
+        return $this->morphOne(Election::class, 'model');
+    }
 
     public function lga(){
         return $this->belongsTo(Lga::class);

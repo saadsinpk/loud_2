@@ -36,7 +36,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
  <!--begin::Form-->
-                            <form class="form" action="{{ url('lgas/update') }}" id="kt_modal_update_lga_form"  novalidate="novalidate">
+                            <form class="form" action="{{ url('admin/lgas/update') }}" id="kt_modal_update_lga_form"  novalidate="novalidate">
                                 <input id="lga_id" name="lga_id" type="hidden" value="{{ $lga->id }}">
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_update_lga_header">

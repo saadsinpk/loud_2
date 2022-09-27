@@ -153,7 +153,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" action="{{ url('wards/update') }}" id="kt_modal_update_ward_form" enctype="multipart/form-data" novalidate="novalidate">
+                            <form class="form" action="{{ url('admin/wards/update') }}" id="kt_modal_update_ward_form" enctype="multipart/form-data" novalidate="novalidate">
                                 <input id="ward_id" name="ward_id" type="hidden" value="{{ $ward->id }}">
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_update_ward_header">

@@ -137,7 +137,7 @@
       <form action="{{ route('login') }}" class="form w-100"  id="kt_sign_in_form">
 	
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" type="text" name="email" autocomplete="off">
+          <input type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" id="emailInput" type="text" name="email" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -145,7 +145,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password"  name="password" value="{{ old('password') }}" autocomplete="off">
+          <input type="password" class="form-control" placeholder="Password"  name="password" id="passwordInput" value="{{ old('password') }}" autocomplete="off">
 		  
           <div class="input-group-append">
             <div class="input-group-text">
@@ -210,7 +210,6 @@
 
 <!--begin::Page Custom Javascript(used by this page)-->
 <script src="{{ asset('assets/js/custom/authentication/sign-in/general.js') }}"></script>
-<!--end::Page Custom Javascript-->
-			
+<!--end::Page Custom Javascript-->	
 </body>
 </html>

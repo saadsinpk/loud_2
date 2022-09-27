@@ -33,7 +33,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
  <!--begin::Form-->
-                    <form class="form" action="{{ url('parties/update') }}" id="kt_modal_update_party_form"  novalidate="novalidate">
+                    <form class="form" action="{{ url('admin/parties/update') }}" id="kt_modal_update_party_form"  novalidate="novalidate">
                                 <input id="party_id" name="party_id" type="hidden" value="{{ $party->id }}">
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_update_party_header">

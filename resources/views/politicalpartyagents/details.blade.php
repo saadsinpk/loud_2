@@ -37,7 +37,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
  <!--begin::Form-->
-                            <form class="form" action="{{ url('politicalpartyagents/update') }}" id="kt_modal_update_politicalpartyagent_form" enctype="multipart/form-data" novalidate="novalidate">
+                            <form class="form" action="{{ url('admin/politicalpartyagents/update') }}" id="kt_modal_update_politicalpartyagent_form" enctype="multipart/form-data" novalidate="novalidate">
                                 @csrf
                                 <input id="politicalpartyagent_id" name="id" type="hidden" value="{{ $politicalpartyagent->id }}">
                                 <!--begin::Modal header-->
@@ -214,7 +214,7 @@
                                                 <input type="text" class="form-control form-control-solid" placeholder="longitude" name="longitude" id="longitude" value="{{$politicalpartyagent->longitude}}" />
                                                 <!--end::Input-->
                                             </div>
-                                            
+
                                             <!--begin::Input group-->
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
