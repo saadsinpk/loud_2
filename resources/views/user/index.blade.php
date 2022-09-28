@@ -19,7 +19,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -133,7 +133,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/admin/user') }}" id="kt_modal_add_user_form" data-kt-redirect="{{ url('/user') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/user') }}" id="kt_modal_add_user_form" data-kt-redirect="{{ url('/admin/user') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_user_header">

@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parties</h1>
+            <h1>{{ ucfirst( request()->segment(2) ) }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -49,18 +49,60 @@
                                       
                                         <!--begin::party form-->
                                         <div id="kt_modal_update_party_info" class="collapse show">
-                                            <!--begin::Input group-->
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Name</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input id="name" type="text" class="form-control form-control-solid" placeholder="" name="name" value="{{ $party->name }}"  autocomplete="off"/>
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-bold mb-2">Name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" id="name" class="form-control form-control-solid" placeholder="constituency Name" name="name" value="{{$item->name}}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                           
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-bold mb-2">Assembly</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" id="assembly" class="form-control form-control-solid" placeholder="Assembly" name="assembly" value="{{$item->assembly}}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-bold mb-2">Phone</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" id="phone" class="form-control form-control-solid" placeholder="Phone" name="phone" value="{{$item->phone}}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-bold mb-2">Latitude</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" id="latitude" class="form-control form-control-solid" placeholder="Latitude" name="latitude" value="{{$item->latitude}}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-6 fw-bold mb-2">Longitude</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" id="longitude" class="form-control form-control-solid" placeholder="Longitude" name="longitude" value="{{$item->longitude}}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
                                         
                                         </div>
                                         <!--end::party form-->

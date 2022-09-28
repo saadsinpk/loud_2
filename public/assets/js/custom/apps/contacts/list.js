@@ -84,7 +84,7 @@ var KTModalParty = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initPartyList = function() {
+    var initPartyList = function(from_date='',to_date='',searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -93,7 +93,8 @@ var KTModalParty = function() {
             responsive: true,
             searching: false,
             ajax: {
-                url: url
+                url: url,
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
                     data: 'no',

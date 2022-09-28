@@ -17,6 +17,8 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\Auth\ForgotPassword;
 use App\Http\Controllers\Auth\LoginController;
 
+
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\LgaController;
 use App\Http\Controllers\WardController;
 use App\Http\Controllers\VotesController;
@@ -95,7 +97,6 @@ Route::prefix("admin")->group(function(){
         Route::post('/', [RolesController::class, 'store'])->name("roles.store");
         Route::get('/view/{id}', [RolesController::class, 'details'])->name("roles.view");
         Route::get('/delete/{id}', [RolesController::class, 'destroy'])->name("roles.delete");
-        Route::post('/delete-rows', [RolesController::class, 'destroyRows'])->name("roles.delete.row");
         Route::post('/update', [RolesController::class, 'update'])->name("roles.update");
         
     });
@@ -153,7 +154,7 @@ Route::prefix("admin")->group(function(){
 
     Route::prefix("devices")->group(function(){
         Route::get('/', [DeviceController::class, 'index'])->name("devices.index");
-        Route::get('/view/{id}', [DeviceController::class, 'details'])->name("devices.view");
+        Route::get('/view/{id}', [DeviceController::class, 'show'])->name("devices.view");
         Route::get('/delete/{id}', [DeviceController::class, 'destroy'])->name("devices.delete");
         Route::post('/delete-rows', [DeviceController::class, 'destroyRows'])->name("devices.delete.row");
         Route::post('/update', [DeviceController::class, 'update'])->name("devices.update");
@@ -163,15 +164,16 @@ Route::prefix("admin")->group(function(){
     Route::prefix("states")->group(function(){
         Route::get('/', [StatesController::class, 'index'])->name("states.index");
         Route::post('/', [StatesController::class, 'store'])->name("states.store");
-        Route::get('/view/{id}', [StatesController::class, 'details'])->name("states.view");
+        Route::get('/view/{id}', [StatesController::class, 'show'])->name("states.view");
         Route::get('/delete/{id}', [StatesController::class, 'destroy'])->name("states.delete");
         Route::post('/update', [StatesController::class, 'update'])->name("states.update");
+        Route::post('/list', [StatesController::class, 'getList'])->name("states.list");
     });
 
     Route::prefix("constituencies")->group(function(){
         Route::get('/', [ConstituenciesController::class, 'index'])->name("constituencies.index");
         Route::post('/', [ConstituenciesController::class, 'store'])->name("constituencies.store");
-        Route::get('/view/{id}', [ConstituenciesController::class, 'details'])->name("constituencies.view");
+        Route::get('/view/{id}', [ConstituenciesController::class, 'show'])->name("constituencies.view");
         Route::get('/delete/{id}', [ConstituenciesController::class, 'destroy'])->name("constituencies.delete");
         Route::post('/update', [ConstituenciesController::class, 'update'])->name("constituencies.update");
     });
@@ -179,7 +181,7 @@ Route::prefix("admin")->group(function(){
     Route::prefix("elections")->group(function(){
         Route::get('/', [ElectionController::class, 'index'])->name("elections.index");
         Route::post('/', [ElectionController::class, 'store'])->name("elections.store");
-        Route::get('/view/{id}', [ElectionController::class, 'details'])->name("elections.view");
+        Route::get('/view/{id}', [ElectionController::class, 'show'])->name("elections.view");
         Route::get('/delete/{id}', [ElectionController::class, 'destroy'])->name("elections.delete");
         Route::post('/update', [ElectionController::class, 'update'])->name("elections.update");
     });
@@ -188,7 +190,7 @@ Route::prefix("admin")->group(function(){
     Route::prefix("senatorialdistricts")->group(function(){
         Route::get('/', [SenatorialDistrictController::class, 'index'])->name("senatorialdistricts.index");
         Route::post('/', [SenatorialDistrictController::class, 'store'])->name("senatorialdistricts.store");
-        Route::get('/view/{id}', [SenatorialDistrictController::class, 'details'])->name("senatorialdistricts.view");
+        Route::get('/view/{id}', [SenatorialDistrictController::class, 'show'])->name("senatorialdistricts.view");
         Route::get('/delete/{id}', [SenatorialDistrictController::class, 'destroy'])->name("senatorialdistricts.delete");
         Route::post('/update', [SenatorialDistrictController::class, 'update'])->name("senatorialdistricts.update");
     });
@@ -197,7 +199,7 @@ Route::prefix("admin")->group(function(){
     Route::prefix("federalconstituencies")->group(function(){
         Route::get('/', [FederalConstituenciesController::class, 'index'])->name("federalconstituencies.index");
         Route::post('/', [FederalConstituenciesController::class, 'store'])->name("federalconstituencies.store");
-        Route::get('/view/{id}', [FederalConstituenciesController::class, 'details'])->name("federalconstituencies.view");
+        Route::get('/view/{id}', [FederalConstituenciesController::class, 'show'])->name("federalconstituencies.view");
         Route::get('/delete/{id}', [FederalConstituenciesController::class, 'destroy'])->name("federalconstituencies.delete");
         Route::post('/update', [FederalConstituenciesController::class, 'update'])->name("federalconstituencies.update");
     });
@@ -214,7 +216,7 @@ Route::prefix("admin")->group(function(){
     Route::prefix("votes")->group(function(){
         Route::get('/', [VotesController::class, 'index'])->name("votes.index");
         Route::post('/', [VotesController::class, 'store'])->name("votes.store");
-        Route::get('/view/{id}', [VotesController::class, 'details'])->name("votes.view");
+        Route::get('/view/{id}', [VotesController::class, 'show'])->name("votes.view");
         Route::get('/delete/{id}', [VotesController::class, 'destroy'])->name("votes.delete");
         Route::post('/update', [VotesController::class, 'update'])->name("votes.update");
     });
@@ -222,17 +224,29 @@ Route::prefix("admin")->group(function(){
     Route::prefix("submithistories")->group(function(){
         Route::get('/', [SubmitHistoriesController::class, 'index'])->name("submithistories.index");
         Route::post('/', [SubmitHistoriesController::class, 'store'])->name("submithistories.store");
-        Route::get('/view/{id}', [SubmitHistoriesController::class, 'details'])->name("submithistories.view");
+        Route::get('/view/{id}', [SubmitHistoriesController::class, 'show'])->name("submithistories.view");
         Route::get('/delete/{id}', [SubmitHistoriesController::class, 'destroy'])->name("submithistories.delete");
         Route::post('/update', [SubmitHistoriesController::class, 'update'])->name("submithistories.update");
     });
 
     Route::prefix("contacts")->group(function(){
         Route::get('/', [ContactsController::class, 'index'])->name("contacts.index");
-        Route::get('/view/{id}', [ContactsController::class, 'details'])->name("contacts.view");
+        Route::get('/view/{id}', [ContactsController::class, 'show'])->name("contacts.view");
         Route::get('/delete/{id}', [ContactsController::class, 'destroy'])->name("contacts.delete");
       //  Route::post('/update', [ContactsController::class, 'update'])->name("contacts.update");
     });
+
+
+    Route::prefix("tickets")->group(function(){
+        Route::get('/', [TicketController::class, 'index'])->name("tickets.index");
+        Route::get('/view/{id}', [TicketController::class, 'show'])->name("tickets.view");
+        Route::get('/delete/{id}', [TicketController::class, 'destroy'])->name("tickets.delete");
+        Route::post('/update', [TicketController::class, 'update'])->name("tickets.update");
+    });
+
+    
+
     });
 });
+
 require __DIR__.'/auth.php';

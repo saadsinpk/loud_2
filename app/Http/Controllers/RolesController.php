@@ -67,9 +67,11 @@ class RolesController extends Controller
             $items = array();
             foreach ($roles->items() as $idx => $row) {
                 $action = '';
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/roles/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
+                $action .= '<a class="btn btn-xs col-1 mr-2" data-kt-table-filter="edit_row" href="'.url('/roles/view/'.$row['id']).' "><i class="fas fa-eye"></i></a>';
 
-                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
+                $action .= '<a class="btn btn-xs col-1 mr-2" data-kt-table-filter="edit_row" href="'.url('/roles/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
+
+                $action .= '<a class="btn btn-xs  col-1 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
                 $permissions = '<small>';
                 foreach ($row->permissions as $key => $value) {

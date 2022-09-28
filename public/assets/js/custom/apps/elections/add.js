@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    const partyFormId = "form#kt_modal_add_party_form"
-    $(partyFormId).on("submit", function(e){
+    const electionFormId = "form#kt_modal_add_election_form"
+    $(electionFormId).on("submit", function(e){
         e.preventDefault()
         const url = $(this).attr("action")
         const method = $(this).attr("method")
@@ -12,12 +12,12 @@ $(document).ready(function(){
             data: formdata,
             dataType: "JSON",
             beforeSend:function(){
-                $(`${partyFormId} span.indicator-progress`).show()
-                $(`${partyFormId} button[type='submit']`).attr('disabled', true)
+                $(`${electionFormId} span.indicator-progress`).show()
+                $(`${electionFormId} button[type='submit']`).attr('disabled', true)
             },
             success: function(res) {
-                $(`${partyFormId} span.indicator-progress`).hide()
-                $(`${partyFormId} button[type='submit']`).attr('disabled', false)
+                $(`${electionFormId} span.indicator-progress`).hide()
+                $(`${electionFormId} button[type='submit']`).attr('disabled', false)
                 
                 Swal.fire({
                     title: "Success",
@@ -64,8 +64,8 @@ $(document).ready(function(){
 
             },
             complete:function(){
-                $(`${partyFormId} span.indicator-progress`).hide()
-                $(`${partyFormId} button[type='submit']`).attr('disabled', false)
+                $(`${electionFormId} span.indicator-progress`).hide()
+                $(`${electionFormId} button[type='submit']`).attr('disabled', false)
             }
         })
 

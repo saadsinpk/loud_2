@@ -3,7 +3,7 @@
 		  dropdownParent: $('#js-data-lga-modal'),
 		  selectOnClose: true,
 		  ajax: {
-			url: "/lgas/list",
+			url: "/admin/lgas/list",
 			type: "get",
 			dataType: 'json',
 			data: function (params) {
@@ -37,7 +37,7 @@
 		  dropdownParent: $('#js-data-wards-modal'),
 		  selectOnClose: true,
 		  ajax: {
-			url: "/wards/list",
+			url: "/admin/wards/list",
 			type: "post",
 			dataType: 'json',
 			data: function (params) {
@@ -69,7 +69,7 @@
 		  dropdownParent: $('#js-data-pu-modal'),
 		  selectOnClose: true,
 		  ajax: {
-			url: "/pollingunits/list",
+			url: "/admin/pollingunits/list",
 			type: "post",
 			dataType: 'json',
 			data: function (params) {

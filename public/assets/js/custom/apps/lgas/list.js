@@ -84,7 +84,7 @@ var KTModalLga = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initlgaList = function() {
+    var initlgaList = function(from_date='',to_date='',searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -93,7 +93,8 @@ var KTModalLga = function() {
             responsive: true,
             searching: false,
             ajax: {
-                url: url
+                url: url,
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
                     data: 'no',
@@ -102,6 +103,16 @@ var KTModalLga = function() {
                 {
                     data: 'name',
                     name: 'name',
+                },
+				
+                {
+                    data: 'state_name',
+                    name: 'state_name',
+                },
+				
+                {
+                    data: 'federal_constituency_name',
+                    name: 'federal_constituency_name',
                 },
                 {
                     data: 'updated_at',
@@ -124,10 +135,8 @@ var KTModalLga = function() {
         // Re-init functions on every table re-draw -- more info: https://datatables.net/reference/event/draw
         datatable.on('draw', function() {
             ids = "";
-           // initToggleToolbar();
             handleDeleteRows();
 			handleEditRows();
-           // toggleToolbars();
             handleClickabeRowtable();
         });
     }
@@ -207,7 +216,7 @@ var KTModalLga = function() {
                         });
 
                         $.ajax({
-                            url: `/lgas/delete/${id}`,
+                            url: `/admin/lgas/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {

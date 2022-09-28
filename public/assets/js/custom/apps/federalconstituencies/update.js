@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateparty = function() {
+var KTModalUpdatefederalconstituency = function() {
     var element;
     var submitButton;
     var cancelButton;
@@ -18,7 +18,7 @@ var KTModalUpdateparty = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'party name is required'
+                                message: 'federalconstituency name is required'
                             }
                         }
                     },
@@ -39,14 +39,16 @@ var KTModalUpdateparty = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_party_form").attr("action");
+                    var url = $("#kt_modal_update_federalconstituency_form").attr("action");
                     var formData = new FormData();
 
-                    var id = $("#party_id").val();
+                    var id = $("#federalconstituency_id").val();
+                    var senatorial_district_id = $("#senatorial_district_id").val();
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
                     formData.append("id", id);
                     formData.append("name", name);
+                    formData.append("senatorial_district_id", senatorial_district_id);
                     
                     // formData.append("email", email);
 
@@ -164,12 +166,12 @@ var KTModalUpdateparty = function() {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_party');
+            element = document.querySelector('#kt_modal_update_federalconstituency');
            // modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_party_form');
-            submitButton = form.querySelector('#kt_modal_update_party_submit');
-            cancelButton = form.querySelector('#kt_modal_update_party_cancel');
+            form = element.querySelector('#kt_modal_update_federalconstituency_form');
+            submitButton = form.querySelector('#kt_modal_update_federalconstituency_submit');
+            cancelButton = form.querySelector('#kt_modal_update_federalconstituency_cancel');
 
 
             initForm();
@@ -179,5 +181,5 @@ var KTModalUpdateparty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalUpdateparty.init();
+    KTModalUpdatefederalconstituency.init();
 });

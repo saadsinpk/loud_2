@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\State;
 use Illuminate\Database\Seeder;
 
 class StatesTableSeeder extends Seeder
@@ -13,6 +14,9 @@ class StatesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        State::create( [
+        'id'=>1,
+        'name'=>'KWARA'
+        ] );
     }
 }

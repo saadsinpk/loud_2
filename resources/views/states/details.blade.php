@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parties</h1>
+            <h1>{{ ucfirst( request()->segment(2) ) }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -94,7 +94,7 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/party/update.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/states/update.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

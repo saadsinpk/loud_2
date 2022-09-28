@@ -21,7 +21,14 @@ class DatabaseSeeder extends Seeder
            // IndustryVerticalSeeder::class,
             //UserLevelSeeder::class,
             //CampaignTypeSeeder::class,
-            CreateAdminUserSeeder::class,
+            //CreateAdminUserSeeder::class,
+           // ElectionsTableSeeder::class,
+           // StatesTableSeeder::class,
+          //  TicketsTableSeeder::class,
+          //  SenatorialDistrictsTableSeeder::class,
+         //   LgasTableSeeder::class,
+         //   FederalTableSeeder::class,
+            PartiesTableSeeder::class
         ]);
 
     }

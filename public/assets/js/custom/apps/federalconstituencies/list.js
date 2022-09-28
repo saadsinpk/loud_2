@@ -1,6 +1,6 @@
 "use strict";
 // Class definition
-var KTModalParty = function() {
+var KTModalfederalconstituency = function() {
     var cancelButton;
     var closeButton;
     var validator;
@@ -34,7 +34,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                         //modal.hide(); // Hide modal
-					    $('#kt_modal_add_party').modal('hide');			
+					    $('#kt_modal_add_federalconstituency').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -67,7 +67,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                        // modal.hide(); // Hide modal	
-						$('#kt_modal_add_party').modal('hide');			
+						$('#kt_modal_add_federalconstituency').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -84,7 +84,7 @@ var KTModalParty = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initPartyList = function() {
+    var initfederalconstituencyList = function(searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -93,15 +93,20 @@ var KTModalParty = function() {
             responsive: true,
             searching: false,
             ajax: {
-                url: url
+                url: url,
+                data:{searchword:searchword}
             },
-            columns: [{
+            columns: [{ 
                     data: 'no',
                     name: 'no',
                 },
                 {
                     data: 'name',
                     name: 'name',
+                },
+                {
+                    data: 'senatorialdistrict',
+                    name: 'senatorialdistrict',
                 },
                 {
                     data: 'updated_at',
@@ -146,7 +151,7 @@ var KTModalParty = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[aria-controls="kt_partys_table"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_federalconstituencys_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -168,7 +173,7 @@ var KTModalParty = function() {
 		});
 	}
 
-    // Delete party
+    // Delete federalconstituency
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
@@ -181,7 +186,7 @@ var KTModalParty = function() {
                 // Select parent row
                 const parent = e.target.closest('tr');
 
-                // Get party name
+                // Get federalconstituency name
                 const name = parent.querySelectorAll('td')[1].innerText;
                 const id = d.getAttribute('data-id'); 
 
@@ -207,7 +212,7 @@ var KTModalParty = function() {
                         });
 
                         $.ajax({
-                            url: `/parties/delete/${id}`,
+                            url: `/admin/federalconstituencies/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {
@@ -254,8 +259,8 @@ var KTModalParty = function() {
     }
     $('#filterthis').click(function(){
        
-            $('#kt_party_table').DataTable().destroy();
-            initpartyList();
+            $('#kt_federalconstituency_table').DataTable().destroy();
+            initfederalconstituencyList();
         
     });
  
@@ -265,20 +270,20 @@ var KTModalParty = function() {
     return {
         // Public functions
         init: function() {
-            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_party'));
-			modal = $('#kt_modal_add_party');
-			modalview = $('#kt_modal_view_party');
-            table = document.querySelector('#kt_party_table');
+            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_federalconstituency'));
+			modal = $('#kt_modal_add_federalconstituency');
+			modalview = $('#kt_modal_view_federalconstituency');
+            table = document.querySelector('#kt_federalconstituency_table');
 
             if (!table) {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_party_form');
-            cancelButton = form.querySelector('#kt_modal_add_party_cancel');
-            closeButton = form.querySelector('#kt_modal_add_party_close');
-            url = $("#kt_modal_add_party_form").attr("action");
-            initPartyList();
+            form = document.querySelector('#kt_modal_add_federalconstituency_form');
+            cancelButton = form.querySelector('#kt_modal_add_federalconstituency_cancel');
+            closeButton = form.querySelector('#kt_modal_add_federalconstituency_close');
+            url = $("#kt_modal_add_federalconstituency_form").attr("action");
+            initfederalconstituencyList();
             closeForm();
         }
     };
@@ -286,5 +291,5 @@ var KTModalParty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalParty.init();
+    KTModalfederalconstituency.init();
 });

@@ -5,12 +5,12 @@ if($uri_segments[1]=="user"){
 }else if($uri_segments[1]=="mypermissions"){
     $uri="permissions";
 }else{
-    $uri=request()->segment(1);
+    $uri=request()->segment(2);
 }
 ?>
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar elevation-4 sidebar-light-danger">
+  <aside class="main-sidebar elevation-4 sidebar-light-danger"> <!-- sidebar-dark-primary -->
     <!-- Brand Logo -->
     <a href="#" class="brand-link">  
 	  <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" class="brand-image  elevation-0" />
@@ -45,7 +45,7 @@ if($uri_segments[1]=="user"){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('dashboard') }}" class="nav-link active">
+            <a href="{{ route('dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -151,11 +151,23 @@ if($uri_segments[1]=="user"){
             </a>
           </li>
 
+
+
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/submithistories') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Submition Histories
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="{{ url('/admin/votes') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Results
+                Vote Results
               </p>
             </a>
           </li>
@@ -204,6 +216,25 @@ if($uri_segments[1]=="user"){
           </li>
 		  
 		  
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/contacts') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Contacts Us
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a href="{{ url('/admin/tickets') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Tickets
+              </p>
+            </a>
+          </li>
 
          
         </ul>

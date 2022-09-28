@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateparty = function() {
+var KTModalUpdateconstituency = function() {
     var element;
     var submitButton;
     var cancelButton;
@@ -18,7 +18,7 @@ var KTModalUpdateparty = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'party name is required'
+                                message: 'constituency name is required'
                             }
                         }
                     },
@@ -39,21 +39,19 @@ var KTModalUpdateparty = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_party_form").attr("action");
+                    var url = $("#kt_modal_update_constituency_form").attr("action");
                     var formData = new FormData();
 
-                    var id = $("#party_id").val();
+                    var id = $("#constituency_id").val();
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
                     formData.append("id", id);
                     formData.append("name", name);
+                    formData.append("assembly", assembly);
+                    formData.append("phone", phone);
+                    formData.append("latitude", latitude);
+                    formData.append("longitude", longitude);
                     
-                    // formData.append("email", email);
-
-                    /*if (avatar != undefined) {
-                        formData.append("avatar", avatar);
-                    }*/
-
                     if (status == 'Valid') {
                         $.ajaxSetup({
                             headers: {
@@ -164,12 +162,12 @@ var KTModalUpdateparty = function() {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_party');
+            element = document.querySelector('#kt_modal_update_constituency');
            // modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_party_form');
-            submitButton = form.querySelector('#kt_modal_update_party_submit');
-            cancelButton = form.querySelector('#kt_modal_update_party_cancel');
+            form = element.querySelector('#kt_modal_update_constituency_form');
+            submitButton = form.querySelector('#kt_modal_update_constituency_submit');
+            cancelButton = form.querySelector('#kt_modal_update_constituency_cancel');
 
 
             initForm();
@@ -179,5 +177,5 @@ var KTModalUpdateparty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalUpdateparty.init();
+    KTModalUpdateconstituency.init();
 });

@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parties</h1>
+            <h1>{{ ucfirst( request()->segment(2) ) }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -33,7 +33,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
  <!--begin::Form-->
-                    <form class="form" action="{{ url('parties/update') }}" id="kt_modal_update_party_form"  novalidate="novalidate">
+                    <form class="form" action="{{ url('admin/states/update') }}" id="kt_modal_update_party_form"  novalidate="novalidate">
                                 <input id="party_id" name="party_id" type="hidden" value="{{ $party->id }}">
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_update_party_header">
@@ -94,7 +94,7 @@
 
 @section("after_script")
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/party/update.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/states/update.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection

@@ -1,6 +1,6 @@
 "use strict";
 // Class definition
-var KTModalParty = function() {
+var KTModalconstituency = function() {
     var cancelButton;
     var closeButton;
     var validator;
@@ -34,7 +34,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                         //modal.hide(); // Hide modal
-					    $('#kt_modal_add_party').modal('hide');			
+					    $('#kt_modal_add_constituency').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -67,7 +67,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                        // modal.hide(); // Hide modal	
-						$('#kt_modal_add_party').modal('hide');			
+						$('#kt_modal_add_constituency').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -84,7 +84,7 @@ var KTModalParty = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initPartyList = function() {
+    var initconstituencyList = function(searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -93,7 +93,8 @@ var KTModalParty = function() {
             responsive: true,
             searching: false,
             ajax: {
-                url: url
+                url: url,
+                data:{searchword:searchword}
             },
             columns: [{
                     data: 'no',
@@ -102,6 +103,22 @@ var KTModalParty = function() {
                 {
                     data: 'name',
                     name: 'name',
+                },
+                {
+                    data: 'assembly',
+                    name: 'assembly',
+                },
+                {
+                    data: 'phone',
+                    name: 'phone',
+                },
+                {
+                    data: 'latitude',
+                    name: 'latitude',
+                },
+                {
+                    data: 'longitude',
+                    name: 'longitude',
                 },
                 {
                     data: 'updated_at',
@@ -146,7 +163,7 @@ var KTModalParty = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[aria-controls="kt_partys_table"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_constituencys_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -168,7 +185,7 @@ var KTModalParty = function() {
 		});
 	}
 
-    // Delete party
+    // Delete constituency
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
@@ -181,7 +198,7 @@ var KTModalParty = function() {
                 // Select parent row
                 const parent = e.target.closest('tr');
 
-                // Get party name
+                // Get constituency name
                 const name = parent.querySelectorAll('td')[1].innerText;
                 const id = d.getAttribute('data-id'); 
 
@@ -254,8 +271,8 @@ var KTModalParty = function() {
     }
     $('#filterthis').click(function(){
        
-            $('#kt_party_table').DataTable().destroy();
-            initpartyList();
+            $('#kt_constituency_table').DataTable().destroy();
+            initconstituencyList();
         
     });
  
@@ -265,20 +282,20 @@ var KTModalParty = function() {
     return {
         // Public functions
         init: function() {
-            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_party'));
-			modal = $('#kt_modal_add_party');
-			modalview = $('#kt_modal_view_party');
-            table = document.querySelector('#kt_party_table');
+            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_constituency'));
+			modal = $('#kt_modal_add_constituency');
+			modalview = $('#kt_modal_view_constituency');
+            table = document.querySelector('#kt_constituency_table');
 
             if (!table) {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_party_form');
-            cancelButton = form.querySelector('#kt_modal_add_party_cancel');
-            closeButton = form.querySelector('#kt_modal_add_party_close');
-            url = $("#kt_modal_add_party_form").attr("action");
-            initPartyList();
+            form = document.querySelector('#kt_modal_add_constituency_form');
+            cancelButton = form.querySelector('#kt_modal_add_constituency_cancel');
+            closeButton = form.querySelector('#kt_modal_add_constituency_close');
+            url = $("#kt_modal_add_constituency_form").attr("action");
+            initconstituencyList();
             closeForm();
         }
     };
@@ -286,5 +303,5 @@ var KTModalParty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalParty.init();
+    KTModalconstituency.init();
 });

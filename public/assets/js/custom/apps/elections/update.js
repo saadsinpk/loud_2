@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTModalUpdateparty = function() {
+var KTModalUpdateelection = function() {
     var element;
     var submitButton;
     var cancelButton;
@@ -18,7 +18,7 @@ var KTModalUpdateparty = function() {
                     'name': {
                         validators: {
                             notEmpty: {
-                                message: 'party name is required'
+                                message: 'election name is required'
                             }
                         }
                     },
@@ -39,10 +39,10 @@ var KTModalUpdateparty = function() {
                     submitButton.setAttribute('data-kt-indicator', 'on');
                     submitButton.disabled = true;
 
-                    var url = $("#kt_modal_update_party_form").attr("action");
+                    var url = $("#kt_modal_update_election_form").attr("action");
                     var formData = new FormData();
 
-                    var id = $("#party_id").val();
+                    var id = $("#election_id").val();
                     // var avatar = $("#avatar")[0].files[0];
                     var name = $("#name").val();
                     formData.append("id", id);
@@ -164,12 +164,12 @@ var KTModalUpdateparty = function() {
         // Public functions
         init: function() {
             // Elements
-            element = document.querySelector('#kt_modal_update_party');
+            element = document.querySelector('#kt_modal_update_election');
            // modal = new bootstrap.Modal(element);
 
-            form = element.querySelector('#kt_modal_update_party_form');
-            submitButton = form.querySelector('#kt_modal_update_party_submit');
-            cancelButton = form.querySelector('#kt_modal_update_party_cancel');
+            form = element.querySelector('#kt_modal_update_election_form');
+            submitButton = form.querySelector('#kt_modal_update_election_submit');
+            cancelButton = form.querySelector('#kt_modal_update_election_cancel');
 
 
             initForm();
@@ -179,5 +179,5 @@ var KTModalUpdateparty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalUpdateparty.init();
+    KTModalUpdateelection.init();
 });

@@ -20,7 +20,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -97,8 +97,8 @@
                             </th>
                             <th class="min-w-125px">Name</th>
                             <th class="min-w-125px">Color</th>
-                            <th class="min-w-125px">Flag</th>
                             <th class="min-w-125px">Sign</th>
+                            <th class="min-w-125px">Flag</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -153,7 +153,7 @@
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/admin/parties') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/parties') }}" enctype="multipart/form-data" method="POST">
+                    <form class="form" action="{{ url('/admin/parties') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/admin/parties') }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_add_party_header">

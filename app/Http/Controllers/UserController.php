@@ -48,9 +48,11 @@ class UserController extends Controller
             $items = array();
             foreach ($users->items() as $idx => $row) {
                 $action = '';
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" href="'.url('/user/view/'.$row['id']).'"><i class="fas fa-pencil-alt"></i></a>';
+                $action .= '<a class="btn btn-xs  col-1 mr-2" href="'.url('/user/view/'.$row['id']).'"><i class="fas fa-eye"></i></a>';
 
-                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
+                $action .= '<a class="btn btn-xs  col-1 mr-2" href="'.url('/user/view/'.$row['id']).'"><i class="fas fa-pencil-alt"></i></a>';
+
+                $action .= '<a class="btn btn-xs col-1 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
                 if(!empty($row['profile_picture'])){
                     $profile_picture = '<img src="'.url('uploads/users_images/'.$row['profile_picture']).'" width="36" height="36" />';

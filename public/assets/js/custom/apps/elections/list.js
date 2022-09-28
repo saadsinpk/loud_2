@@ -1,6 +1,6 @@
 "use strict";
 // Class definition
-var KTModalParty = function() {
+var KTModalelection = function() {
     var cancelButton;
     var closeButton;
     var validator;
@@ -34,7 +34,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                         //modal.hide(); // Hide modal
-					    $('#kt_modal_add_party').modal('hide');			
+					    $('#kt_modal_add_election').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -67,7 +67,7 @@ var KTModalParty = function() {
                     if (result.value) {
                         form.reset(); // Reset form	
                        // modal.hide(); // Hide modal	
-						$('#kt_modal_add_party').modal('hide');			
+						$('#kt_modal_add_election').modal('hide');			
                     } else if (result.dismiss === 'cancel') {
                         Swal.fire({
                             text: "Your form has not been cancelled!.",
@@ -84,7 +84,7 @@ var KTModalParty = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initPartyList = function() {
+    var initelectionList = function(from_date='',to_date='',searchword='') {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -93,7 +93,8 @@ var KTModalParty = function() {
             responsive: true,
             searching: false,
             ajax: {
-                url: url
+                url: url,
+                data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
                     data: 'no',
@@ -146,7 +147,7 @@ var KTModalParty = function() {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = () => {
-        const filterSearch = document.querySelector('[aria-controls="kt_partys_table"]');
+        const filterSearch = document.querySelector('[aria-controls="kt_elections_table"]');
         filterSearch.addEventListener('keyup', function(e) {
             datatable.search(e.target.value).draw();
         });
@@ -168,7 +169,7 @@ var KTModalParty = function() {
 		});
 	}
 
-    // Delete party
+    // Delete election
     var handleDeleteRows = () => {
         // Select all delete buttons
         const deleteButtons = table.querySelectorAll('[data-kt-table-filter="delete_row"]');
@@ -181,7 +182,7 @@ var KTModalParty = function() {
                 // Select parent row
                 const parent = e.target.closest('tr');
 
-                // Get party name
+                // Get election name
                 const name = parent.querySelectorAll('td')[1].innerText;
                 const id = d.getAttribute('data-id'); 
 
@@ -207,7 +208,7 @@ var KTModalParty = function() {
                         });
 
                         $.ajax({
-                            url: `/parties/delete/${id}`,
+                            url: `/admin/elections/delete/${id}`,
                             method: "get",
                             dataType: "JSON",
                             success: function() {
@@ -254,8 +255,8 @@ var KTModalParty = function() {
     }
     $('#filterthis').click(function(){
        
-            $('#kt_party_table').DataTable().destroy();
-            initpartyList();
+            $('#kt_election_table').DataTable().destroy();
+            initelectionList();
         
     });
  
@@ -265,20 +266,20 @@ var KTModalParty = function() {
     return {
         // Public functions
         init: function() {
-            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_party'));
-			modal = $('#kt_modal_add_party');
-			modalview = $('#kt_modal_view_party');
-            table = document.querySelector('#kt_party_table');
+            //modal = new bootstrap.Modal(document.querySelector('#kt_modal_add_election'));
+			modal = $('#kt_modal_add_election');
+			modalview = $('#kt_modal_view_election');
+            table = document.querySelector('#kt_election_table');
 
             if (!table) {
                 return;
             }
 
-            form = document.querySelector('#kt_modal_add_party_form');
-            cancelButton = form.querySelector('#kt_modal_add_party_cancel');
-            closeButton = form.querySelector('#kt_modal_add_party_close');
-            url = $("#kt_modal_add_party_form").attr("action");
-            initPartyList();
+            form = document.querySelector('#kt_modal_add_election_form');
+            cancelButton = form.querySelector('#kt_modal_add_election_cancel');
+            closeButton = form.querySelector('#kt_modal_add_election_close');
+            url = $("#kt_modal_add_election_form").attr("action");
+            initelectionList();
             closeForm();
         }
     };
@@ -286,5 +287,5 @@ var KTModalParty = function() {
 
 // On document ready
 $(document).ready(function(){
-    KTModalParty.init();
+    KTModalelection.init();
 });

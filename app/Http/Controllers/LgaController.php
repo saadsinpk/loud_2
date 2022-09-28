@@ -29,7 +29,7 @@ class LgaController extends Controller
         // Total records
         $totalRecords = Lga::count();
 
-        $list = Lga::orderBy("created_at", "DESC");
+        $list = Lga::with(['state','federalconstituency'])->orderBy("created_at", "DESC");
 
         if (request()->ajax()) {
             if($request->from_date){
@@ -50,14 +50,21 @@ class LgaController extends Controller
             $items = array();
             foreach ($list->items() as $idx => $row) {
                 $action = '';
-                $action .= '<a class="btn btn-xs btn-success col-3 mr-2" data-kt-table-filter="edit_row" href="'.url('/lgas/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
 
-                $action .= '<a class="btn btn-xs btn-danger btn-sm col-3 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
+              $action .= '<a class="btn btn-xs  col-1 mr-2" data-kt-table-filter="edit_row" href="'.url('/lgas/view/'.$row['id']).' "><i class="fas fa-eye"></i></a>';
+
+                $action .= '<a class="btn btn-xs  col-1 mr-2" data-kt-table-filter="edit_row" href="'.url('/lgas/view/'.$row['id']).' "><i class="fas fa-pencil-alt"></i></a>';
+
+                $action .= '<a class="btn btn-xs col-1 mr-2" href="#" data-kt-table-filter="delete_row" data-id="'.$row['id'].'"><i class="fas fa-trash"></i></a>';
 
                 $items[] = array(
                     "no" => $num,
                     "id" => $row['id'],
                     "name" => $row['name'],
+                    "federal_constituency_id" => $row['federal_constituency_id'],
+                    "state_id" => $row['state_id'],
+                    "state_name" => $row->state->name,
+                    "federal_constituency_name" => $row->federalconstituency->name,
                     "created_at" => $row['created_at']->format('d M Y, g:i A'),
                     "updated_at" => $row['updated_at']->format('d M Y, g:i A'),
                     "action" => $action
@@ -108,7 +115,7 @@ class LgaController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $data = $request->only(['name']);
+        $data = $request->only(['name' , 'federal_constituency_id' , 'state_id']);
         $item = Lga::create($data);
         return response()->json(['msg'=>"LGA created successfully"], 200);
     }
@@ -137,7 +144,7 @@ class LgaController extends Controller
         $this->validate($request, [
             'name' => 'required'
         ]);
-        $data = $request->only(['name']);
+        $data = $request->only(['name', 'federal_constituency_id' , 'state_id']);
         $item = Lga::find($request->id);
         $item->fill($data);
         $item->save();

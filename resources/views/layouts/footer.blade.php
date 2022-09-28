@@ -19,6 +19,9 @@
 <!-- jQuery -->
 <script src="{{ asset('assets/js/plugins/jquery/jquery.min.js') }}"></script>
 
+<!-- Bootstrap 4 -->
+<script src="{{ asset('assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('assets/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
@@ -32,8 +35,7 @@
 <!-- sweetalert2 --> 
 <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
   
-<!-- Bootstrap 4 -->
-<script src="{{ asset('assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
 
@@ -42,6 +44,10 @@
 
 <!-- Summernote -->
 <script src="{{ asset('assets/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+<!-- demo js options -->
+<!--
+<script src="{{ asset('assets/js/demo.js') }}"></script> -->
 
   <!-- Scripts -->
   <!--

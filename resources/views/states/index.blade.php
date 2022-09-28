@@ -13,12 +13,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parties</h1>
+            <h1>{{ ucfirst( request()->segment(2) ) }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active"><a href="{{ request()->segment(1) }}">{{ ucfirst( request()->segment(1) ) }}</a></li>
+              <li class="breadcrumb-item active"><a href="{{ request()->segment(2) }}">{{ ucfirst( request()->segment(2) ) }}</a></li>
             </ol>
           </div>
         </div>
@@ -46,23 +46,7 @@
                 </div>
 				
 				
-				<div class="form-group col-md-3 col-sx-12 col-ms-12">
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="from_date" id="from_date" placeholder="Start Date"/>
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
 				
-				<div class="form-group col-md-3 col-sx-12 col-ms-12">
-					<div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="to_date" id="to_date" placeholder="End Date"/>
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
 				<div class="form-group col-1"></div>
 				<div class="form-group col-md-1 col-sx-12 col-ms-12">
 				 <button  type="submit" class="btn btn-primary btn-block " id="filterthis">Filter</button>
@@ -71,7 +55,7 @@
 				<!--begin::Toolbar-->
                     <div class="form-group col-md-1 col-sx-12 col-ms-12" data-kt-user-table-toolbar="base">
                         <!--begin::Add user-->
-                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_party">Add New</button>
+                        <button type="button" class="btn btn-danger  btn_margin " data-toggle="modal" data-target="#kt_modal_add_state">Add New</button>
                         <!--end::Add user-->
                     </div>
                     <!--end::Toolbar-->
@@ -85,7 +69,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_party_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_state_table">
                     <!--begin::Table head-->
                     <thead>
                         <!--begin::Table row-->
@@ -94,6 +78,7 @@
                                 S No.
                             </th>
                             <th class="min-w-125px">Name</th>
+                            <th class="min-w-125px">Country</th>
                             <th class="min-w-125px">Created Date</th>
                             <th class="text-end min-w-70px">Actions</th>
                         </tr>
@@ -113,11 +98,11 @@
         <!--begin::Modals-->
 		
         <!--begin::Modal - admins - View -->
-		  <div class="modal fade" id="kt_modal_view_party">
+		  <div class="modal fade" id="kt_modal_view_state">
 			<div class="modal-dialog">
 			  <div class="modal-content">
 				<div class="modal-header text-center">
-				  <h4 class="modal-title">Party Details</h4>
+				  <h4 class="modal-title">state Details</h4>
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				  </button>
@@ -141,22 +126,22 @@
 		  </div>
 		  <!-- /.modal -->
 		  
-        <!--begin::Modal - Party - Add-->
-        <div class="modal fade" id="kt_modal_add_party" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal - state - Add-->
+        <div class="modal fade" id="kt_modal_add_state" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">
                 <!--begin::Modal content-->
                 <div class="modal-content">
                     <!--begin::Form-->
-                    <form class="form" action="{{ url('/admin/states') }}" id="kt_modal_add_party_form" data-kt-redirect="{{ url('/parties') }}" method="POST">
+                    <form class="form" action="{{ url('/admin/states') }}" id="kt_modal_add_state_form" data-kt-redirect="{{ url('/admin/states') }}" method="POST">
                         @csrf
                         <!--begin::Modal header-->
-                        <div class="modal-header" id="kt_modal_add_party_header">
+                        <div class="modal-header" id="kt_modal_add_state_header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Add a Party</h2>
+                            <h2 class="fw-bolder">Add a state</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_modal_add_party_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_modal_add_state_close" class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -172,14 +157,14 @@
                         <!--begin::Modal body-->
                         <div class="modal-body py-10 px-lg-17">
                             <!--begin::Scroll-->
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_party_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_party_header" data-kt-scroll-wrappers="#kt_modal_add_party_scroll" data-kt-scroll-offset="300px">
+                            <div class="scroll-y me-n7 pe-7" id="kt_modal_add_state_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_state_header" data-kt-scroll-wrappers="#kt_modal_add_state_scroll" data-kt-scroll-offset="300px">
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
                                     <label class="required fs-6 fw-bold mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="party Name" name="name" value="" />
+                                    <input type="text" class="form-control form-control-solid" placeholder="state Name" name="name" value="" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
@@ -193,7 +178,7 @@
                         <!--begin::Modal footer-->
                         <div class="modal-footer flex-center">
                             <!--begin::Button-->
-                            <button type="reset" id="kt_modal_add_party_cancel" class="btn btn-light me-3">Discard</button>
+                            <button type="reset" id="kt_modal_add_state_cancel" class="btn btn-light me-3">Discard</button>
                             <!--end::Button-->
                             <!--begin::Button-->
                             <button type="submit" class="btn btn-primary">
@@ -209,7 +194,7 @@
                 </div>
             </div>
         </div>
-        <!--end::Modal - party - Add-->
+        <!--end::Modal - state - Add-->
 
     
 @endsection
@@ -231,8 +216,8 @@
 <script src="{{ asset('assets/js/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
     <!--begin::Page Custom Javascript(used by this page)-->
-    <script src="{{ asset('assets/js/custom/apps/party/add.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/party/list.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/states/add.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/states/list.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
 @endsection
