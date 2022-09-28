@@ -2,7 +2,7 @@
 @section('content')
 
 	<div id="main-banner" class="banner-one" data-scroll-index="0">
-		<div data-src="{{url('uploads/web/slide-1.jpg')}}">
+		<div data-src="{{url('public/uploads/web/slide-1.jpg')}}">
 			<div class="camera_caption">
 				<div class="container">
 					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
@@ -11,7 +11,7 @@
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
-		<div data-src="{{url('uploads/web/slide-2.jpg')}}">
+		<div data-src="{{url('public/uploads/web/slide-2.jpg')}}">
 			<div class="camera_caption">
 				<div class="container">
 					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
@@ -20,7 +20,7 @@
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
-		<div data-src="{{url('uploads/web/slide-3.png')}}">
+		<div data-src="{{url('public/uploads/web/slide-3.png')}}">
 			<div class="camera_caption">
 				<div class="container">
 					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
@@ -49,7 +49,7 @@
 
                 <div class="col-md-6">
                     <div class=" wow fadeIn wow fadeIn text-center">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="">
                         <a href="#" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
                     </div><!-- end media -->
                 </div><!-- end col -->
@@ -61,8 +61,8 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                    <div class="service-widget">
                         <div class="post-media_pp wow fadeIn">
-                            <a href="{{url('uploads/web/politic_01.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                            <img src="{{url('uploads/web/politic_01.jpg')}}" alt="" class="img-responsive">
+                            <a href="{{url('public/uploads/web/politic_01.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                            <img src="{{url('public/uploads/web/politic_01.jpg')}}" alt="" class="img-responsive">
 							<div class="hover-up">
 								<h3>Let's work for a better future</h3>
 								<p>Aliquam sagittis ligula et sem lacinia, ut facilisis enim sollicitudin. Proin nisi est, 
@@ -93,50 +93,50 @@
             <div class="row">
 				<div class="col-md-6">
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/otogg.jpg')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/otogg.jpg')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>CLIMATE CHANGE</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/pdp.jpg')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/pdp.jpg')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>COMPREHENSIVE IMMIGRATION REFORM</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>ECONOMIC OPPORTUNITY</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap lastchild clearfix">
-                        <img src="{{url('uploads/web/wadaaaaro.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/wadaaaaro.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>HEALTH CARE</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
                 </div><!-- end col --> 
                 <div class="col-md-6">
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>CLIMATE CHANGE</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>COMPREHENSIVE IMMIGRATION REFORM</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap clearfix">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>ECONOMIC OPPORTUNITY</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
 
                     <div class="issuse-wrap lastchild clearfix">
-                        <img src="{{url('uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
+                        <img src="{{url('public/uploads/web/AAGAIN_small.png')}}" alt="" class="img-responsive img-rounded alignleft">
                         <h4>HEALTH CARE</h4>
                         <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
                     </div><!-- end issue -->
@@ -169,54 +169,54 @@
 			<div class="gallery-list row">
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_b">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/candidate1.jpg')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/candidate1.jpg')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/candidate1.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/candidate1.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_b">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/candidate2.jpg')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/candidate2.jpg')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/candidate2.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/candidate2.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/wadaaaaro.png')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/wadaaaaro.png')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/wadaaaaro.png')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/wadaaaaro.png')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_b gal_a">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/pdp.jpg')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/pdp.jpg')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/pdp.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/pdp.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/otogg.jpg')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/otogg.jpg')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/otogg.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/otogg.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_d">
 					<div class="gallery-single fix">
-						<img src="{{url('uploads/web/gallery_img-06.jpg')}}" class="img-responsive" alt="Image">
+						<img src="{{url('public/uploads/web/gallery_img-06.jpg')}}" class="img-responsive" alt="Image">
 						<div class="img-overlay">
-							<a href="{{url('uploads/web/gallery_img-06.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="{{url('public/uploads/web/gallery_img-06.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
