@@ -104,10 +104,6 @@ var KTModalwards = function() {
                     data: 'name',
                     name: 'name',
                 },
-				{
-                    data: 'local_government',
-                    name: 'local_government',
-                },
                 {
                     data: 'lga_name',
                     name: 'lga_name',
@@ -147,7 +143,6 @@ var KTModalwards = function() {
                 e.preventDefault();
 				let current_row = datatable.row(this).data();
 				  $('#name_view').text(current_row.name);
-				  $('#local_government').text(current_row.local_government);
 				  $('#lga_name').text(current_row.lga_name);
 				  modalview.modal('show');
 			});

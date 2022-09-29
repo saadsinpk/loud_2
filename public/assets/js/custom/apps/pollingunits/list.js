@@ -106,8 +106,12 @@ var KTModalpollingunits = function() {
                     name: 'name',
                 },
 				{
-                    data: 'local_government',
-                    name: 'local_government',
+                    data: 'delimitation_code',
+                    name: 'delimitation_code',
+                },
+				{
+                    data: 'state_name',
+                    name: 'state_name',
                 },
                 {
                     data: 'lga_name',

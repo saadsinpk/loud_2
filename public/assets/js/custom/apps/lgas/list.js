@@ -84,7 +84,7 @@ var KTModalLga = function() {
         }
         // Private functions
         // alert(":asasda");
-    var initlgaList = function(from_date='',to_date='',searchword='') {
+    var initlgaList = function() {
 
         // Set date data order
         datatable = $(table).DataTable({
@@ -94,7 +94,7 @@ var KTModalLga = function() {
             searching: false,
             ajax: {
                 url: url,
-                data:{from_date:from_date,to_date:to_date,searchword:searchword}
+                //data:{from_date:from_date,to_date:to_date,searchword:searchword}
             },
             columns: [{
                     data: 'no',
@@ -104,12 +104,10 @@ var KTModalLga = function() {
                     data: 'name',
                     name: 'name',
                 },
-				
                 {
                     data: 'state_name',
                     name: 'state_name',
                 },
-				
                 {
                     data: 'federal_constituency_name',
                     name: 'federal_constituency_name',
@@ -288,8 +286,6 @@ var KTModalLga = function() {
             closeButton = form.querySelector('#kt_modal_add_lga_close');
             url = $("#kt_modal_add_lga_form").attr("action");
             initlgaList();
-            //initToggleToolbar();
-            //handleSearchDatatable();
             closeForm();
         }
     };
