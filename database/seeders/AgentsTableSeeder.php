@@ -26,14 +26,14 @@ class AgentsTableSeeder extends Seeder
         'election_id'=>1,
 
         
-        'lga_id',
-        'polling_unit_id',
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
         'designation' =>'designation',
         'home_address' =>'home_address',
         'mobile' =>'mobile' ,
         'name_party_chairman' =>'empty',
         'name_electoral_officer' =>'empty',
-        'party_id',
+        'party_id' =>NULL,
        
         
         ] );
@@ -45,7 +45,15 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>2
+        'election_id'=>2,
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -55,7 +63,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>2
+        'election_id'=>2,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -65,7 +82,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>2
+        'election_id'=>2,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -75,7 +101,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>2
+        'election_id'=>2,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -85,7 +120,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>3
+        'election_id'=>3,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -95,7 +139,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -105,7 +158,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -115,7 +177,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -125,7 +196,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -135,7 +215,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -145,7 +234,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -155,7 +253,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -165,7 +273,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -175,7 +292,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -185,7 +311,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -195,7 +330,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -205,7 +349,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -215,7 +368,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -225,7 +387,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>1
+        'election_id'=>1,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -235,7 +406,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -245,7 +426,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -255,7 +446,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -265,7 +465,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -275,7 +485,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -285,7 +505,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -295,7 +525,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -305,7 +544,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>6
+        'election_id'=>6,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -315,7 +564,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>5
+        'election_id'=>5,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -325,7 +584,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -335,7 +604,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -345,7 +624,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -355,7 +644,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -365,7 +664,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -375,7 +684,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>7
+        'election_id'=>7,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -385,7 +703,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>8
+        'election_id'=>8,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -395,7 +723,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>8
+        'election_id'=>8,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -405,7 +743,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>8
+        'election_id'=>8,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -415,7 +763,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>8
+        'election_id'=>8,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -425,7 +783,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>8
+        'election_id'=>8,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -435,7 +803,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>9
+        'election_id'=>9,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -445,7 +823,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>9
+        'election_id'=>9,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -455,7 +843,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>9
+        'election_id'=>9,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -465,7 +863,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>9
+        'election_id'=>9,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -475,7 +883,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>9
+        'election_id'=>9,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -485,7 +903,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -495,7 +923,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -505,7 +943,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -515,7 +963,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -525,7 +983,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -535,7 +1002,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>10
+        'election_id'=>10,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -545,7 +1022,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -555,7 +1041,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -565,7 +1061,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -575,7 +1080,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -585,7 +1099,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -595,7 +1119,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>11
+        'election_id'=>11,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -605,7 +1138,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -615,7 +1157,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -625,7 +1177,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -635,7 +1197,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -645,7 +1217,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -655,7 +1237,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>12
+        'election_id'=>12,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -665,7 +1257,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -675,7 +1276,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -685,7 +1296,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -695,7 +1316,16 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -705,7 +1335,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
         ] );
                     
         PoliticalPartyAgent::create( [
@@ -715,7 +1355,17 @@ class AgentsTableSeeder extends Seeder
         'constituency_id'=>NULL,
         'wards_id'=>NULL,
         'number_of_votes'=>0,
-        'election_id'=>4
+        'election_id'=>4,
+
+        'lga_id' =>NULL,
+        'polling_unit_id' =>NULL,
+        'designation' =>'designation',
+        'home_address' =>'home_address',
+        'mobile' =>'mobile' ,
+        'name_party_chairman' =>'empty',
+        'name_electoral_officer' =>'empty',
+        'party_id' =>NULL,
+        
         ] );
             }
 }

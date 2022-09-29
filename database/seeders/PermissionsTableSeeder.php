@@ -16,7 +16,7 @@ class PermissionssTableSeeder extends Seeder
     {
 Permissionss::create( [
 'id'=>198,
-'name'=>'Manage YOWERE/SOSOKI',
+'name'=>'Manage YOWERE//SOSOKI',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -26,7 +26,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>199,
-'name'=>'Manage ADIGBONGBO/AWE/ORIMARO',
+'name'=>'Manage ADIGBONGBO//AWE//ORIMARO',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -36,7 +36,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>200,
-'name'=>'Manage ELEBUE/AGBONA/FATA',
+'name'=>'Manage ELEBUE//AGBONA//FATA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -46,7 +46,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>201,
-'name'=>'Manage ONIRE/ODEGIWA/ALAPA',
+'name'=>'Manage ONIRE//ODEGIWA//ALAPA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -56,7 +56,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>202,
-'name'=>'Manage YOWERE 11/OKEWERU',
+'name'=>'Manage YOWERE 11//OKEWERU',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -66,7 +66,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>203,
-'name'=>'Manage GAMBARI/AIYEKALE',
+'name'=>'Manage GAMBARI//AIYEKALE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -76,7 +76,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>204,
-'name'=>'Manage EFUE/BERIKODO',
+'name'=>'Manage EFUE//BERIKODO',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -86,7 +86,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>205,
-'name'=>'Manage OWODE/GBOGUN',
+'name'=>'Manage OWODE//GBOGUN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -96,7 +96,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>206,
-'name'=>'Manage BALLAH/OTTE',
+'name'=>'Manage BALLAH//OTTE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -106,7 +106,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>207,
-'name'=>'Manage OGBONDOROKO/REKE',
+'name'=>'Manage OGBONDOROKO//REKE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -116,7 +116,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>208,
-'name'=>'Manage AGO-OJA/OSHIN/SAPATI/LADUBA',
+'name'=>'Manage AGO-OJA//OSHIN//SAPATI//LADUBA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -176,7 +176,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>214,
-'name'=>'Manage ODO-ODE/ABOTO',
+'name'=>'Manage ODO-ODE//ABOTO',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -186,7 +186,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>215,
-'name'=>'Manage BORIYA/SHIYA',
+'name'=>'Manage BORIYA//SHIYA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -196,7 +196,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>216,
-'name'=>'Manage GURE/GWASORO',
+'name'=>'Manage GURE//GWASORO',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -206,7 +206,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>217,
-'name'=>'Manage GWEDEBERERU/BABANE',
+'name'=>'Manage GWEDEBERERU//BABANE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -236,7 +236,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>220,
-'name'=>'Manage KENU/TABERU',
+'name'=>'Manage KENU//TABERU',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -246,7 +246,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>221,
-'name'=>'Manage KPAURA/YAKIRU',
+'name'=>'Manage KPAURA//YAKIRU',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -256,7 +256,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>222,
-'name'=>'Manage KIYORU/BWEN',
+'name'=>'Manage KIYORU//BWEN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -276,7 +276,7 @@ Permissionss::create( [
             
 Permissionss::create( [
 'id'=>224,
-'name'=>'Manage SHINAWU/TUNBUYAN',
+'name'=>'Manage SHINAWU//TUNBUYAN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -486,7 +486,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>245,
-'name'=>'Manage OKE-OPIN/ETAN',
+'name'=>'Manage OKE-OPIN//ETAN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -676,7 +676,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>264,
-'name'=>'Manage AGBEYANGI/GBADAMU/OSIN',
+'name'=>'Manage AGBEYANGI//GBADAMU//OSIN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -756,7 +756,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>272,
-'name'=>'Manage MARAFA/PEPELE',
+'name'=>'Manage MARAFA//PEPELE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -766,7 +766,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>273,
-'name'=>'Manage MAYA/ILE-APA',
+'name'=>'Manage MAYA//ILE-APA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -776,7 +776,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>274,
-'name'=>'Manage OKE OYI/OKE OSE/ALALUBOSA',
+'name'=>'Manage OKE OYI//OKE OSE//ALALUBOSA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -986,7 +986,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>295,
-'name'=>'Manage OJUEKUN/ZARUMI',
+'name'=>'Manage OJUEKUN//ZARUMI',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1016,7 +1016,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>298,
-'name'=>'Manage WARRAH/EGBE JILA/OSHIN',
+'name'=>'Manage WARRAH//EGBE JILA//OSHIN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1056,7 +1056,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>302,
-'name'=>'Manage ESIE/IJAN',
+'name'=>'Manage ESIE//IJAN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1066,7 +1066,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>303,
-'name'=>'Manage IPETU/RORE/ARAN-ORIN',
+'name'=>'Manage IPETU//RORE//ARAN-ORIN',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1216,7 +1216,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>318,
-'name'=>'Manage SABAJA/PAMO',
+'name'=>'Manage SABAJA//PAMO',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1436,7 +1436,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>340,
-'name'=>'Manage WOMI/AYAKI',
+'name'=>'Manage WOMI//AYAKI',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1446,7 +1446,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>341,
-'name'=>'Manage ABATI/ALARA',
+'name'=>'Manage ABATI//ALARA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1466,7 +1466,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>343,
-'name'=>'Manage LOGUN/JEHUNKUNNU',
+'name'=>'Manage LOGUN//JEHUNKUNNU',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1476,7 +1476,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>344,
-'name'=>'Manage MALETE/GBUGUDU',
+'name'=>'Manage MALETE//GBUGUDU',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1586,7 +1586,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>355,
-'name'=>'Manage OJOMU NORTH/NORTH WEST',
+'name'=>'Manage OJOMU NORTH//NORTH WEST',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1656,7 +1656,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>362,
-'name'=>'Manage IMOJI/ILALE/ERINMOPE',
+'name'=>'Manage IMOJI//ILALE//ERINMOPE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1676,7 +1676,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>364,
-'name'=>'Manage IMODE/EGOSI',
+'name'=>'Manage IMODE//EGOSI',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1706,7 +1706,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>367,
-'name'=>'Manage IDOFIN /ODO-ASHE',
+'name'=>'Manage IDOFIN //ODO-ASHE',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL
@@ -1776,7 +1776,7 @@ Permissions::create( [
             
 Permissions::create( [
 'id'=>374,
-'name'=>'Manage INAJA/AHOGBADA',
+'name'=>'Manage INAJA//AHOGBADA',
 'guard_name'=>'web',
 'created_at'=>NULL,
 'updated_at'=>NULL

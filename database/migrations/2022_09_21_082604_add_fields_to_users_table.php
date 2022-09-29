@@ -39,6 +39,19 @@ class AddFieldsToUsersTable extends Migration
                     $table->softDeletes()->before('created_at');
             }
 
+            if (!Schema::hasColumn('users', 'verify_token')) {
+                    $table->text('verify_token')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'verify')) {
+                    $table->text('verify')->nullable()->after('email');
+            }
+
+            if (!Schema::hasColumn('users', 'firebase_token')) {
+                    $table->text('firebase_token')->nullable()->after('email');
+            }
+
+
         });
     }
 
@@ -73,6 +86,19 @@ class AddFieldsToUsersTable extends Migration
             if (Schema::hasColumn('users', 'deleted_at')) {
                 $table->dropColumn('deleted_at');
             }
+
+            if (Schema::hasColumn('users', 'verify_token')) {
+                    $table->dropColumn('verify_token');
+            }
+
+            if (Schema::hasColumn('users', 'verify')) {
+                    $table->dropColumn('verify');
+            }
+            if (Schema::hasColumn('users', 'firebase_token')) {
+                    $table->dropColumn('firebase_token');
+            }
+
+
 
         });
     }
