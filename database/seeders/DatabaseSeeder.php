@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-             RolePermissionSeeder::class, // admin and permisiion and roles
+            /* RolePermissionSeeder::class, // admin and permisiion and roles
            //  PermissionssTableSeeder::class
             // permissionsrolesTableSeeder::class,
              CreateAdminUserSeeder::class, // another admin
@@ -29,7 +29,12 @@ class DatabaseSeeder extends Seeder
             SenatorialDistrictsTableSeeder::class,
             LgasTableSeeder::class,
             FederalTableSeeder::class,
-            PartiesTableSeeder::class
+            PartiesTableSeeder::class*/
+
+            LGAUpdateTableSeed::class,
+            WardTsbleSeeder::class,
+            PollingUnitsTableSeeder::class
+
         ]);
 
     }

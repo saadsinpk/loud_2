@@ -14,6 +14,8 @@ class LgasTableSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('lgas')->truncate();
+
 Lga::create( [
 'id'=>2,
 'name'=>'ASA',
@@ -70,7 +72,7 @@ Lga::create( [
             
 Lga::create( [
 'id'=>8,
-'name'=>'ILORIN SOUTH',
+'name'=>'ILORIN-SOUTH',
 'state_id'=>NULL,
 'federal_constituency_id'=>NULL
 ] );
@@ -79,7 +81,7 @@ Lga::create( [
             
 Lga::create( [
 'id'=>9,
-'name'=>'ILORIN WEST',
+'name'=>'ILORIN-WEST',
 'state_id'=>NULL,
 'federal_constituency_id'=>NULL
 ] );
@@ -133,7 +135,7 @@ Lga::create( [
             
 Lga::create( [
 'id'=>15,
-'name'=>'OKEâ€ERO',
+'name'=>'OKE - ERO',
 'state_id'=>NULL,
 'federal_constituency_id'=>NULL
 ] );
@@ -151,20 +153,13 @@ Lga::create( [
             
 Lga::create( [
 'id'=>17,
-'name'=>'PATEGI',
+'name'=>'PATIGI',
 'state_id'=>NULL,
 'federal_constituency_id'=>NULL
 ] );
 
 
-            
-Lga::create( [
-'id'=>18,
-'name'=>'TestMarch',
-'state_id'=>NULL,
-'federal_constituency_id'=>NULL
-] );
-
+        
 
     }
 }
