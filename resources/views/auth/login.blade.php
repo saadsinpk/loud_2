@@ -37,6 +37,7 @@
     background: #e41626;
     border-radius: 20px;
     border: 0px;
+    height: 30px;
     }
 
     #kt_sign_in_submit:hover{
@@ -59,6 +60,7 @@
           background: #726e6e;
           border: 2px solid #000;
           color: #fff;
+
       }
 
       input:-internal-autofill-selected {
@@ -66,6 +68,7 @@
           background: #726e6e;
           border: 2px solid #000;
           color: #fff;
+          height: 30px;
       }
 
       .login-card-body .input-group .input-group-text, .register-card-body .input-group .input-group-text{
@@ -83,14 +86,17 @@
 
     .login-box{
       margin-top: 0rem; /* 5rem mobile */
-      background-image: url(/assets/media/main_img.png);
-      background-size: cover; 
-      width: 24%; /* 100% mobile */
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      background-repeat: no-repeat;
-      height: 100%;
+      background-image: url(/public/assets/media/main_img.png);
+      background-size: cover;
+          width: 24%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-evenly;
+          background-repeat: no-repeat;
+          height: 100%;
+          align-content: stretch;
+          flex-direction: row;
+          flex-wrap: wrap;
     }
 
     label:not(.form-check-label):not(.custom-file-label){
@@ -151,24 +157,24 @@
     <img alt="Logo" src="{{ asset('assets/media/logos/logo.png') }}" style="    width: 265px;"/>
   </div> -->
   <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
+  <div class="card col-6">
+    <div class="col-12">
       <p class="login-box-msg" style="color:#726e6e"><strong>LOG IN</strong> </p>
 
       <form action="{{ route('login') }}" class="form w-100"  id="kt_sign_in_form">
 	
-        <div class="input-group mb-3">
+        <div class="col-12 mb-2">
           <input type="email" class="form-control" placeholder="Email" value="" id="emailInput" type="text" name="email" autocomplete="off">
           
         </div>
-        <div class="input-group mb-3">
+        <div class="col-12 mb-2">
           <input type="password" class="form-control" placeholder="Password"  name="password" id="passwordInput" value="" autocomplete="off">
 		  
         </div>
-        <div class="row" style="align-items: center;">
+        <div class="col-12 mb-2">
          
           <!-- /.col -->
-          <div class="col-12">
+    
           
 
  <!--begin::Submit button-->
@@ -179,23 +185,22 @@
                                 <!--end::Submit button-->
 								
 								
-          </div>
+         
 
-        <div class="col-12 mt-1 text-center pt-2">
-          <img alt="Logo" src="{{ asset('assets/media/logos/main_logo.png') }}" style="    width: 100px;"/>
-      
-        </div>
+        
           
           <!-- /.col -->
         </div>
+
+         <div class="col-12 mb-5" style="align-items: center;">
+           <div class="col-12 mt-1 text-center pt-2">
+          <img alt="Logo" src="{{ asset('assets/media/logos/main_logo.png') }}" style="    width: 130px;"/>
+      
+        </div>
+         </div>
       </form>
 
-      
-<!--
-      <p class="mb-1">
-	  
-        <a href="{{ route('password.reset.form') }}" >  {{ __('Forgot your password?') }}</a>
-      </p> -->
+
       
     </div>
     <!-- /.login-card-body -->
